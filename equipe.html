@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="icon" href="/ExxonMobil/dist/favicon.ico">
+    <title>Exxon Mobil</title>
+    <link href="css/chunk-vendors.0468bd4c.css" rel="stylesheet">
+    <link href="css/app.52d0b517.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/816.9c29bf21.css">
+    <link rel="stylesheet" type="text/css" href="css/580.669239931.css">
+    <style>
+        .teampage .nav-top .totalbox[data-v-2523f664] {
+            width: 92vw;
+            height: 29.333333vw;
+            margin: 0 auto;
+            background: url(img/enfer.png) no-repeat;
+            background-size: 100% 100%;
+            margin-top: 3.333333vw;
+            padding: 1.333333vw 4vw;
+            padding-top: 4vw
+        }
+        
+        /* Loading overlay */
+        #loading {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #e21b15;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Ajuste para o conteúdo não ficar atrás do footer */
+        .teampage[data-v-2523f664] {
+            padding-bottom: 80px;
+        }
+        
+        .money-value {
+            font-weight: bold;
+            color: #e21b15;
+        }
+        
+        /* Exemplos de cálculo */
+        .calculation-example {
+            background: #f8f9fa;
+            border-radius: 2vw;
+            padding: 3vw;
+            margin: 2vw 0;
+            border-left: 0.5vw solid #e21b15;
+            font-size: 3.5vw;
+            color: #333;
+        }
+        
+        .calculation-example strong {
+            color: #e21b15;
+        }
+        
+        .calculation-example .result {
+            color: #2ecc71;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading overlay -->
+    <div id="loading">
+        <div class="spinner"></div>
+    </div>
+    
+    <svg aria-hidden="true" style="position: absolute; width: 0px; height: 0px; overflow: hidden;">
+        <symbol id="icon-icon-android" viewBox="0 0 1024 1024">
+            <path d="M634.3 90.1l49.8-77.7c2.1-3.3 1.3-7.9-1.7-10.2l-1.2-0.9c-3.1-2.3-7.3-1.4-9.5 1.9l-51.2 79.9C587 67.5 549.7 58.8 510.3 58.8c-37.4 0-72.9 7.9-105 22L356.2 4.4c-2.1-3.3-6.4-4.2-9.5-1.9l-1.2 0.9c-3.1 2.3-3.9 6.9-1.7 10.2l47.3 73.8c-74.4 38.3-127.9 111.3-138.8 197.4h515.8c-10.6-84.1-62-155.8-133.8-194.7zM401.6 201.4c-14.2 0-25.7-12.4-25.7-27.7s11.5-27.7 25.7-27.7 25.7 12.4 25.7 27.7-11.5 27.7-25.7 27.7z m221.9 0c-14.2 0-25.7-12.4-25.7-27.7s11.5-27.7 25.7-27.7 25.7 12.4 25.7 27.7-11.5 27.7-25.7 27.7zM153.8 325.2h11.4c28.2 0 51.3 31.8 51.3 70.6v226.7c0 38.9-23.1 70.7-51.3 70.7h-11.4c-28.2 0-51.3-31.8-51.3-70.7V395.8c0-38.8 23.1-70.6 51.3-70.6z m705 1.3h11.4c28.2 0 51.3 31.8 51.3 70.6v226.7c0 38.9-23.1 70.7-51.3 70.7h-11.4c-28.2 0-51.3-31.8-51.3-70.7V397.2c0.1-38.9 23.1-70.7 51.3-70.7zM466.1 825.4v127.8c0 38.8-23.1 70.6-51.3 70.6h-11.4c-28.2 0-51.3-31.8-51.3-70.6V825.4h-47.2c-28.8 0-52.4-25.4-52.4-56.5V321.7H772v447.2c0 31.1-23.6 56.5-52.4 56.5h-43.3v129.2c0 38.9-23.1 69.4-51.3 69.4h-11.4c-28.2 0-51.3-30.5-51.3-69.4V825.4h-96.2z m0 0"></path>
+        </symbol>
+        <symbol id="icon-lvdouya" viewBox="0 0 1024 1024">
+            <path d="M282.5 386.3c65.4 34.4 99.9 106.6 130.2 174 16 35.7 32 71.4 48 107.2 5.8 12.9 24.2 26.8 32.6 38.2 13.3 18 53.7 59.1 73 70.3 107.3 62.1 257 89.1 362.9 44.2l30.6-18.6c-57.3 30.1-127.4 20.4-189.1 0.9-63.9-20.2-126.3-51.4-170-102.2-15.5-18-28.3-38.1-41-58.1-13.1-20.6-26.3-41.3-39.4-61.9-10.7-16.8-21.4-33.6-31.4-50.7-9.7-16.6-18.7-33.6-30.3-48.9-14.7-19.4-33-35.6-52-50.9-38.1-30.7-92.3-58.3-140.3-48.8l16.2 5.3z" fill="#DEE3A0"></path>
+            <path d="M128.7 301.1c-19.2-3-39.7 4.9-52 20s-15.8 36.8-9 55c6.9 18.5 23 32 39.9 42.3 27.8 17.1 60.1 28.2 92.7 26.7s65.3-16.7 83.9-43.5c17.7-25.5 21.1-59.1 14.3-89.3s-22.9-57.7-41.5-82.5c-16.5-22-35.6-42.6-59.5-56.1-24-13.4-53.4-18.9-79.3-9.7s-46.4 35-44.8 62.4c1.8 29.9 26.8 52.5 50.6 70.8l4.7 3.9z" fill="#7BAD37"></path>
+            <path d="M214.7 352c-43.2-16-86-50.9-86-50.9-17.6-2.7-36.2 3.7-48.6 16.3 32.9 11.9 107.7 37.4 134.6 34.6z" opacity=".2"></path>
+            <path d="M606.8 299.8c24.1 46 15.3 101.5 6 152.5-5 27-9.9 54.1-14.9 81.1-1.8 9.8-3.6 19.7-3.3 29.7 0.5 15.7 14.4 61 21.2 75.1 37.3 78.8 113.1 154 192.2 170.3l25.1 1.4c-45.2-5.4-81.8-38.9-109.8-74.8-28.9-37.1-52.6-80.1-57.6-126.8-1.8-16.6-1.2-33.3-0.6-49.9 0.6-17.2 1.2-34.3 1.9-51.5 0.5-14 1-27.9 2.1-41.9 1-13.4 2.6-26.9 2-40.3-0.8-17.1-4.9-33.8-9.8-50.1-9.8-32.9-30.2-70.5-61.7-84.1l7.2 9.3z" fill="#DEE3A0"></path>
+            <path d="M551.8 189.3c-9.9-9.4-24.9-13-38-9.2-13.1 3.8-23.8 15-27.1 28.2-3.4 13.5 0.6 27.7 6.2 40.4 9.3 21 23.6 40.3 43 52.4 19.5 12.1 44.4 16.4 65.9 8.3 20.4-7.7 35.7-25.8 43.8-46 8.1-20.2 9.8-42.5 8.9-64.3-0.8-19.3-3.6-38.8-12.1-56.2-8.5-17.3-23.4-32.2-42-37.2s-40.8 1.7-50.8 18.2c-10.9 18-5.4 41.1 1.1 61.1l1.1 4.3z" fill="#7BAD37"></path>
+            <path d="M581.3 253c-18.6-26.5-29.4-63.7-29.4-63.7-9.1-8.6-22.4-12.3-34.6-9.9 14.2 19.9 47.3 64.5 64 73.6z" opacity=".2"></path>
+            <path d="M803.8 336c8.2 43.4-12.8 86.4-33.2 125.6-10.8 20.8-21.6 41.5-32.4 62.3-3.9 7.5-7.9 15.1-10.1 23.3-3.5 12.9-3.5 53.2-1.5 66.4 10.8 73.4 53.7 153.6 114 186.5l20.1 7.4c-35.4-15.7-56.9-52.1-70.7-88.3-14.3-37.4-22.8-78.3-15.3-117.6 2.7-13.9 7.3-27.4 12-40.8 4.8-13.8 9.6-27.6 14.4-41.5 3.9-11.2 7.8-22.5 12.1-33.6 4.2-10.7 8.8-21.2 11.7-32.3 3.6-14.1 4.4-28.7 4.5-43.3 0.2-29.3-7-64.9-29.3-83.9l3.7 9.8z" fill="#DEE3A0"></path>
+            <path d="M786.6 232.3c-5.7-10.1-17.1-16.8-28.7-17-11.6-0.2-23.1 6.2-29.1 16.2-6.1 10.1-6.4 22.7-5 34.4 2.3 19.4 9.1 38.6 21.9 53.4 12.8 14.7 32.1 24.4 51.6 23.2 18.5-1.2 35.5-12.1 47.2-26.5 11.7-14.4 18.5-32.2 23.3-50.1 4.2-15.9 6.8-32.5 4.2-48.7-2.6-16.2-11-32.1-24.9-40.8s-33.6-8.8-45.9 2.2c-13.4 11.9-14.6 32.1-14.4 50l-0.2 3.7z" fill="#7BAD37"></path>
+            <path d="M794.7 291.5c-8.5-26.2-8.1-59.2-8.1-59.2-5.2-9.2-15.2-15.6-25.7-16.7 6.7 19.8 22.5 64.4 33.8 75.9z" opacity=".2"></path>
+            <path d="M280.3 718.4c57.9 6.5 102.1 47.9 141.8 87.1 21.1 20.8 42.1 41.6 63.2 62.3 7.6 7.5 15.3 15.1 24.6 20.9 14.5 9 64.9 24.2 82.2 26.8 96.4 14.7 215.8-6.8 284.1-67l18.3-21.4c-35.5 36.7-90.6 48.8-142 51.8-53.1 3.1-108-2-153.7-25.9-16.2-8.5-30.9-19.1-45.5-29.7-15.1-10.9-30.2-21.9-45.3-32.8-12.3-8.9-24.5-17.8-36.4-27.2-11.4-9-22.5-18.5-35.1-26.2-15.9-9.7-33.9-16.1-51.9-21.7-36.4-11.3-84.2-16-117.9 3.6l13.6-0.6z" fill="#DEE3A0"></path>
+            <path d="M143.1 700.1c-15.2 3.1-28.6 14.2-34.1 28.1s-2.6 30.1 7.1 41.1c9.9 11.1 25.4 16.3 40.7 19 25.2 4.5 52.3 3.6 76.5-6.3 24.2-9.9 44.9-29.4 52.1-53.3 6.8-22.7 0.9-47.2-11.8-66.6-12.8-19.4-31.8-34.4-52.1-46.8-18-11-37.5-20.3-58.9-23.3s-45 1.2-62.1 14.6-26.1 37.1-17.9 55.9c8.9 20.5 33.5 29.7 55.9 36.1l4.6 1.5z" fill="#7BAD37"></path>
+            <path d="M220.6 712.6c-36.5 0.4-77.5-12.6-77.5-12.6-13.9 2.8-26.3 12.4-32.4 24.6 27.7-0.5 90.4-2.8 109.9-12z" opacity=".2"></path>
+            <path d="M263.1 531s6.3 3.6 8.3 9.5c-1.5-6.1-8-9.9-8.2-9.7-0.2 0.1-0.1 0.2-0.1 0.2zM276.5 527.4s2.2 5 1 9.5c1.5-4.4-0.7-9.7-0.9-9.6l-0.1 0.1zM284.7 528.9s0.3 5.4-2.3 9.3c2.9-3.7 2.6-9.4 2.4-9.4-0.1 0-0.1 0.1-0.1 0.1zM262.9 544.8s5 0.3 8.5 5.3c-3-5.3-8.4-5.8-8.5-5.5-0.1 0.1 0 0.2 0 0.2z" fill="#7BAD37" opacity=".3"></path>
+        </symbol>
+    </svg>
+    
+    <div id="app" data-v-app="">
+        <div class="teampage" data-v-2523f664="">
+            <div class="nav-top" data-v-2523f664="">
+                <p class="titleho" data-v-2523f664="">Equipe</p>
+                <div class="totalbox" data-v-2523f664="">
+                    <p class="team-tile" data-v-2523f664="">Convide amigos para investir</p>
+                    <div class="leftment" data-v-2523f664="">
+                        <div class="l-size" data-v-2523f664="">
+                            <span data-v-2523f664="">Pessoas</span>
+                            <p data-v-2523f664="" id="totalPeople">0</p>
+                        </div>
+                        <p class="lined" data-v-2523f664=""></p>
+                        <div class="l-size" data-v-2523f664="">
+                            <span data-v-2523f664="">Bônus</span>
+                            <p class="rebateo" data-v-2523f664="" id="totalBonus">Kz 0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="invite-tile" data-v-2523f664="">
+                <img src="img/123.png" alt="" class="invi-img" data-v-2523f664="">
+                <p class="title-text" data-v-2523f664="">Método de convite</p>
+            </div>
+            
+            <div class="invite-methods" data-v-2523f664="">
+                <div class="l-invicode" data-v-2523f664="">
+                    <div class="code-left" data-v-2523f664="">
+                        <img src="img/123.png" alt="" data-v-2523f664="">
+                        <p class="code-text" data-v-2523f664="" id="tocopyone">Carregando...</p>
+                    </div>
+                    <img onclick="copyCode()" src="img/crus.png" alt="" class="copy-img" data-v-2523f664="">
+                </div>
+                <div class="l-invicode" data-v-2523f664="">
+                    <div class="code-left" data-v-2523f664="">
+                        <img src="img/link.png" alt="" data-v-2523f664="">
+                        <p class="code-text" data-v-2523f664="" id="tocopytwo">Carregando...</p>
+                    </div>
+                    <img onclick="copyLink()" src="img/crus.png" alt="" class="copy-img" data-v-2523f664="">
+                </div>
+            </div>
+            
+            <div class="invite-tile" data-v-2523f664="">
+                <img src="img/123.png" alt="" class="invi-img" data-v-2523f664="">
+                <p class="title-text" data-v-2523f664="">Informações da equipe</p>
+            </div>
+            
+            <div class="teamList" data-v-2523f664="">
+                <!-- Nível 1 - Alterado de Tier para Nível -->
+                <div class="item" data-v-2523f664="">
+                    <div class="titleWrap" data-v-2523f664="">
+                        <p data-v-2523f664="">Nível 1</p>
+                        <p class="rate" data-v-2523f664="">25%</p>
+                    </div>
+                    <div class="textWrap" data-v-2523f664="" onclick="window.location.href='/team-level-1.html'">
+                        <div class="left" data-v-2523f664="">
+                            <p data-v-2523f664="">Pessoas:</p>
+                            <span data-v-2523f664="" id="level1People">0</span>
+                        </div>
+                        <div class="right" data-v-2523f664="">
+                            <p data-v-2523f664="">Bônus Recebido:</p>
+                            <span data-v-2523f664="" id="level1Bonus" class="money-value">Kz 0</span>
+                        </div>
+                    </div>
+                    <img src="img/123.png" alt="" class="record-img" data-v-2523f664="">
+                </div>
+                
+                <!-- Nível 2 - Alterado de Tier para Nível -->
+                <div class="item" data-v-2523f664="">
+                    <div class="titleWrap" data-v-2523f664="">
+                        <p data-v-2523f664="">Nível 2</p>
+                        <p class="rate" data-v-2523f664="">2%</p>
+                    </div>
+                    <div class="textWrap" data-v-2523f664="" onclick="window.location.href='/team-level-2.html'">
+                        <div class="left" data-v-2523f664="">
+                            <p data-v-2523f664="">Pessoas:</p>
+                            <span data-v-2523f664="" id="level2People">0</span>
+                        </div>
+                        <div class="right" data-v-2523f664="">
+                            <p data-v-2523f664="">Bônus Recebido:</p>
+                            <span data-v-2523f664="" id="level2Bonus" class="money-value">Kz 0</span>
+                        </div>
+                    </div>
+                    <img src="img/seta.png" alt="" class="record-img" data-v-2523f664="">
+                </div>
+                
+                <!-- Nível 3 - Alterado de Tier para Nível -->
+                <div class="item" data-v-2523f664="">
+                    <div class="titleWrap" data-v-2523f664="">
+                        <p data-v-2523f664="">Nível 3</p>
+                        <p class="rate" data-v-2523f664="">1%</p>
+                    </div>
+                    <div class="textWrap" data-v-2523f664="" onclick="window.location.href='/team-level-3.html'">
+                        <div class="left" data-v-2523f664="">
+                            <p data-v-2523f664="">Pessoas:</p>
+                            <span data-v-2523f664="" id="level3People">0</span>
+                        </div>
+                        <div class="right" data-v-2523f664="">
+                            <p data-v-2523f664="">Bônus Recebido:</p>
+                            <span data-v-2523f664="" id="level3Bonus" class="money-value">Kz 0</span>
+                        </div>
+                    </div>
+                    <img src="img/seta.png" alt="" class="record-img" data-v-2523f664="">
+                </div>
+            </div>
+            
+            <div class="textui" data-v-2523f664="">
+                <p class="howto" data-v-2523f664="">Sobre a equipe</p>
+                <div class="ruleboxi" data-v-2523f664="">
+                    <p><strong>Usuários de Nível 1</strong></p>
+                    <p>Usuários que se registram através do seu link de convite são seus usuários de Nível 1.<br>Você receberá <span style="color: rgb(255, 0, 0);">25%</span> de bônus do valor do seu investimento.</p>
+                    
+                    <div class="calculation-example">
+                        <strong>Exemplo:</strong> Se um membro do Nível 1 investir <strong>Kz 3.000</strong><br>
+                        <strong>Seu bônus:</strong> Kz 3.000 × 25% = <span class="result">Kz 750</span>
+                    </div>
+                    
+                    <p><br></p>
+                    <p><strong>Usuários de Nível 2</strong></p>
+                    <p>Os usuários que se registram por meio do link de convite de usuário de Nível 1 são seus usuários de Nível 2.<br>Você receberá <span style="color: rgb(255, 0, 0);">2%</span> de bônus do valor do seu investimento.</p>
+                    
+                    <div class="calculation-example">
+                        <strong>Exemplo:</strong> Se um membro do Nível 2 investir <strong>Kz 3.000</strong><br>
+                        <strong>Seu bônus:</strong> Kz 3.000 × 2% = <span class="result">Kz 60</span>
+                    </div>
+                    
+                    <p><br></p>
+                    <p><strong>Usuários de Nível 3</strong></p>
+                    <p>Os usuários que se registram por meio do link de convite de usuário do Nível 2 são seus usuários do Nível 3.<br>Você receberá <span style="color: rgb(255, 0, 0);">1%</span> de bônus do valor do seu investimento.</p>
+                    
+                    <div class="calculation-example">
+                        <strong>Exemplo:</strong> Se um membro do Nível 3 investir <strong>Kz 3.000</strong><br>
+                        <strong>Seu bônus:</strong> Kz 3.000 × 1% = <span class="result">Kz 30</span>
+                    </div>
+                    
+                    <p><br></p>
+                    <p><strong>Exemplo completo da rede:</strong></p>
+                    <div class="calculation-example">
+                        <strong>Se você tiver:</strong><br>
+                        • 1 membro Nível 1 que investiu <strong>Kz 3.000</strong><br>
+                        • 2 membros Nível 2 que investiram <strong>Kz 3.000</strong> cada<br>
+                        • 3 membros Nível 3 que investiram <strong>Kz 3.000</strong> cada<br>
+                        <br>
+                        <strong>Seu bônus total seria:</strong><br>
+                        • Nível 1: Kz 3.000 × 25% = <strong>Kz 750</strong><br>
+                        • Nível 2: (Kz 3.000 × 2%) × 2 membros = <strong>Kz 120</strong><br>
+                        • Nível 3: (Kz 3.000 × 1%) × 3 membros = <strong>Kz 90</strong><br>
+                        <strong>Total: <span class="result">Kz 960</span></strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer mantido exatamente como estava -->
+        <div class="bottom" data-v-70b08a54="" data-v-2523f664="">
+            <div class="flex flex-bom" data-v-70b08a54="">
+                <div class="item" data-v-70b08a54="" onclick="window.location.href='/home.html'">
+                    <div class="img-box" data-v-70b08a54="">
+                        <img class="imgc" src="img/home.png" alt="" data-v-70b08a54="">
+                    </div>
+                    <p class="item-pone" data-v-70b08a54="" style="color: rgb(38, 50, 73);">Início</p>
+                </div>
+                <div class="item" data-v-70b08a54="" onclick="window.location.href='/ordered.html'">
+                    <div class="img-box" data-v-70b08a54="">
+                        <img class="imgc" src="img/ordered.png" alt="" data-v-70b08a54="">
+                    </div>
+                    <p class="item-pone" data-v-70b08a54="" style="color: rgb(38, 50, 73);">Adquirido</p>
+                </div>
+                <div class="item active" data-v-70b08a54="" onclick="window.location.href='/equipe.html'">
+                    <div class="img-box" data-v-70b08a54="">
+                        <img class="imgc" src="img/equipe.png" alt="" data-v-70b08a54="">
+                    </div>
+                    <p class="item-pone" data-v-70b08a54="" style="color: rgb(226, 27, 21);">Equipe</p>
+                </div>
+                <div class="item" data-v-70b08a54="" onclick="window.location.href='/profile.html'">
+                    <div class="img-box" data-v-70b08a54="">
+                        <img class="imgc" src="img/profile.png" alt="" data-v-70b08a54="">
+                    </div>
+                    <p class="item-pone" data-v-70b08a54="" style="color: rgb(38, 50, 73);">Meu</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configurações da API
+        const API_BASE_URL = 'https://bd-p4q7.onrender.com';
+        
+        // Função para obter token do localStorage
+        function getAuthToken() {
+            try {
+                const tokenData = localStorage.getItem('user_token');
+                if (!tokenData) return null;
+                
+                const { token, expiry } = JSON.parse(tokenData);
+                
+                // Verificar se o token expirou
+                if (expiry && Date.now() > expiry) {
+                    localStorage.removeItem('user_token');
+                    localStorage.removeItem('user_id');
+                    return null;
+                }
+                
+                return token;
+            } catch (e) {
+                console.error('Erro ao obter token:', e);
+                return null;
+            }
+        }
+        
+        // Funções de cópia
+        function copyCode() {
+            const code = document.getElementById('tocopyone').textContent;
+            if (code === 'Carregando...' || !code) {
+                alert('Aguarde o carregamento dos dados');
+                return;
+            }
+            copyToClipboard(code, 'Código copiado!');
+        }
+        
+        function copyLink() {
+            const link = document.getElementById('tocopytwo').textContent;
+            if (link === 'Carregando...' || !link) {
+                alert('Aguarde o carregamento dos dados');
+                return;
+            }
+            copyToClipboard(link, 'Link copiado!');
+        }
+        
+        async function copyToClipboard(text, successMessage) {
+            try {
+                await navigator.clipboard.writeText(text);
+                alert(successMessage);
+            } catch (err) {
+                // Fallback para navegadores antigos
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                alert(successMessage);
+            }
+        }
+        
+        // Função para mostrar/ocultar loading
+        function showLoading() {
+            const loading = document.getElementById('loading');
+            if (loading) loading.style.display = 'flex';
+        }
+        
+        function hideLoading() {
+            const loading = document.getElementById('loading');
+            if (loading) loading.style.display = 'none';
+        }
+        
+        // Função para buscar dados da equipe da API
+        async function fetchTeamData() {
+            const token = getAuthToken();
+            
+            if (!token) {
+                console.error('Usuário não autenticado');
+                // Redirecionar para login se não estiver autenticado
+                setTimeout(() => window.location.href = '/login.html', 2000);
+                return;
+            }
+            
+            showLoading();
+            
+            try {
+                // Chamar a API real
+                const response = await fetch(`${API_BASE_URL}/api/team/statistics`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    
+                    if (result.success && result.data) {
+                        updateTeamUI(result.data);
+                        updateInvitationInfo(result.data);
+                    } else {
+                        console.error('Erro na API:', result.message);
+                        // Usar dados de exemplo se a API falhar
+                        loadExampleData();
+                    }
+                } else if (response.status === 401) {
+                    // Token expirado ou inválido
+                    localStorage.removeItem('user_token');
+                    localStorage.removeItem('user_id');
+                    alert('Sessão expirada. Faça login novamente.');
+                    setTimeout(() => window.location.href = '/login.html', 2000);
+                } else {
+                    console.error('Erro HTTP:', response.status);
+                    // Usar dados de exemplo se a API falhar
+                    loadExampleData();
+                }
+            } catch (error) {
+                console.error('Erro na requisição:', error);
+                // Usar dados de exemplo se a API falhar
+                loadExampleData();
+            } finally {
+                hideLoading();
+            }
+        }
+        
+        // Carregar dados de exemplo para demonstração
+        function loadExampleData() {
+            console.log('Usando dados de exemplo');
+            
+            // Atualizar totais do cabeçalho
+            document.getElementById('totalPeople').textContent = '12';
+            document.getElementById('totalBonus').textContent = formatCurrency(9600);
+            
+            // Atualizar dados por nível
+            document.getElementById('level1People').textContent = '4';
+            document.getElementById('level1Bonus').textContent = formatCurrency(7500);
+            
+            document.getElementById('level2People').textContent = '5';
+            document.getElementById('level2Bonus').textContent = formatCurrency(1500);
+            
+            document.getElementById('level3People').textContent = '3';
+            document.getElementById('level3Bonus').textContent = formatCurrency(600);
+            
+            // Atualizar informações de convite
+            document.getElementById('tocopyone').textContent = 'EXON123456';
+            document.getElementById('tocopytwo').textContent = 'https://exonhub.space/register?ref=EXON123456';
+        }
+        
+        // Atualizar a interface com os dados da API
+        function updateTeamUI(data) {
+            // Atualizar totais do cabeçalho
+            if (data.team_overview) {
+                document.getElementById('totalPeople').textContent = data.team_overview.people_added || 0;
+                document.getElementById('totalBonus').textContent = formatCurrency(data.team_overview.income_added || 0);
+            }
+            
+            // Atualizar dados por nível (levels)
+            if (data.level_data) {
+                // Nível 1
+                if (data.level_data.level1) {
+                    document.getElementById('level1People').textContent = data.level_data.level1.valid_members || 0;
+                    document.getElementById('level1Bonus').textContent = formatCurrency(data.level_data.level1.team_withdrawal || 0);
+                }
+                
+                // Nível 2
+                if (data.level_data.level2) {
+                    document.getElementById('level2People').textContent = data.level_data.level2.valid_members || 0;
+                    document.getElementById('level2Bonus').textContent = formatCurrency(data.level_data.level2.team_withdrawal || 0);
+                }
+                
+                // Nível 3
+                if (data.level_data.level3) {
+                    document.getElementById('level3People').textContent = data.level_data.level3.valid_members || 0;
+                    document.getElementById('level3Bonus').textContent = formatCurrency(data.level_data.level3.team_withdrawal || 0);
+                }
+            }
+        }
+        
+        // Atualizar informações de convite (código e link)
+        async function updateInvitationInfo(data) {
+            try {
+                // Primeiro, buscar o perfil do usuário para obter o código de convite
+                const token = getAuthToken();
+                const response = await fetch(`${API_BASE_URL}/user/profile`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    if (result.success && result.data) {
+                        const invitationCode = result.data.invitation_code;
+                        
+                        // Atualizar código de convite
+                        document.getElementById('tocopyone').textContent = invitationCode || 'EXON123456';
+                        
+                        // Atualizar link de convite
+                        if (data.team_overview && data.team_overview.invitation_link) {
+                            document.getElementById('tocopytwo').textContent = data.team_overview.invitation_link;
+                        } else {
+                            // Criar link padrão se não vier da API
+                            document.getElementById('tocopytwo').textContent = 
+                                `https://exonhub.space/register?ref=${invitationCode || 'EXON123456'}`;
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error('Erro ao buscar informações de convite:', error);
+                document.getElementById('tocopyone').textContent = 'EXON123456';
+                document.getElementById('tocopytwo').textContent = 'https://exonhub.space/register?ref=EXON123456';
+            }
+        }
+        
+        // Formatar valores monetários em KZ (Kwanza)
+        function formatCurrency(value) {
+            if (typeof value !== 'number') {
+                value = parseFloat(value) || 0;
+            }
+            
+            // Formatar como Kwanza angolano
+            return new Intl.NumberFormat('pt-AO', {
+                style: 'currency',
+                currency: 'AOA',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(value).replace('AOA', 'Kz');
+        }
+        
+        // Verificar autenticação e carregar dados
+        async function checkAuthAndLoadData() {
+            const token = getAuthToken();
+            
+            if (!token) {
+                console.log('Usuário não autenticado');
+                alert('Por favor, faça login para acessar esta página');
+                setTimeout(() => window.location.href = '/login.html', 2000);
+                return;
+            }
+            
+            // Se o token for válido, buscar dados da equipe
+            await fetchTeamData();
+            
+            // Atualizar a cada 30 segundos
+            setInterval(fetchTeamData, 30000);
+        }
+        
+        // Calcular bônus de exemplo
+        function calculateExampleBonus() {
+            const level1Investment = 3000;
+            const level2Investment = 3000;
+            const level3Investment = 3000;
+            
+            const level1Bonus = level1Investment * 0.25; // 25%
+            const level2Bonus = level2Investment * 0.02; // 2%
+            const level3Bonus = level3Investment * 0.01; // 1%
+            
+            console.log('Exemplo de cálculo:');
+            console.log(`Nível 1 (25%): Kz ${level1Investment} × 25% = Kz ${level1Bonus}`);
+            console.log(`Nível 2 (2%): Kz ${level2Investment} × 2% = Kz ${level2Bonus}`);
+            console.log(`Nível 3 (1%): Kz ${level3Investment} × 1% = Kz ${level3Bonus}`);
+        }
+        
+        // Inicializar quando a página carregar
+        document.addEventListener('DOMContentLoaded', function() {
+            // Calcular exemplo
+            calculateExampleBonus();
+            
+            // Verificar autenticação e carregar dados
+            checkAuthAndLoadData();
+            
+            // Adicionar padding ao conteúdo para não ficar atrás do footer
+            const teampage = document.querySelector('.teampage');
+            if (teampage) {
+                teampage.style.paddingBottom = '80px';
+            }
+        });
+    </script>
+</body>
+</html>

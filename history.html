@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="csrf-token" content="FFWMwkguqirb5q82aJ9CTTkrs26paZbpMplZuQo4">
+
+    <title>Cineverse - Histórico de Transações</title>
+
+    <!-- favicon icon -->
+    <link rel="icon" href="https://exonhub.space/public/footbal/assets/image/favicon.ico">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css" integrity="sha512-2bBQCjcnw658Lho4nlXJcc6WkV/UxpE/sAokbXPxQNGqmNdQrWqtw26Ns9kFF/yG792pKR1Sx8/Y1Lf1XN4GKA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link href="https://exonhub.space/exo/bank/ExxonMobil/dist/css/chunk-vendors.0468bd4c.css" rel="stylesheet">
+    <link href="https://exonhub.space/exo/bank/ExxonMobil/dist/css/app.52d0b517.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="css/580.66923993.css">
+    <link rel="stylesheet" type="text/css" href="css/437.66264f7a.css">
+    <link rel="stylesheet" type="text/css" href="css/165.444cee7e.css">
+    <link rel="stylesheet" type="text/css" href="css/868.ef352a45.css">
+    <link rel="stylesheet" type="text/css" href="css/67.9404612c.css">
+    <link rel="stylesheet" type="text/css" href="css/123.32f7ffba2.css">
+
+    <link rel="icon" href="/ExxonMobil/dist/favicon.ico">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+
+    <link rel="stylesheet" type="text/css" href="css/580.66923993.css">
+    <link rel="stylesheet" type="text/css" href="css/437.66264f7a.css">
+    <link rel="stylesheet" type="text/css" href="css/165.444cee7e.css">
+    <link rel="stylesheet" type="text/css" href="css/868.ef352a45.css">
+    <link rel="stylesheet" type="text/css" href="css/67.9404612c.css">
+    <link rel="stylesheet" type="text/css" href="css/123.32f7ffba.css">
+    <link rel="stylesheet" type="text/css" href="css/589.f9f3d6c5.css">
+    <link rel="stylesheet" type="text/css" href="css/361.9609fc71.css">
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
+
+    <style>
+        /* Estilos otimizados para mobile */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            padding-bottom: env(safe-area-inset-bottom);
+            -webkit-text-size-adjust: 100%;
+            -webkit-font-smoothing: antialiased;
+            touch-action: manipulation;
+        }
+        
+        .recordpage {
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto;
+            background: #fff;
+            min-height: 100vh;
+            padding-bottom: 80px;
+            position: relative;
+        }
+        
+        .navboxi {
+            background: linear-gradient(135deg, #e21b15 0%, #b9150e 100%);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 12px 0;
+            height: 60px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .van-nav-bar__content {
+            width: 100%;
+            padding: 0 16px;
+        }
+        
+        .van-nav-bar__title {
+            color: white;
+            font-weight: 600;
+            font-size: 18px;
+            text-align: center;
+        }
+        
+        .van-nav-bar__left {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2;
+        }
+        
+        .van-nav-bar__arrow {
+            color: white;
+            font-size: 20px;
+        }
+        
+        /* Filtros otimizados */
+        .filter-container {
+            padding: 16px 16px 8px;
+            background: #fff;
+            position: sticky;
+            top: 60px;
+            z-index: 90;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .filter-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .filter-title i {
+            color: #e21b15;
+            font-size: 16px;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding-bottom: 8px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        
+        .filter-buttons::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .filter-button {
+            padding: 8px 16px;
+            border: none;
+            background: #f0f0f0;
+            border-radius: 20px;
+            font-size: 13px;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+            min-width: fit-content;
+            flex-shrink: 0;
+        }
+        
+        .filter-button:hover,
+        .filter-button:active {
+            background: #e0e0e0;
+        }
+        
+        .filter-button.active {
+            background: linear-gradient(135deg, #e21b15, #b9150e);
+            color: white;
+            box-shadow: 0 2px 5px rgba(226, 27, 21, 0.3);
+        }
+        
+        /* Lista de transações otimizada */
+        .transactions-container {
+            padding: 16px;
+            padding-top: 8px;
+        }
+        
+        .transactions-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0 4px;
+        }
+        
+        .transactions-title i {
+            color: #e21b15;
+            font-size: 16px;
+        }
+        
+        /* Item de transação otimizado */
+        .transaction-item {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-left: 4px solid #e21b15;
+            transition: all 0.2s;
+            animation: fadeIn 0.3s ease-out;
+            width: 100%;
+        }
+        
+        .transaction-item:active {
+            transform: scale(0.98);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+        }
+        
+        .transaction-item.deposit {
+            border-left-color: #4CAF50;
+        }
+        
+        .transaction-item.withdrawal {
+            border-left-color: #e21b15;
+        }
+        
+        .transaction-item.purchase {
+            border-left-color: #2196F3;
+        }
+        
+        .transaction-item.income {
+            border-left-color: #FF9800;
+        }
+        
+        .transaction-item.bonus {
+            border-left-color: #9C27B0;
+        }
+        
+        .transaction-item.checkin {
+            border-left-color: #FFC107;
+        }
+        
+        .transaction-item.refund {
+            border-left-color: #00BCD4;
+        }
+        
+        .transaction-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            gap: 12px;
+        }
+        
+        .transaction-info {
+            flex: 1;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            min-width: 0;
+        }
+        
+        .transaction-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+        
+        .transaction-icon.deposit {
+            background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+            color: #2E7D32;
+        }
+        
+        .transaction-icon.withdrawal {
+            background: linear-gradient(135deg, #FFEBEE, #FFCDD2);
+            color: #e21b15;
+        }
+        
+        .transaction-icon.purchase {
+            background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+            color: #1565C0;
+        }
+        
+        .transaction-icon.income {
+            background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
+            color: #EF6C00;
+        }
+        
+        .transaction-icon.bonus {
+            background: linear-gradient(135deg, #F3E5F5, #E1BEE7);
+            color: #7B1FA2;
+        }
+        
+        .transaction-icon.checkin {
+            background: linear-gradient(135deg, #FFFDE7, #FFF9C4);
+            color: #F9A825;
+        }
+        
+        .transaction-icon.refund {
+            background: linear-gradient(135deg, #E0F7FA, #B2EBF2);
+            color: #00838F;
+        }
+        
+        .transaction-details {
+            flex: 1;
+            min-width: 0;
+            overflow: hidden;
+        }
+        
+        .transaction-type {
+            font-weight: 600;
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .transaction-description {
+            color: #666;
+            font-size: 12px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .transaction-amount {
+            font-weight: 700;
+            font-size: 16px;
+            flex-shrink: 0;
+            text-align: right;
+            min-width: 80px;
+        }
+        
+        .transaction-amount.positive {
+            color: #4CAF50;
+        }
+        
+        .transaction-amount.negative {
+            color: #e21b15;
+        }
+        
+        .transaction-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            border-top: 1px solid #f0f0f0;
+            margin-top: 12px;
+            font-size: 11px;
+        }
+        
+        .balance-after {
+            color: #666;
+            background: #f8f9fa;
+            padding: 4px 10px;
+            border-radius: 12px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 60%;
+        }
+        
+        .transaction-date {
+            color: #888;
+            white-space: nowrap;
+        }
+        
+        /* Estados vazios/loading */
+        .loading-spinner {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+        
+        .loading-spinner i {
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: #e21b15;
+            animation: spin 1s linear infinite;
+        }
+        
+        .loading-spinner p {
+            margin: 0;
+            font-size: 15px;
+        }
+        
+        .no-transactions {
+            text-align: center;
+            padding: 80px 20px;
+            color: #888;
+            display: none;
+        }
+        
+        .no-transactions i {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: #ddd;
+        }
+        
+        .no-transactions p {
+            margin: 0;
+            font-size: 16px;
+        }
+        
+        /* Botão de atualização flutuante */
+        .refresh-button {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #e21b15, #b9150e);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(226, 27, 21, 0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            touch-action: manipulation;
+        }
+        
+        .refresh-button:active {
+            transform: scale(0.95) rotate(180deg);
+            box-shadow: 0 6px 20px rgba(226, 27, 21, 0.6);
+        }
+        
+        /* Botão Carregar Mais */
+        .load-more {
+            text-align: center;
+            margin: 20px 0;
+            padding: 0 16px;
+        }
+        
+        .load-more button {
+            background: linear-gradient(135deg, #e21b15, #b9150e);
+            color: white;
+            border: none;
+            padding: 12px 40px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            width: 100%;
+            max-width: 300px;
+            transition: all 0.2s;
+            touch-action: manipulation;
+        }
+        
+        .load-more button:active {
+            transform: scale(0.98);
+            opacity: 0.9;
+        }
+        
+        /* Toast customizado */
+        .custom-toast {
+            position: fixed;
+            top: 80px;
+            right: 16px;
+            left: 16px;
+            background: #333;
+            color: white;
+            padding: 14px 16px;
+            border-radius: 10px;
+            z-index: 10000;
+            font-size: 14px;
+            animation: slideIn 0.3s ease-out;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            max-width: 100%;
+            text-align: center;
+        }
+        
+        .custom-toast.toast-success {
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+        }
+        
+        .custom-toast.toast-error {
+            background: linear-gradient(135deg, #e21b15, #b9150e);
+        }
+        
+        .custom-toast.toast-info {
+            background: linear-gradient(135deg, #2196F3, #1565C0);
+        }
+        
+        /* Animações */
+        @keyframes slideIn {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Ajustes para telas muito pequenas */
+        @media (max-width: 360px) {
+            .filter-button {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+            
+            .transaction-item {
+                padding: 12px;
+            }
+            
+            .transaction-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 14px;
+            }
+            
+            .transaction-amount {
+                font-size: 14px;
+                min-width: 70px;
+            }
+            
+            .refresh-button {
+                width: 48px;
+                height: 48px;
+                font-size: 18px;
+                bottom: 80px;
+                right: 16px;
+            }
+        }
+        
+        /* Ajustes para iPhone (notch) */
+        @supports (padding-top: env(safe-area-inset-top)) {
+            .navboxi {
+                padding-top: calc(12px + env(safe-area-inset-top));
+                height: calc(60px + env(safe-area-inset-top));
+            }
+            
+            .van-nav-bar__content {
+                padding-top: env(safe-area-inset-top);
+            }
+            
+            .filter-container {
+                top: calc(60px + env(safe-area-inset-top));
+            }
+            
+            .refresh-button {
+                bottom: calc(90px + env(safe-area-inset-bottom));
+            }
+            
+            .recordpage {
+                padding-bottom: calc(80px + env(safe-area-inset-bottom));
+            }
+        }
+        
+        /* Ajustes para tablets */
+        @media (min-width: 768px) {
+            .recordpage {
+                max-width: 600px;
+                margin: 0 auto;
+                box-shadow: 0 0 20px rgba(0,0,0,0.1);
+                min-height: calc(100vh - 40px);
+                margin-top: 20px;
+                margin-bottom: 20px;
+                border-radius: 20px;
+                overflow: hidden;
+            }
+            
+            .filter-button {
+                padding: 8px 20px;
+                font-size: 14px;
+            }
+            
+            .transaction-item {
+                padding: 18px;
+                margin-bottom: 12px;
+            }
+            
+            .refresh-button {
+                right: 50%;
+                transform: translateX(300px);
+            }
+        }
+        
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #121212;
+            }
+            
+            .recordpage {
+                background: #1e1e1e;
+            }
+            
+            .filter-container {
+                background: #1e1e1e;
+                border-bottom-color: #333;
+            }
+            
+            .filter-title {
+                color: #fff;
+            }
+            
+            .filter-button {
+                background: #333;
+                color: #ccc;
+            }
+            
+            .filter-button:hover,
+            .filter-button:active {
+                background: #444;
+            }
+            
+            .transactions-title {
+                color: #fff;
+            }
+            
+            .transaction-item {
+                background: #2d2d2d;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            }
+            
+            .transaction-type {
+                color: #fff;
+            }
+            
+            .transaction-description {
+                color: #aaa;
+            }
+            
+            .transaction-footer {
+                border-top-color: #333;
+            }
+            
+            .balance-after {
+                background: #333;
+                color: #aaa;
+            }
+            
+            .transaction-date {
+                color: #888;
+            }
+            
+            .no-transactions {
+                color: #aaa;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app" data-v-app="">
+        <div class="recordpage" data-v-26d9ea4c="">
+            <!-- Header fixo -->
+            <div class="van-nav-bar van-hairline--bottom navboxi" data-v-26d9ea4c="">
+                <div class="van-nav-bar__content">
+                    <div class="van-nav-bar__left van-haptics-feedback" onclick="window.history.back()">
+                        <i class="van-badge__wrapper van-icon van-icon-arrow-left van-nav-bar__arrow"></i>
+                    </div>
+                    <div class="van-nav-bar__title van-ellipsis">Histórico de Transações</div>
+                </div>
+            </div>
+
+            <!-- Filtros fixos -->
+            <div class="filter-container">
+                <div class="filter-title">
+                    <i class="fas fa-filter"></i>
+                    Filtrar por tipo:
+                </div>
+                <div class="filter-buttons">
+                    <button class="filter-button active" onclick="filterTransactions('all')">Todas</button>
+                    <button class="filter-button" onclick="filterTransactions('deposit')">Depósitos</button>
+                    <button class="filter-button" onclick="filterTransactions('withdrawal')">Saques</button>
+                    <button class="filter-button" onclick="filterTransactions('purchase')">Compras</button>
+                    <button class="filter-button" onclick="filterTransactions('income')">Rendimentos</button>
+                    <button class="filter-button" onclick="filterTransactions('bonus')">Bônus</button>
+                    <button class="filter-button" onclick="filterTransactions('checkin')">Check-in</button>
+                    <button class="filter-button" onclick="filterTransactions('refund')">Reembolsos</button>
+                </div>
+            </div>
+
+            <!-- Lista de transações -->
+            <div class="transactions-container">
+                <div class="transactions-title">
+                    <i class="fas fa-receipt"></i>
+                    Últimas transações
+                </div>
+                
+                <div class="loading-spinner" id="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Carregando transações...</p>
+                </div>
+                
+                <div id="transactions-list"></div>
+                
+                <div class="no-transactions" id="no-transactions">
+                    <i class="fas fa-receipt"></i>
+                    <p>Nenhuma transação encontrada</p>
+                </div>
+                
+                <div class="load-more" id="load-more" style="display: none;">
+                    <button onclick="loadMoreTransactions()">
+                        Carregar Mais Transações
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Botão de atualização flutuante -->
+            <button class="refresh-button" onclick="refreshTransactions()">
+                <i class="fas fa-sync-alt"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Configuração da API
+        const API_BASE_URL = 'https://bd-p4q7.onrender.com';
+        
+        // Estado da aplicação
+        let currentPage = 1;
+        let isLoading = false;
+        let hasMore = true;
+        let currentFilter = 'all';
+
+        // Função para mostrar toast
+        function showToast(message, type = 'info') {
+            const existingToast = document.querySelector('.custom-toast');
+            if (existingToast) {
+                existingToast.remove();
+            }
+            
+            const toast = document.createElement('div');
+            toast.className = `custom-toast toast-${type}`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    toast.remove();
+                }
+            }, 3000);
+        }
+
+        // Função para verificar se o token é válido
+        function isTokenValid() {
+            const tokenData = localStorage.getItem('user_token');
+            if (!tokenData) return false;
+            
+            try {
+                const { expiry } = JSON.parse(tokenData);
+                return Date.now() < expiry;
+            } catch (e) {
+                console.error('Erro ao verificar token:', e);
+                return false;
+            }
+        }
+
+        // Função para obter o token
+        function getToken() {
+            const tokenData = localStorage.getItem('user_token');
+            if (!tokenData) return null;
+            
+            try {
+                const parsed = JSON.parse(tokenData);
+                return parsed.token;
+            } catch (e) {
+                console.error('Erro ao obter token:', e);
+                return null;
+            }
+        }
+
+        // Função para redirecionar para login se não autenticado
+        function checkAuth() {
+            if (!isTokenValid()) {
+                showToast('Sessão expirada. Por favor, faça login novamente.', 'error');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+                return false;
+            }
+            return true;
+        }
+
+        // Função para obter tradução do tipo de transação
+        function getTransactionType(type) {
+            const types = {
+                'deposit': 'Depósito',
+                'withdrawal': 'Saque',
+                'purchase': 'Compra',
+                'product_income': 'Rendimento',
+                'daily_checkin': 'Check-in Diário',
+                'referral_bonus': 'Bônus de Indicação',
+                'admin_addition': 'Adição Administrativa',
+                'admin_deduction': 'Dedução Administrativa',
+                'purchase_refund': 'Reembolso de Compra',
+                'withdrawal_refund': 'Reembolso de Saque',
+                'income': 'Rendimento',
+                'payout': 'Pagamento',
+                'admin_balance_add': 'Adição de Saldo',
+                'admin_balance_deduct': 'Dedução de Saldo'
+            };
+            return types[type] || type.charAt(0).toUpperCase() + type.slice(1);
+        }
+
+        // Função para obter ícone do tipo de transação
+        function getTransactionIcon(type) {
+            const icons = {
+                'deposit': 'fa-solid fa-arrow-down-to-bracket',
+                'withdrawal': 'fa-solid fa-arrow-up-from-bracket',
+                'purchase': 'fa-solid fa-cart-shopping',
+                'product_income': 'fa-solid fa-money-bill-trend-up',
+                'daily_checkin': 'fa-solid fa-calendar-check',
+                'referral_bonus': 'fa-solid fa-users',
+                'admin_addition': 'fa-solid fa-user-tie',
+                'admin_deduction': 'fa-solid fa-user-tie',
+                'purchase_refund': 'fa-solid fa-rotate-left',
+                'withdrawal_refund': 'fa-solid fa-rotate-left',
+                'income': 'fa-solid fa-money-bill-wave',
+                'payout': 'fa-solid fa-money-check-dollar'
+            };
+            return icons[type] || 'fa-solid fa-exchange-alt';
+        }
+
+        // Função para obter classe CSS do tipo de transação
+        function getTransactionClass(type) {
+            if (type.includes('deposit')) return 'deposit';
+            if (type.includes('withdrawal')) return 'withdrawal';
+            if (type.includes('purchase')) return 'purchase';
+            if (type.includes('income') || type.includes('payout')) return 'income';
+            if (type.includes('bonus') || type.includes('referral')) return 'bonus';
+            if (type.includes('checkin')) return 'checkin';
+            if (type.includes('refund')) return 'refund';
+            if (type.includes('admin')) return 'admin';
+            return 'other';
+        }
+
+        // Função para formatar data
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffTime = Math.abs(now - date);
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            
+            if (diffDays === 0) {
+                return 'Hoje ' + date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+            } else if (diffDays === 1) {
+                return 'Ontem ' + date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+            } else if (diffDays < 7) {
+                const days = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+                return days[date.getDay()] + ' ' + date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+            } else {
+                return date.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' }) + ' ' + 
+                       date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+            }
+        }
+
+        // Função para formatar valor monetário
+        function formatCurrency(value) {
+            return new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'AOA',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(value);
+        }
+
+        // Função para criar item de transação
+        function createTransactionItem(transaction) {
+            const isPositive = transaction.amount > 0;
+            const amountClass = isPositive ? 'positive' : 'negative';
+            const amountPrefix = isPositive ? '+' : '';
+            
+            const typeClass = getTransactionClass(transaction.type);
+            const iconClass = getTransactionIcon(transaction.type);
+            const typeName = getTransactionType(transaction.type);
+            
+            return `
+                <div class="transaction-item ${typeClass}" data-type="${typeClass}">
+                    <div class="transaction-header">
+                        <div class="transaction-info">
+                            <div class="transaction-icon ${typeClass}">
+                                <i class="${iconClass}"></i>
+                            </div>
+                            <div class="transaction-details">
+                                <div class="transaction-type">${typeName}</div>
+                                <div class="transaction-description">${transaction.description || 'Transação realizada'}</div>
+                            </div>
+                        </div>
+                        <div class="transaction-amount ${amountClass}">
+                            ${amountPrefix}${formatCurrency(transaction.amount)}
+                        </div>
+                    </div>
+                    <div class="transaction-footer">
+                        <div class="balance-after">
+                            Saldo: ${formatCurrency(transaction.balance_after || 0)}
+                        </div>
+                        <div class="transaction-date">
+                            ${formatDate(transaction.created_at)}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Função para carregar transações
+        async function loadUserTransactions(reset = false) {
+            if (!checkAuth() || isLoading) return;
+
+            const token = getToken();
+            const loadingElement = document.getElementById('loading');
+            const listElement = document.getElementById('transactions-list');
+            const noTransactionsElement = document.getElementById('no-transactions');
+            const loadMoreElement = document.getElementById('load-more');
+
+            try {
+                isLoading = true;
+                
+                if (reset) {
+                    currentPage = 1;
+                    hasMore = true;
+                    listElement.innerHTML = '';
+                    noTransactionsElement.style.display = 'none';
+                    loadMoreElement.style.display = 'none';
+                    loadingElement.style.display = 'block';
+                    
+                    // Scroll para o topo
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+                
+                // Construir URL com filtros
+                let url = `${API_BASE_URL}/api/user/transactions?page=${currentPage}&limit=20`;
+                if (currentFilter !== 'all') {
+                    url += `&type=${currentFilter}`;
+                }
+
+                const response = await fetch(url, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.status === 401) {
+                    localStorage.removeItem('user_token');
+                    localStorage.removeItem('user_id');
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const result = await response.json();
+                
+                if (result.success && result.data && result.data.transactions) {
+                    const transactions = result.data.transactions;
+                    
+                    if (transactions.length === 0) {
+                        if (reset) {
+                            loadingElement.style.display = 'none';
+                            noTransactionsElement.style.display = 'block';
+                        }
+                        hasMore = false;
+                    } else {
+                        // Adicionar transações à lista
+                        transactions.forEach(transaction => {
+                            listElement.innerHTML += createTransactionItem(transaction);
+                        });
+                        
+                        // Verificar se há mais páginas
+                        if (transactions.length < 20) {
+                            hasMore = false;
+                            loadMoreElement.style.display = 'none';
+                        } else {
+                            loadMoreElement.style.display = 'block';
+                        }
+                        
+                        currentPage++;
+                        loadingElement.style.display = 'none';
+                        
+                        // Mostrar mensagem de sucesso
+                        if (reset) {
+                            showToast(`${transactions.length} transações carregadas`, 'success');
+                        }
+                    }
+                } else {
+                    if (reset) {
+                        loadingElement.style.display = 'none';
+                        noTransactionsElement.style.display = 'block';
+                    }
+                    hasMore = false;
+                    loadMoreElement.style.display = 'none';
+                }
+
+            } catch (error) {
+                console.error('Erro ao carregar transações:', error);
+                if (reset) {
+                    loadingElement.style.display = 'none';
+                    noTransactionsElement.style.display = 'block';
+                    noTransactionsElement.innerHTML = `
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p>Erro ao carregar transações</p>
+                        <p style="font-size: 12px; margin-top: 10px;">Tente novamente em alguns instantes</p>
+                    `;
+                }
+                showToast('Erro ao carregar transações', 'error');
+            } finally {
+                isLoading = false;
+            }
+        }
+
+        // Função para filtrar transações
+        function filterTransactions(filter) {
+            const buttons = document.querySelectorAll('.filter-button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            const activeButton = document.querySelector(`.filter-button[onclick*="${filter}"]`);
+            if (activeButton) {
+                activeButton.classList.add('active');
+            }
+
+            currentFilter = filter;
+            loadUserTransactions(true);
+        }
+
+        // Função para carregar mais transações
+        function loadMoreTransactions() {
+            if (!isLoading && hasMore) {
+                loadUserTransactions(false);
+            }
+        }
+
+        // Função para recarregar transações
+        window.refreshTransactions = function() {
+            if (!checkAuth()) return;
+            showToast('Atualizando transações...', 'info');
+            loadUserTransactions(true);
+        };
+
+        // Inicialização quando a página carrega
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Inicializando página de histórico...');
+            
+            if (!checkAuth()) {
+                return;
+            }
+
+            // Carregar transações iniciais
+            loadUserTransactions(true);
+
+            // Configurar pull-to-refresh
+            let pullStartY = 0;
+            let isPulling = false;
+
+            document.addEventListener('touchstart', (e) => {
+                if (window.scrollY === 0) {
+                    pullStartY = e.touches[0].clientY;
+                    isPulling = true;
+                }
+            });
+
+            document.addEventListener('touchmove', (e) => {
+                if (!isPulling) return;
+                
+                const pullMoveY = e.touches[0].clientY;
+                const pullDistance = pullMoveY - pullStartY;
+                
+                if (pullDistance > 100) {
+                    refreshTransactions();
+                    isPulling = false;
+                }
+            });
+
+            document.addEventListener('touchend', () => {
+                isPulling = false;
+            });
+
+            // Configurar scroll infinito
+            window.addEventListener('scroll', function() {
+                if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
+                    loadMoreTransactions();
+                }
+            });
+
+            console.log('Página de histórico inicializada com sucesso!');
+        });
+
+        // Adicionar atalho de teclado (R para recarregar)
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'r' || e.key === 'R') {
+                e.preventDefault();
+                refreshTransactions();
+            }
+        });
+    </script>
+
+    <!-- Bibliotecas -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.7/js/swiper.min.js" integrity="sha512-vKtlh10whXT2NhAshnxhceCdwq/bMyMrfeZ3p2IaF89qGCwbC94ATb7Qyg8cFs8EL3Hgz9bJBF++ZWfKn4ligg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</body>
+</html>

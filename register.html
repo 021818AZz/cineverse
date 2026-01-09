@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Cadastro - Cineverse</title>
+
+    <!-- Toastify CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    
+    <!-- CSS do sistema -->
+    <link href="css/chunk-vendors.0468bd4c.css" rel="stylesheet">
+    <link href="css/app.52d0b5178.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/305.e6860b9e.css">
+    <link rel="stylesheet" type="text/css" href="css/88.dafac1e9.css">
+
+    <style>
+        .loginpage .section-box[data-v-ce999044]:after {
+            position: absolute;
+            content: "";
+            width: 100vw;
+            height: 100%;
+            z-index: -1;
+            left: 0;
+            top: 0;
+            background: url(img/imagesw.jpg) no-repeat top/100% auto, #000
+        }
+        .link-custom{
+            color: #e21b15;
+        }
+        
+        /* Estilos para Toastify customizados */
+        .toastify {
+            border-radius: 8px !important;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+            font-weight: 600 !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+        }
+        
+        .toastify.toast-success {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%) !important;
+        }
+        
+        .toastify.toast-error {
+            background: linear-gradient(135deg, #dc3545 0%, #fd7e14 100%) !important;
+        }
+        
+        .toastify.toast-info {
+            background: linear-gradient(135deg, #007bff 0%, #17a2b8 100%) !important;
+        }
+        
+        .toastify.toast-warning {
+            background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%) !important;
+        }
+        
+        /* Loading overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            flex-direction: column;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #e21b15;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Estilos para o toggle de senha */
+        .van-icon-eye-o::before {
+            content: "👁️";
+        }
+        
+        .van-icon-closed-eye::before {
+            content: "👁️‍🗨️";
+        }
+        
+        /* Estilo para código de convite preenchido automaticamente */
+        .invite-code-auto {
+            background-color: #fff3cd !important;
+            border-color: #ffc107 !important;
+            color: #856404 !important;
+        }
+        
+        /* Link de ajuda para código de convite */
+        .invite-help {
+            font-size: 12px;
+            color: #aaa;
+            margin-top: 5px;
+            display: block;
+        }
+        
+        /* Campo de telefone com código integrado */
+        .phone-input-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .country-code {
+            padding: 0 12px;
+            background: #f5f5f5;
+            border: 1px solid #ebedf0;
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            color: #333;
+        }
+        
+        .phone-input {
+            flex: 1;
+            border: 1px solid #ebedf0;
+            border-left: none;
+            border-radius: 0 4px 4px 0;
+            height: 44px;
+            padding: 0 12px;
+            font-size: 16px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+        <p>Criando sua conta...</p>
+    </div>
+
+    <form id="registerForm">
+        <div id="app" data-v-app="">
+            <div class="loginpage" data-v-ce999044="">
+                <section class="section-box" data-v-ce999044="">
+                    <img src="img/logo.png" alt="" class="truecol" data-v-ce999044="">
+                    <p class="committ" data-v-ce999044=""> Junte-se à Cineverse Angola e descubra um mundo de entretenimento exclusivo </p>
+                    
+                    <div class="wrap-content" data-v-ce999044="">
+                        <div class="yourtoac" data-v-ce999044="">
+                            <img src="img/internet.png" alt="" class="l-img" data-v-ce999044="">
+                            <p data-v-ce999044="">Criar nova conta</p>
+                        </div>
+                        
+                        <!-- Campo de telefone com +244 fixo -->
+                        <div class="van-cell van-field input-box" data-v-ce999044="" style="padding: 0;">
+                            <div class="van-field__left-icon" style="min-width: 70px;">
+                                <p class="areacode" data-v-ce999044="" style="color: #333; font-weight: bold;">+244</p>
+                            </div>
+                            <div class="van-cell__value van-cell__value--alone van-field__value">
+                                <div class="van-field__body">
+                                    <input name="mobile" type="tel" inputmode="numeric" id="mobile" 
+                                           class="van-field__control" placeholder="9XXXXXXXX" 
+                                           maxlength="9" style="padding-left: 0;">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Senha -->
+                        <div class="van-cell van-field input-box" data-v-ce999044="">
+                            <div class="van-cell__value van-cell__value--alone van-field__value">
+                                <div class="van-field__body">
+                                    <input name="password" type="password" id="password" 
+                                           class="van-field__control" placeholder="Crie uma senha (mínimo 6 caracteres)">
+                                    <div class="van-field__right-icon">
+                                        <i class="van-badge__wrapper van-icon van-icon-closed-eye password-toggle" 
+                                           data-v-ce999044="" style="cursor: pointer;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Confirmar Senha -->
+                        <div class="van-cell van-field input-box" data-v-ce999044="">
+                            <div class="van-cell__value van-cell__value--alone van-field__value">
+                                <div class="van-field__body">
+                                    <input name="confirmPassword" type="password" id="confirmPassword" 
+                                           class="van-field__control" placeholder="Confirme sua senha">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Código de convite (opcional) -->
+                        <div class="van-cell van-field input-box" data-v-ce999044="">
+                            <div class="van-cell__value van-cell__value--alone van-field__value">
+                                <div class="van-field__body">
+                                    <input name="inviteCode" type="text" id="inviteCode" 
+                                           class="van-field__control" placeholder="Código de convite (opcional)">
+                                </div>
+                            </div>
+                        </div>
+                        <span class="invite-help" id="inviteCodeInfo" style="display: none;"></span>
+                        
+                        <!-- Botão de cadastro -->
+                        <button type="button" class="btnlog" id="submitBtn" data-v-ce999044="">Criar Conta</button>
+                        
+                        <!-- Link para login -->
+                        <div class="haveanac" data-v-ce999044="" style="margin-top: 20px;">
+                            <span onclick="window.location.href='index.html'" data-v-ce999044="" style="cursor: pointer;">
+                                Já tem uma conta? <span class="link-custom">Faça login</span>
+                            </span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </form>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    
+    <script>
+        // Configuração da API
+        const API_BASE_URL = 'https://bd-p4q7.onrender.com';
+        
+        // Função para extrair parâmetros da URL
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            const results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+        
+        // Função para preencher automaticamente o código de convite
+        function autoFillInviteCode() {
+            const inviteCodeParam = getUrlParameter('ref');
+            
+            if (inviteCodeParam && inviteCodeParam.trim() !== '') {
+                const inviteCodeInput = document.getElementById('inviteCode');
+                const inviteCodeInfo = document.getElementById('inviteCodeInfo');
+                
+                // Preencher o campo com o código da URL
+                inviteCodeInput.value = inviteCodeParam;
+                
+                // Adicionar classe de estilo para indicar preenchimento automático
+                inviteCodeInput.classList.add('invite-code-auto');
+                
+                // Mostrar informação sobre o código preenchido automaticamente
+                inviteCodeInfo.textContent = `✓ Código de convite preenchido automaticamente: ${inviteCodeParam}`;
+                inviteCodeInfo.style.display = 'block';
+                inviteCodeInfo.style.color = '#28a745';
+                
+                console.log('Código de convite preenchido automaticamente:', inviteCodeParam);
+            }
+        }
+        
+        // Função para mostrar toast usando Toastify
+        function showToast(message, type = 'info') {
+            // Configurações do Toastify
+            const config = {
+                text: message,
+                duration: 3000,
+                gravity: "top",
+                position: "center",
+                stopOnFocus: true,
+                className: `toast-${type}`,
+                style: {
+                    background: type === 'success' ? "linear-gradient(135deg, #28a745 0%, #20c997 100%)" :
+                               type === 'error' ? "linear-gradient(135deg, #dc3545 0%, #fd7e14 100%)" :
+                               type === 'warning' ? "linear-gradient(135deg, #ffc107 0%, #fd7e14 100%)" :
+                               "linear-gradient(135deg, #007bff 0%, #17a2b8 100%)"
+                }
+            };
+            
+            Toastify(config).showToast();
+        }
+        
+        // Função para mostrar/ocultar loading
+        function showLoading() {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            const submitBtn = document.getElementById('submitBtn');
+            
+            if (loadingOverlay) {
+                loadingOverlay.style.display = 'flex';
+            }
+            
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Processando...';
+            }
+        }
+        
+        function hideLoading() {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            const submitBtn = document.getElementById('submitBtn');
+            
+            if (loadingOverlay) {
+                loadingOverlay.style.display = 'none';
+            }
+            
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Criar Conta';
+            }
+        }
+        
+        // Função para validar número de telefone de Angola
+        function validateAngolanPhone(phone) {
+            // Remove qualquer caractere não numérico
+            const cleanNumber = phone.replace(/\D/g, '');
+            
+            // Verifica se tem exatamente 9 dígitos
+            if (cleanNumber.length !== 9) {
+                return {
+                    valid: false,
+                    message: 'O número deve ter exatamente 9 dígitos'
+                };
+            }
+            
+            // Verifica se começa com 9
+            if (!cleanNumber.startsWith('9')) {
+                return {
+                    valid: false,
+                    message: 'Número angolano deve começar com 9'
+                };
+            }
+            
+            // Verifica se o segundo dígito é válido (1-9)
+            const secondDigit = parseInt(cleanNumber.charAt(1));
+            if (secondDigit < 1 || secondDigit > 9) {
+                return {
+                    valid: false,
+                    message: 'Número inválido'
+                };
+            }
+            
+            return {
+                valid: true,
+                cleanNumber: cleanNumber
+            };
+        }
+        
+        // Função para formatar número para o banco de dados
+        function formatPhoneForDatabase(phone) {
+            const validation = validateAngolanPhone(phone);
+            if (!validation.valid) {
+                return null;
+            }
+            
+            // Adiciona código do país 244 na frente: 244 + 9 dígitos = 12 dígitos
+            return '244' + validation.cleanNumber;
+        }
+        
+        // Função para alternar visibilidade da senha
+        function setupPasswordToggle() {
+            const passwordToggle = document.querySelector('.password-toggle');
+            const passwordInput = document.getElementById('password');
+            
+            if (passwordToggle && passwordInput) {
+                passwordToggle.addEventListener('click', function() {
+                    if (passwordInput.type === 'password') {
+                        passwordInput.type = 'text';
+                        this.classList.remove('van-icon-closed-eye');
+                        this.classList.add('van-icon-eye-o');
+                    } else {
+                        passwordInput.type = 'password';
+                        this.classList.remove('van-icon-eye-o');
+                        this.classList.add('van-icon-closed-eye');
+                    }
+                });
+            }
+        }
+        
+        // Função principal de registro
+        async function performRegister(mobile, password, inviteCode) {
+            // Formatar o número para o banco de dados
+            const fullPhoneForDB = formatPhoneForDatabase(mobile);
+            
+            if (!fullPhoneForDB) {
+                showToast('Número de telefone inválido', 'error');
+                hideLoading();
+                return;
+            }
+            
+            try {
+                console.log('Enviando dados para registro:', {
+                    mobile: fullPhoneForDB,
+                    password_length: password.length,
+                    has_invite_code: !!inviteCode
+                });
+                
+                // Preparar dados para envio
+                const registerData = {
+                    mobile: fullPhoneForDB,
+                    password: password
+                };
+                
+                // Adicionar código de convite se fornecido
+                if (inviteCode && inviteCode.trim() !== '') {
+                    registerData.invitation_code = inviteCode.trim();
+                }
+                
+                // Fazer requisição para a API de registro
+                const response = await fetch(`${API_BASE_URL}/register`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(registerData)
+                });
+                
+                const data = await response.json();
+                console.log('Resposta da API:', data);
+                
+                if (data.success) {
+                    hideLoading();
+                    showToast('Conta criada com sucesso!', 'success');
+                    
+                    // Redirecionar para página de login após 2 segundos
+                    setTimeout(() => {
+                        window.location.href = "index.html";
+                    }, 2000);
+                    
+                } else {
+                    hideLoading();
+                    showToast(data.message || 'Erro ao criar conta', 'error');
+                }
+                
+            } catch (error) {
+                console.error('Erro no registro:', error);
+                hideLoading();
+                showToast('Erro de conexão com o servidor', 'error');
+            }
+        }
+        
+        // Função para lidar com o clique no botão de cadastro
+        function handleRegister() {
+            // Obter valores dos campos
+            const mobile = document.getElementById('mobile').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const inviteCode = document.getElementById('inviteCode').value.trim();
+            
+            console.log('Validando cadastro:', {
+                mobile: mobile.substring(0, 3) + '...',
+                password_length: password.length,
+                has_invite_code: !!inviteCode
+            });
+            
+            // Validações
+            if (!mobile) {
+                showToast('Digite o número de telefone...', 'error');
+                document.getElementById('mobile').focus();
+                return;
+            }
+            
+            const phoneValidation = validateAngolanPhone(mobile);
+            if (!phoneValidation.valid) {
+                showToast('Número inválido. Digite 9 dígitos começando com 9. Exemplo: 912345678', 'error');
+                document.getElementById('mobile').focus();
+                return;
+            }
+            
+            if (!password) {
+                showToast('Digite uma senha...', 'error');
+                document.getElementById('password').focus();
+                return;
+            }
+            
+            if (password.length < 6) {
+                showToast('A senha deve ter pelo menos 6 caracteres', 'error');
+                document.getElementById('password').focus();
+                return;
+            }
+            
+            if (!confirmPassword) {
+                showToast('Confirme sua senha...', 'error');
+                document.getElementById('confirmPassword').focus();
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                showToast('As senhas não coincidem', 'error');
+                document.getElementById('confirmPassword').focus();
+                return;
+            }
+            
+            // Mostrar loading e processar registro
+            showLoading();
+            performRegister(mobile, password, inviteCode);
+        }
+        
+        // Função para formatar o telefone enquanto digita
+        function setupPhoneFormatting() {
+            const phoneInput = document.getElementById('mobile');
+            
+            if (phoneInput) {
+                phoneInput.addEventListener('input', function(e) {
+                    // Remove qualquer caractere não numérico
+                    let value = this.value.replace(/\D/g, '');
+                    
+                    // Limita a 9 dígitos
+                    if (value.length > 9) {
+                        value = value.substring(0, 9);
+                    }
+                    
+                    // Atualiza o valor
+                    this.value = value;
+                    
+                    // Se começar com 9, mostra dica
+                    if (value.length > 0 && !value.startsWith('9')) {
+                        this.style.borderColor = '#dc3545';
+                    } else {
+                        this.style.borderColor = '';
+                    }
+                });
+                
+                // Dica quando o campo recebe foco
+                phoneInput.addEventListener('focus', function() {
+                    if (!this.value) {
+                        this.placeholder = '912345678';
+                    }
+                });
+                
+                phoneInput.addEventListener('blur', function() {
+                    this.placeholder = '9XXXXXXXX';
+                });
+            }
+        }
+        
+        // Função para alternar visibilidade da confirmação de senha
+        function setupConfirmPasswordToggle() {
+            // Podemos adicionar um ícone para mostrar/ocultar a confirmação também
+            const confirmPasswordInput = document.getElementById('confirmPassword');
+            
+            // Criar ícone manualmente se quiser
+            // Por enquanto, apenas o campo básico
+        }
+        
+        // Inicializar quando o DOM estiver carregado
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Inicializando sistema de cadastro...');
+            
+            // 1. Preencher automaticamente código de convite se estiver na URL
+            autoFillInviteCode();
+            
+            // 2. Configurar formatação do telefone
+            setupPhoneFormatting();
+            
+            // 3. Configurar toggle da senha
+            setupPasswordToggle();
+            
+            // 4. Adicionar evento ao botão de cadastro
+            const submitBtn = document.getElementById('submitBtn');
+            if (submitBtn) {
+                submitBtn.addEventListener('click', handleRegister);
+                console.log('Botão de cadastro configurado');
+            }
+            
+            // 5. Permitir submit com Enter nos campos
+            const inputs = document.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        handleRegister();
+                    }
+                });
+            });
+            
+            console.log('Sistema de cadastro inicializado com sucesso!');
+        });
+        
+        // Função global para cadastro (para compatibilidade)
+        window.register = function() {
+            handleRegister();
+        };
+        
+        // Exportar funções para uso global
+        window.registerApp = {
+            handleRegister,
+            validatePhone: validateAngolanPhone,
+            formatPhone: formatPhoneForDatabase
+        };
+    </script>
+</body>
+</html>

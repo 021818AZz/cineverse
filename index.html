@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Login</title>
+
+    <link href="css/chunk-vendors.0468bd4c.css" rel="stylesheet">
+    <link href="css/app.52d0b5178.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/305.e6860b9e.css">
+    <link rel="stylesheet" type="text/css" href="css/88.dafac1e9.css">
+
+    <style>
+        .loginpage .section-box[data-v-ce999044]:after {
+            position: absolute;
+            content: "";
+            width: 100vw;
+            height: 100%;
+            z-index: -1;
+            left: 0;
+            top: 0;
+            background: url(img/imagesw.jpg) no-repeat top/100% auto, #000
+        }
+        .link-custom{
+            color: #e21b15;
+        }
+        
+        /* Estilos para Toast */
+        .custom-toast {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 15px 25px;
+            color: white;
+            border-radius: 8px;
+            z-index: 10000;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            min-width: 250px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+        
+        .toast-success {
+            background-color: #28a745;
+        }
+        
+        .toast-error {
+            background-color: #dc3545;
+        }
+        
+        .toast-info {
+            background-color: #007bff;
+        }
+        
+        /* Loading overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            flex-direction: column;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #e21b15;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Estilos para o toggle de senha */
+        .van-icon-eye-o::before {
+            content: "👁️";
+        }
+        
+        .van-icon-closed-eye::before {
+            content: "👁️‍🗨️";
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+        <p>Processando login...</p>
+    </div>
+
+    <form id="loginForm">
+        <input type="hidden" name="_token" value="2BaKd8WKjBsIBgnMHALld0TPV6Rhze7poveECnDv">
+
+        <svg aria-hidden="true" style="position: absolute; width: 0px; height: 0px; overflow: hidden;">
+            <symbol id="icon-icon-android" viewBox="0 0 1024 1024">
+                <path d="M634.3 90.1l49.8-77.7c2.1-3.3 1.3-7.9-1.7-10.2l-1.2-0.9c-3.1-2.3-7.3-1.4-9.5 1.9l-51.2 79.9C587 67.5 549.7 58.8 510.3 58.8c-37.4 0-72.9 7.9-105 22L356.2 4.4c-2.1-3.3-6.4-4.2-9.5-1.9l-1.2 0.9c-3.1 2.3-3.9 6.9-1.7 10.2l47.3 73.8c-74.4 38.3-127.9 111.3-138.8 197.4h515.8c-10.6-84.1-62-155.8-133.8-194.7zM401.6 201.4c-14.2 0-25.7-12.4-25.7-27.7s11.5-27.7 25.7-27.7 25.7 12.4 25.7 27.7-11.5 27.7-25.7 27.7z m221.9 0c-14.2 0-25.7-12.4-25.7-27.7s11.5-27.7 25.7-27.7 25.7 12.4 25.7 27.7-11.5 27.7-25.7 27.7zM153.8 325.2h11.4c28.2 0 51.3 31.8 51.3 70.6v226.7c0 38.9-23.1 70.7-51.3 70.7h-11.4c-28.2 0-51.3-31.8-51.3-70.7V395.8c0-38.8 23.1-70.6 51.3-70.6z m705 1.3h11.4c28.2 0 51.3 31.8 51.3 70.6v226.7c0 38.9-23.1 70.7-51.3 70.7h-11.4c-28.2 0-51.3-31.8-51.3-70.7V397.2c0.1-38.9 23.1-70.7 51.3-70.7zM466.1 825.4v127.8c0 38.8-23.1 70.6-51.3 70.6h-11.4c-28.2 0-51.3-31.8-51.3-70.6V825.4h-47.2c-28.8 0-52.4-25.4-52.4-56.5V321.7H772v447.2c0 31.1-23.6 56.5-52.4 56.5h-43.3v129.2c0 38.9-23.1 69.4-51.3 69.4h-11.4c-28.2 0-51.3-30.5-51.3-69.4V825.4h-96.2z m0 0"></path>
+            </symbol>
+        </svg>
+        
+        <div id="app" data-v-app="">
+            <div class="loginpage" data-v-ce999044="">
+                <section class="section-box" data-v-ce999044="">
+                    <img src="img/logo.png" alt="" class="truecol" data-v-ce999044="">
+                    <p class="committ" data-v-ce999044=""> Liderar o cinema da Cineverse com inovações que promovam a vida moderna e um futuro com emissões líquidas zero. </p>
+                    
+                    <div class="wrap-content" data-v-ce999044="">
+                        <div class="yourtoac" data-v-ce999044="">
+                            <img src="img/internet.png" alt="" class="l-img" data-v-ce999044="">
+                            <p data-v-ce999044="">Faça login na sua conta</p>
+                        </div>
+                        
+                        <div class="van-cell van-field input-box" data-v-ce999044="">
+                            <div class="van-field__left-icon">
+                                <p class="areacode" data-v-ce999044="">+244</p>
+                            </div>
+                            <div class="van-cell__value van-cell__value--alone van-field__value">
+                                <div class="van-field__body">
+                                    <input name="phone" type="tel" inputmode="numeric" id="phone" class="van-field__control" placeholder="Digite seu número de telefone" maxlength="9">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="van-cell van-field input-box" data-v-ce999044="">
+                            <div class="van-cell__value van-cell__value--alone van-field__value">
+                                <div class="van-field__body">
+                                    <input name="password" type="password" id="password" class="van-field__control" placeholder="Digite sua senha">
+                                    <div class="van-field__right-icon">
+                                        <i class="van-badge__wrapper van-icon van-icon-closed-eye icony" data-v-ce999044=""></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p class="forgotyo" data-v-ce999044="">
+                            <a href="https://t.me/marietaexxon" class="forgotyo link-custom" target="_blank">
+                                Esqueceu sua senha?
+                            </a>
+                            <img src="" alt="" class="ser-img" data-v-ce999044="">
+                        </p>
+
+                        <button type="button" class="btnlog" data-v-ce999044="">Login</button>
+                        
+                        <div class="haveanac" data-v-ce999044="">
+                            <span onclick="window.location.href='/register.html'" data-v-ce999044="">Registrar-se</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        // Configuração da API
+        const API_BASE_URL = 'https://bd-p4q7.onrender.com';
+        const TOKEN_EXPIRY_HOURS = 5;
+
+        // Função para mostrar toast
+        function showToast(message, type = 'info') {
+            // Remove toast anterior se existir
+            const existingToast = document.querySelector('.custom-toast');
+            if (existingToast) {
+                existingToast.remove();
+            }
+            
+            // Cria novo toast
+            const toast = document.createElement('div');
+            toast.className = `custom-toast toast-${type}`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            // Remove o toast após 3 segundos
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    toast.remove();
+                }
+            }, 3000);
+        }
+
+        // Função para mostrar/ocultar loading
+        function showLoading() {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            if (loadingOverlay) {
+                loadingOverlay.style.display = 'flex';
+            }
+        }
+
+        function hideLoading() {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            if (loadingOverlay) {
+                loadingOverlay.style.display = 'none';
+            }
+        }
+
+        // Função para validar número de telefone de Angola (9 dígitos)
+        function checkAngolanMobile(mobile) {
+            // Remove qualquer caractere não numérico
+            const cleanNumber = mobile.replace(/\D/g, '');
+            
+            // Verifica se tem exatamente 9 dígitos
+            if (cleanNumber.length !== 9) {
+                return false;
+            }
+            
+            // Verifica se começa com 9
+            if (!cleanNumber.startsWith('9')) {
+                return false;
+            }
+            
+            return true;
+        }
+
+        // Função para formatar o número para envio ao BD
+        function formatPhoneForBD(phone) {
+            // Remove qualquer caractere não numérico
+            const cleanNumber = phone.replace(/\D/g, '');
+            
+            // Adiciona o código do país 244 na frente
+            // Resultado: 244 + 9 dígitos = 12 dígitos total
+            return '244' + cleanNumber;
+        }
+
+        // Função para alternar visibilidade da senha
+        function setupPasswordToggle() {
+            const passwordToggle = document.querySelector('.van-icon-closed-eye');
+            const passwordInput = document.getElementById('password');
+            
+            if (passwordToggle && passwordInput) {
+                passwordToggle.addEventListener('click', function() {
+                    if (passwordInput.type === 'password') {
+                        passwordInput.type = 'text';
+                        this.classList.remove('van-icon-closed-eye');
+                        this.classList.add('van-icon-eye-o');
+                    } else {
+                        passwordInput.type = 'password';
+                        this.classList.remove('van-icon-eye-o');
+                        this.classList.add('van-icon-closed-eye');
+                    }
+                });
+            }
+        }
+
+        // Função para verificar se o token no localStorage ainda é válido
+        function isTokenValid() {
+            const tokenData = localStorage.getItem('user_token');
+            
+            if (!tokenData) return false;
+            
+            try {
+                const { expiry } = JSON.parse(tokenData);
+                
+                // Verificar se o token expirou
+                if (Date.now() > expiry) {
+                    // Token expirado, remover do localStorage
+                    localStorage.removeItem('user_token');
+                    localStorage.removeItem('user_id');
+                    return false;
+                }
+                
+                return true;
+            } catch (e) {
+                console.error('Erro ao verificar token:', e);
+                return false;
+            }
+        }
+
+        // Função principal de login
+        async function performLogin(phone, password) {
+            // Formatar o número para envio ao BD: 244 + 9 dígitos = 12 dígitos
+            const fullPhoneForBD = formatPhoneForBD(phone);
+            
+            try {
+                console.log('Enviando para API:', {
+                    mobile: fullPhoneForBD,
+                    password_length: password.length
+                });
+                
+                // Fazer requisição para a API de login
+                const response = await fetch(`${API_BASE_URL}/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        mobile: fullPhoneForBD, // 12 dígitos: 244XXXXXXXXX
+                        password: password
+                    })
+                });
+
+                const data = await response.json();
+                console.log('Resposta da API:', data);
+
+                if (data.success) {
+                    // Login bem-sucedido - Armazenar no localStorage com expiração
+                    const tokenData = {
+                        token: data.data.token,
+                        expiry: Date.now() + (TOKEN_EXPIRY_HOURS * 60 * 60 * 1000)
+                    };
+                    
+                    // Salvar no localStorage
+                    localStorage.setItem('user_token', JSON.stringify(tokenData));
+                    localStorage.setItem('user_id', data.data.user.id);
+                    
+                    // Lembrar o número de telefone
+                    rememberPhone(phone);
+                    
+                    hideLoading();
+                    showToast('Login realizado com sucesso!', 'success');
+                    
+                    // Redirecionar após um breve delay
+                    setTimeout(() => {
+                        window.location.href = '/home.html';
+                    }, 1500);
+                } else {
+                    hideLoading();
+                    showToast(data.message || 'Erro ao fazer login', 'error');
+                }
+            } catch (error) {
+                console.error('Erro no login:', error);
+                hideLoading();
+                showToast('Erro de conexão com o servidor', 'error');
+            }
+        }
+
+        // Função para lidar com o clique no botão de login
+        function handleLogin() {
+            const phoneInput = document.getElementById('phone');
+            const passwordInput = document.getElementById('password');
+            
+            if (!phoneInput || !passwordInput) {
+                showToast('Elementos do formulário não encontrados', 'error');
+                return;
+            }
+            
+            const phone = phoneInput.value.trim();
+            const password = passwordInput.value.trim();
+            
+            console.log('Dados do login:', {
+                phone_entered: phone,
+                phone_for_bd: formatPhoneForBD(phone),
+                password_length: password.length
+            });
+
+            // Validações
+            if (!phone) {
+                showToast('Digite o número de telefone...', 'error');
+                phoneInput.focus();
+                return;
+            }
+
+            if (!checkAngolanMobile(phone)) {
+                showToast('Número de telefone inválido. Digite 9 dígitos começando com 9. Exemplo: 912345678', 'error');
+                phoneInput.focus();
+                return;
+            }
+            
+            if (!password) {
+                showToast('Digite a senha...', 'error');
+                passwordInput.focus();
+                return;
+            }
+
+            if (password.length < 6) {
+                showToast('A senha deve ter pelo menos 6 caracteres', 'error');
+                passwordInput.focus();
+                return;
+            }
+
+            showLoading();
+            performLogin(phone, password);
+        }
+
+        // Função para lembrar número (chamar quando o login for bem-sucedido)
+        function rememberPhone(phone) {
+            localStorage.setItem('remembered_phone', phone);
+        }
+
+        // Função para formatar o telefone enquanto digita
+        function setupPhoneFormatting() {
+            const phoneInput = document.getElementById('phone');
+            
+            if (phoneInput) {
+                phoneInput.addEventListener('input', function(e) {
+                    // Remove qualquer caractere não numérico
+                    let value = this.value.replace(/\D/g, '');
+                    
+                    // Limita a 9 dígitos
+                    if (value.length > 9) {
+                        value = value.substring(0, 9);
+                    }
+                    
+                    // Atualiza o valor
+                    this.value = value;
+                });
+            }
+        }
+
+        // Inicializar quando o DOM estiver carregado
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Inicializando sistema de login...');
+            
+            // Verificar se há token válido no localStorage
+            if (isTokenValid()) {
+                console.log('Token válido encontrado, redirecionando...');
+                window.location.href = '/home.html';
+                return;
+            }
+            
+            // Configurar formatação do telefone
+            setupPhoneFormatting();
+            
+            // Configurar toggle da senha
+            setupPasswordToggle();
+            
+            // Adicionar evento ao botão de login
+            const loginButton = document.querySelector('.btnlog');
+            if (loginButton) {
+                loginButton.addEventListener('click', handleLogin);
+                console.log('Botão de login configurado');
+            } else {
+                console.error('Botão de login não encontrado!');
+            }
+            
+            // Permitir submit com Enter no campo de senha
+            const passwordInput = document.getElementById('password');
+            if (passwordInput) {
+                passwordInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        handleLogin();
+                    }
+                });
+            }
+            
+            // Permitir submit com Enter no campo de telefone também
+            const phoneInput = document.getElementById('phone');
+            if (phoneInput) {
+                phoneInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        handleLogin();
+                    }
+                });
+            }
+            
+            // Verificar se há número salvo no localStorage para "lembrar"
+            const savedPhone = localStorage.getItem('remembered_phone');
+            if (savedPhone) {
+                if (phoneInput) {
+                    phoneInput.value = savedPhone;
+                }
+            }
+            
+            console.log('Sistema de login inicializado com sucesso!');
+        });
+
+        // Função global para login (mantida para compatibilidade)
+        window.login = function() {
+            handleLogin();
+        };
+
+        // Exportar funções para uso global
+        window.loginApp = {
+            handleLogin,
+            isTokenValid,
+            formatPhoneForBD
+        };
+    </script>
+</body>
+</html>

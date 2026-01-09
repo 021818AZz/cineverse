@@ -1,0 +1,283 @@
+.bankpage[data-v-444b5482] {
+    min-height: 100vh;
+    background: #f1f2f2
+}
+
+
+
+.bankpage .yourba .l-img[data-v-444b5482] {
+    width: 4.4vw;
+    margin-right: 1.333333vw
+}
+
+.bankpage .section-box[data-v-444b5482] {
+    margin-top: 4vw;
+    padding: 0 4vw
+}
+
+.bankpage .section-box .bank-wrap[data-v-444b5482] {
+    background: #fff;
+    border-radius: 4vw;
+    padding: 4vw
+}
+
+.bankpage .section-box .bank-list[data-v-444b5482] {
+    margin-bottom: 4vw
+}
+
+.bankpage .section-box .bank-list .imgleft[data-v-444b5482] {
+    width: 6.666667vw;
+    height: auto
+}
+
+.bankpage .section-box .bank-list .line[data-v-444b5482] {
+    width: 1px;
+    height: 11.2vw;
+    background: #d8d8d8;
+    margin: 0 4vw
+}
+
+.bankpage .section-box .bank-list .rightname[data-v-444b5482] {
+    text-align: left;
+    flex: 1
+}
+
+.bankpage .section-box .bank-list .rightname .titlename[data-v-444b5482] {
+    font-size: 4vw;
+    font-weight: 500
+}
+
+.bankpage .section-box .bank-list .select-box[data-v-444b5482] {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 4vw
+}
+
+.bankpage .section-box .bank-list .select-box .l-bank[data-v-444b5482] {
+    width: 48%;
+    border-radius: 1.333333vw;
+    background: #f3f4f6;
+    position: relative;
+    height: 12.4vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 400;
+    font-size: 4vw;
+    color: #333
+}
+
+.bankpage .section-box .bank-list .select-box .l-bank .sel-img[data-v-444b5482] {
+    position: absolute;
+    width: 4.666667vw;
+    bottom: 0;
+    right: 0
+}
+
+.bankpage .section-box .bank-list .select-box .active[data-v-444b5482] {
+    border: 1px solid red;
+    color: red;
+    font-weight: 700;
+    background: #fff
+}
+
+.bankpage .section-box .textui[data-v-444b5482] {
+    font-size: 3.466667vw;
+    color: #666;
+    text-align: left;
+    margin-top: 4vw
+}
+
+.bankpage .section-box .btnsit[data-v-444b5482] {
+    background: #e21b15;
+    color: #fff;
+    padding: 2.266667vw 1.333333vw;
+    width: 66.666667vw;
+    font-size: 5.333333vw;
+    font-weight: 600;
+    margin-top: 6.666667vw
+}
+
+[data-v-444b5482] .navboxi {
+    padding-top: 4vw;
+    background: none
+}
+
+[data-v-444b5482] .navboxi .van-nav-bar__content .van-nav-bar__left i {
+    color: #000;
+    font-size: 4.666667vw
+}
+
+[data-v-444b5482] .navboxi .van-nav-bar__content .van-nav-bar__right p {
+    font-size: 3.733333vw;
+    margin-right: 1.333333vw;
+    color: #000
+}
+
+[data-v-444b5482] .navboxi .van-nav-bar__content .van-nav-bar__right img {
+    width: 5.066667vw;
+    height: auto
+}
+
+[data-v-444b5482] .navboxi .van-nav-bar__content .van-nav-bar__title {
+    color: #000;
+    font-size: 4.533333vw;
+    font-weight: 600
+}
+
+[data-v-444b5482] .navboxi:after {
+    display: none
+}
+
+[data-v-444b5482] .input-box {
+    background: #f3f4f6;
+    border-radius: 1.333333vw;
+    padding: 2.666667vw 2.666667vw;
+    margin-top: 1.333333vw
+}
+
+[data-v-444b5482] .input-box .van-field__left-icon {
+    margin-right: 0
+}
+
+[data-v-444b5482] .input-box .van-field__left-icon p {
+    color: #263249;
+    font-size: 4.666667vw;
+    font-weight: 600;
+    margin-right: 3.333333vw
+}
+
+[data-v-444b5482] .input-box input {
+    font-size: 4vw;
+    font-weight: 500;
+    color: #000
+}
+
+[data-v-444b5482] .input-box input::-moz-placeholder {
+    color: #a0a3b8
+}
+
+[data-v-444b5482] .input-box input::placeholder {
+    color: #a0a3b8
+}
+
+[data-v-444b5482] .input-box .van-field__right-icon .eyeimg {
+    width: 5.066667vw;
+    height: auto
+}
+
+[data-v-444b5482] .input-box .van-field__right-icon .fimgi {
+    width: 5.733333vw;
+    height: auto
+}
+
+[data-v-444b5482] .input-box:after {
+    display: none
+}
+
+[data-v-444b5482] .bankpop {
+    padding: 2.666667vw 0 4vw
+}
+
+[data-v-444b5482] .bankpop .top-sear {
+    box-sizing: border-box;
+    padding: 1.333333vw;
+    width: 90%;
+    margin: 0 auto;
+    background: #f3f3f3;
+    border-radius: 1.3rem
+}
+
+[data-v-444b5482] .bankpop .top-sear .van-cell__value .van-field__body input {
+    color: #333;
+    font-size: 4vw
+}
+
+[data-v-444b5482] .bankpop .van-picker {
+    margin-top: 1.333333vw
+}
+
+[data-v-444b5482] .bankpop .van-picker .van-picker__toolbar {
+    display: flex;
+    box-sizing: border-box;
+    margin-top: 4vw;
+    padding: 0 4vw
+}
+
+[data-v-444b5482] .bankpop .van-picker .van-picker__toolbar .van-picker__cancel,
+[data-v-444b5482] .bankpop .van-picker .van-picker__toolbar .van-picker__confirm {
+    border-radius: 1.6vw;
+    font-size: 4vw;
+    font-weight: 600
+}
+
+[data-v-444b5482] .trpassword {
+    width: 89.333333vw;
+    background: #fff;
+    border-radius: 2.666667vw;
+    padding: 4vw 3.333333vw
+}
+
+[data-v-444b5482] .trpassword .areyour {
+    font-size: 4vw;
+    font-weight: 500;
+    margin-bottom: 4.666667vw;
+    text-align: left;
+    color: #ff5614
+}
+
+[data-v-444b5482] .trpassword .oldpas {
+    text-align: left;
+    margin-bottom: 1.333333vw;
+    font-size: 4vw
+}
+
+[data-v-444b5482] .trpassword .transtn {
+    margin-top: 2.666667vw
+}
+
+[data-v-444b5482] .trpassword .transtn :first-child {
+    font-size: 4.266667vw;
+    font-weight: 700;
+    color: #000;
+    width: 33.333333vw;
+    height: 9.333333vw;
+    background: none
+}
+
+[data-v-444b5482] .trpassword .transtn :nth-child(2) {
+    background: #e21b15;
+    border-radius: 2.666667vw;
+    width: 33.333333vw;
+    height: 9.333333vw;
+    font-size: 4.266667vw;
+    font-weight: 700;
+    color: #fff
+}
+
+[data-v-444b5482] .input-box2 {
+    border-radius: 1.333333vw;
+    margin-bottom: 4vw;
+    background: #f8f8f8
+}
+
+[data-v-444b5482] .input-box2 .van-field__right-icon .eyeimg {
+    width: 6.666667vw;
+    height: 6.666667vw
+}
+
+[data-v-444b5482] .input-box2 .van-field__right-icon .imguis {
+    width: 20rem;
+    height: auto
+}
+
+[data-v-444b5482] .input-box2 input {
+    font-size: 4vw;
+    font-weight: 500
+}
+
+[data-v-444b5482] .input-box2:after {
+    display: none
+}

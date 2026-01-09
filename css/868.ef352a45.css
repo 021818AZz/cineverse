@@ -1,0 +1,29 @@
+.about-page[data-v-0553b5ba] {
+    width: 100%;
+    min-height: 100vh;
+    background: #fff;
+    padding-bottom: 0;
+    position: relative;
+    z-index: 1
+}
+
+.about-page .imgbotone[data-v-0553b5ba] {
+    display: block;
+    width: 100%;
+    height: auto
+}
+
+[data-v-0553b5ba] .nav-bars {
+    background: none
+}
+
+[data-v-0553b5ba] .nav-bars:after {
+    display: none
+}
+
+[data-v-0553b5ba] .nav-bars .van-nav-bar__left i,
+[data-v-0553b5ba] .nav-bars .van-nav-bar__title {
+    color: #333;
+    font-size: 5.333333vw;
+    font-weight: 700
+}

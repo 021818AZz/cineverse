@@ -1,0 +1,280 @@
+.loginpage[data-v-ce999044] {
+    background: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column
+}
+
+.loginpage .imgtop[data-v-ce999044] {
+    text-align: left;
+    padding-left: 4vw;
+    margin-bottom: 2.666667vw
+}
+
+.loginpage .imgtop img[data-v-ce999044] {
+    width: 34.666667vw;
+    height: auto
+}
+
+.loginpage .section-box[data-v-ce999044] {
+    padding: 0 4vw;
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    padding-top: 50.666667vw
+}
+
+.loginpage .section-box[data-v-ce999044]:after {
+    position: absolute;
+    content: "";
+    width: 100vw;
+    height: 100%;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    background: url(/ExxonMobil/dist/img/bg.a1b82abd.webp) no-repeat top/100% auto, #000
+}
+
+.loginpage .section-box .truecol[data-v-ce999044] {
+    width: 34.666667vw;
+    margin-right: auto;
+    display: block
+}
+
+.loginpage .section-box .committ[data-v-ce999044] {
+    font-size: 3.466667vw;
+    color: #fff;
+    text-align: left;
+    font-weight: 500
+}
+
+.loginpage .section-box .wrap-content[data-v-ce999044] {
+    background: #fff;
+    border-radius: 6.8vw;
+    padding: 2.666667vw 4vw;
+    margin-top: 4vw;
+    padding-bottom: 6.666667vw
+}
+
+.loginpage .section-box .yourtoac[data-v-ce999044] {
+    display: flex;
+    align-items: center;
+    margin: 4.666667vw 0 2.666667vw
+}
+
+.loginpage .section-box .yourtoac img[data-v-ce999044] {
+    width: 4.4vw
+}
+
+.loginpage .section-box .yourtoac p[data-v-ce999044] {
+    font-size: 4vw;
+    color: #000;
+    margin-left: 1.333333vw;
+    font-weight: 700;
+    text-transform: uppercase
+}
+
+.loginpage .section-box .forgotyo[data-v-ce999044] {
+    font-size: 3.733333vw;
+    color: #e21b15;
+    text-align: left;
+    margin: 1.6vw 0 3.733333vw;
+    font-weight: 500;
+    padding-left: 2.666667vw;
+    display: flex;
+    align-items: center;
+    text-decoration: underline
+}
+
+.loginpage .section-box .forgotyo .ser-img[data-v-ce999044] {
+    width: 5.333333vw;
+    margin-left: 1.333333vw
+}
+
+.loginpage .section-box .rememberi[data-v-ce999044] {
+    display: flex;
+    align-items: center
+}
+
+.loginpage .section-box .rememberi img[data-v-ce999044] {
+    width: 5.066667vw;
+    height: auto;
+    margin-right: 1.333333vw
+}
+
+.loginpage .section-box .rememberi p[data-v-ce999044] {
+    font-size: 3.733333vw;
+    color: #000;
+    font-weight: 500
+}
+
+.loginpage .section-box .btnlog[data-v-ce999044] {
+    width: 73.6vw;
+    background: #e21b15;
+    padding: 2.266667vw 6.666667vw;
+    font-size: 5.6vw;
+    color: #fff;
+    font-weight: 500;
+    margin-top: 4vw
+}
+
+.loginpage .section-box .haveanac[data-v-ce999044] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5.333333vw
+}
+
+.loginpage .section-box .haveanac p[data-v-ce999044] {
+    font-size: 3.733333vw;
+    color: rgba(0, 0, 0, .5);
+    font-weight: 500;
+    text-decoration: underline
+}
+
+.loginpage .section-box .haveanac span[data-v-ce999044] {
+    color: #e21b15;
+    margin-left: 1.333333vw;
+    font-weight: 500;
+    text-decoration: underline
+}
+
+.loginpage .section-box .dontservi[data-v-ce999044] {
+    margin-top: 4vw;
+    position: relative
+}
+
+.loginpage .section-box .dontservi .leftimg[data-v-ce999044] {
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.loginpage .section-box .dontservi .leftimg p[data-v-ce999044] {
+    font-size: 4vw;
+    color: #000;
+    margin-right: 1.333333vw
+}
+
+.loginpage .section-box .dontservi .leftimg img[data-v-ce999044] {
+    width: 5.333333vw;
+    height: auto
+}
+
+.loginpage .section-box .dontservi .rightimg[data-v-ce999044] {
+    position: absolute;
+    right: -2vw;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10.666667vw;
+    height: auto
+}
+
+[data-v-ce999044] .input-box {
+    border-radius: 1.6vw 1.6vw 1.6vw 1.6vw;
+    height: 13.333333vw;
+    margin-bottom: 5.333333vw;
+    background: #f7f7f7;
+    align-items: center
+}
+
+[data-v-ce999044] .input-box .van-field__left-icon {
+    display: flex;
+    align-items: center
+}
+
+[data-v-ce999044] .input-box .van-field__left-icon .imgna {
+    width: 2.933333vw;
+    height: 2.933333vw
+}
+
+[data-v-ce999044] .input-box .van-field__left-icon .areacode {
+    color: #000;
+    font-size: 4.8vw;
+    font-weight: 500;
+    margin-right: 1.333333vw
+}
+
+[data-v-ce999044] .input-box input {
+    font-size: 4vw;
+    font-weight: 500;
+    color: #000
+}
+
+[data-v-ce999044] .input-box input::-moz-placeholder {
+    color: #a0a3b8
+}
+
+[data-v-ce999044] .input-box input::placeholder {
+    color: #a0a3b8
+}
+
+[data-v-ce999044] .input-box .van-field__right-icon .icony {
+    font-size: 5.333333vw
+}
+
+[data-v-ce999044] .input-box:after {
+    display: none
+}
+
+.whatappbox[data-v-ce999044] {
+    width: 13.333333vw;
+    height: 13.333333vw;
+    z-index: 999;
+    position: fixed;
+    bottom: 30.666667vw;
+    right: 1.333333vw;
+    border-radius: 1.333333vw
+}
+
+.whatappbox img[data-v-ce999044] {
+    width: 100%;
+    height: 100%
+}
+
+[data-v-ce999044] .hasreset {
+    width: 89.333333vw;
+    background: #fff;
+    border-radius: 4vw;
+    padding: 2.666667vw 0 6.666667vw
+}
+
+[data-v-ce999044] .hasreset .safetyimg {
+    width: 30rem;
+    height: 30rem
+}
+
+[data-v-ce999044] .hasreset .beenre {
+    font-size: 4.666667vw;
+    color: #333;
+    font-weight: 600
+}
+
+[data-v-ce999044] .hasreset .fory {
+    margin-top: 4vw;
+    font-size: 3.733333vw;
+    padding: 0 4vw;
+    text-align: left;
+    font-weight: 500;
+    color: #333
+}
+
+[data-v-ce999044] .hasreset .btnsure {
+    width: 58.5rem;
+    height: 10rem;
+    background: #7c7f90;
+    border-radius: 1.5rem;
+    margin-top: 5rem;
+    font-size: 3.2rem;
+    color: #fff;
+    font-weight: 600
+}
+
+[data-v-ce999044] .hasreset .subuser {
+    background: #00529f
+}
+
+[data-v-ce999044] .hasreset i {
+    color: #e21b15;
+    font-size: 6.666667vw
+}

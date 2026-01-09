@@ -1,0 +1,254 @@
+@font-face {
+    font-family: ui;
+    src: url(/ExxonMobil/dist/fonts/NunitoSans-VariableFont_YTLC,opsz,wdth,wght.aea2beb6.ttf)
+}
+
+@font-face {
+    font-family: ui2;
+    src: url(/ExxonMobil/dist/fonts/NunitoSans_10pt-Bold.c0ee0835.ttf)
+}
+
+@font-face {
+    font-family: pf;
+    src: url(/ExxonMobil/dist/fonts/micross.2c742ea1.ttf)
+}
+
+#app {
+    font-family: ui, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    height: auto;
+    min-height: 100%;
+    position: relative
+}
+
+.glob-popover {
+    position: absolute;
+    z-index: 2;
+    top: 9.333333vw;
+    right: 2.666667vw;
+    font-weight: 500
+}
+
+.glob-popover .assets-wrap p {
+    font-size: 3.733333vw
+}
+
+.glob-popover .assets-wrap img {
+    width: 5.6vw;
+    height: 5.6vw;
+    margin-left: 1.333333vw
+}
+
+.xuanfu {
+    width: 12vw;
+    height: 12vw;
+    z-index: 999;
+    position: fixed;
+    bottom: 22.666667vw;
+    right: 2.666667vw;
+    border-radius: .8rem;
+    touch-action: pan-y
+}
+
+.xuanfu img {
+    background: #7b5dfc;
+    border-radius: 13.333333vw;
+    width: 100%;
+    height: 100%
+}
+
+.xuanfu .un-read {
+    width: 2.666667vw;
+    height: 2.666667vw;
+    line-height: 2.666667vw;
+    text-align: center;
+    border-radius: 13.333333vw;
+    background: red;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.733333vw;
+    z-index: 2;
+    position: absolute;
+    right: 0;
+    top: 0
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+
+li,
+ul {
+    list-style-type: none
+}
+
+input {
+    outline: none
+}
+
+textarea {
+    resize: none
+}
+
+a {
+    text-decoration: none
+}
+
+.ellipsis-1 {
+    white-space: nowrap
+}
+
+.ellipsis-1,
+.ellipsis-2 {
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.ellipsis-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical
+}
+
+.text-transparent {
+    background-image: linear-gradient(135deg, #0091ff, #00e6ff);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent
+}
+
+.top-index {
+    z-index: 2020 !important
+}
+
+.van-dropdown-item__content {
+    width: 90% !important;
+    left: 5% !important
+}
+
+.van-dropdown-item__content .van-cell__title {
+    flex: 2
+}
+
+.van-dropdown-item__content .van-cell__value {
+    flex: 1
+}
+
+.sub-bl {
+    width: 100vw;
+    height: 8vw;
+    background: #17264f;
+    color: #fff;
+    font-size: 2.4vw;
+    letter-spacing: .4vw;
+    text-indent: .4vw;
+    position: fixed;
+    border-radius: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 999
+}
+
+button {
+    border: none;
+    border-radius: .533333vw
+}
+
+p {
+    margin: 0;
+    color: #000
+}
+
+p,
+span {
+    font-size: 3.733333vw
+}
+
+span {
+    color: rgba(0, 0, 0, .5)
+}
+
+.van-toast {
+    font-size: 3.733333vw !important;
+    word-wrap: break-word !important;
+    word-break: normal !important;
+    padding: 2.133333vw 2.933333vw !important;
+    border-radius: 1.866667vw !important;
+    top: 23% !important;
+    background: #e21b15 !important;
+    color: #fff !important;
+    border: none !important;
+    box-shadow: 0 .4vw 2vw 0 rgba(0, 0, 0, .4) !important
+}
+
+.van-toast.loadingcss {
+    border: none !important;
+    background: none !important;
+    padding: 0 !important;
+    overflow: hidden;
+    top: 50% !important;
+    box-shadow: none !important
+}
+
+.van-toast.loadingcss,
+.van-toast.loadingcss .van-icon img {
+    width: 26.666667vw !important;
+    height: 26.666667vw !important
+}
+
+.topIndex.van-overlay {
+    z-index: 9999
+}
+
+.w-wrap {
+    width: 93%;
+    margin: 0 auto;
+    border-radius: 2.666667vw;
+    padding: 4vw;
+    box-sizing: border-box
+}
+
+.w-wrap .title {
+    font-size: 2.133333vw;
+    font-weight: 500;
+    text-align: center;
+    margin: 0
+}
+
+.after {
+    position: relative;
+    z-index: 1
+}
+
+.after:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1
+}
+
+.flex {
+    justify-content: space-between
+}
+
+.flex,
+.flex-start {
+    display: flex;
+    align-items: center
+}
+
+.flex-start {
+    justify-content: flex-start
+}
+
+.flex-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between
+}

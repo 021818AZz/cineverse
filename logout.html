@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sair - cineverse</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #000428 0%, #004e92 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .logout-container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 450px;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .logout-header {
+            background: linear-gradient(to right, #e21b15, #ff6b6b);
+            padding: 40px 20px;
+            color: white;
+        }
+        
+        .logout-header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .logout-header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .logout-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+        
+        .logout-content {
+            padding: 40px 30px;
+        }
+        
+        .logout-message {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .logout-info {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        
+        .logout-info h3 {
+            color: #e21b15;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .logout-info ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+        
+        .logout-info li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+            color: #555;
+        }
+        
+        .logout-info li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn-logout {
+            background: linear-gradient(to right, #e21b15, #ff6b6b);
+            color: white;
+        }
+        
+        .btn-logout:hover {
+            background: linear-gradient(to right, #c41611, #e05555);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(226, 27, 21, 0.3);
+        }
+        
+        .btn-cancel {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        .btn-cancel:hover {
+            background-color: #5a6268;
+            transform: translateY(-2px);
+        }
+        
+        .logout-footer {
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .logout-footer a {
+            color: #e21b15;
+            text-decoration: none;
+        }
+        
+        .logout-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .loading {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #e21b15;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 15px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .toast {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px 30px;
+            background-color: #28a745;
+            color: white;
+            border-radius: 10px;
+            z-index: 1001;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: none;
+            min-width: 300px;
+        }
+        
+        @media (max-width: 480px) {
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .logout-container {
+                margin: 10px;
+            }
+            
+            .logout-content {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading">
+        <div class="spinner"></div>
+        <p>Processando logout...</p>
+    </div>
+
+    <!-- Toast Message -->
+    <div id="toastMessage" class="toast"></div>
+
+    <div class="logout-container">
+        <div class="logout-header">
+            <div class="logout-icon">🔒</div>
+            <h1>Sair da Conta</h1>
+            <p>cineverse Angola</p>
+        </div>
+        
+        <div class="logout-content">
+            <div class="logout-message">
+                Tem certeza que deseja sair da sua conta?<br>
+                Você será desconectado de todos os dispositivos.
+            </div>
+            
+            <div class="logout-info">
+                <h3>Ao sair:</h3>
+                <ul>
+                    <li>Seu token de acesso será removido</li>
+                    <li>Você será redirecionado para a página de login</li>
+                    <li>Seus dados locais serão limpos</li>
+                    <li>Para acessar novamente, precisará fazer login</li>
+                </ul>
+            </div>
+            
+            <div class="button-group">
+                <button class="btn btn-logout" onclick="performLogout()">
+                    <span>🔄</span> Sair Agora
+                </button>
+                <button class="btn btn-cancel" onclick="cancelLogout()">
+                    <span>❌</span> Cancelar
+                </button>
+            </div>
+        </div>
+        
+        <div class="logout-footer">
+            <p>Dúvidas? <a href="https://t.me/marietaexxon" target="_blank">Entre em contato com o suporte</a></p>
+            <p style="margin-top: 10px; font-size: 12px;">&copy; 2024 cineverse Angola. Todos os direitos reservados.</p>
+        </div>
+    </div>
+
+    <script>
+        // Mostrar/ocultar loading
+        function showLoading() {
+            document.getElementById('loadingOverlay').style.display = 'flex';
+        }
+        
+        function hideLoading() {
+            document.getElementById('loadingOverlay').style.display = 'none';
+        }
+        
+        // Mostrar toast
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toastMessage');
+            toast.textContent = message;
+            toast.style.backgroundColor = type === 'success' ? '#28a745' : 
+                                         type === 'error' ? '#dc3545' : '#007bff';
+            toast.style.display = 'block';
+            
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+        
+        // Função principal de logout
+        async function performLogout() {
+            showLoading();
+            
+            try {
+                // 1. Remover dados do localStorage
+                localStorage.removeItem('user_token');
+                localStorage.removeItem('user_id');
+                localStorage.removeItem('remembered_phone');
+                
+                // 2. Opcional: Chamar API de logout (se existir)
+                try {
+                    await fetch('https://bd-p4q7.onrender.com/logout', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                } catch (apiError) {
+                    console.log('API de logout não disponível, continuando...');
+                }
+                
+                hideLoading();
+                showToast('Logout realizado com sucesso!', 'success');
+                
+                // 3. Redirecionar após 1.5 segundos
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+                
+            } catch (error) {
+                hideLoading();
+                showToast('Erro ao processar logout', 'error');
+                console.error('Erro no logout:', error);
+            }
+        }
+        
+        // Função para cancelar logout
+        function cancelLogout() {
+            // Verificar se há uma página anterior ou redirecionar para dashboard
+            if (document.referrer && document.referrer.includes(window.location.hostname)) {
+                window.history.back();
+            } else {
+                window.location.href = 'indice.html';
+            }
+        }
+        
+        // Verificar se o usuário está logado ao carregar a página
+        document.addEventListener('DOMContentLoaded', function() {
+            const token = localStorage.getItem('user_token');
+            
+            if (!token) {
+                // Se não há token, redirecionar para login
+                showToast('Você já está desconectado', 'info');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+            }
+            
+            // Adicionar efeito de teclado
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    cancelLogout();
+                }
+                if (e.key === 'Enter' && e.ctrlKey) {
+                    performLogout();
+                }
+            });
+            
+            // Adicionar confirmação ao sair da página
+            window.addEventListener('beforeunload', function(e) {
+                if (document.querySelector('.btn-logout').style.backgroundColor !== 'rgb(196, 22, 17)') {
+                    return null;
+                }
+            });
+        });
+        
+        // Funções globais para acesso via console
+        window.logoutApp = {
+            performLogout,
+            cancelLogout,
+            clearAllStorage: function() {
+                localStorage.clear();
+                showToast('Todos os dados locais foram removidos!', 'success');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            }
+        };
+    </script>
+</body>
+</html>
