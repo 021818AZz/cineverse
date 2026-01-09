@@ -1,1000 +1,985 @@
-<!DOCTYPE html>
-<html class="pixel-ratio-3 retina android android-5 android-5-0 watch-active-state">
+<html lang="pt-AO">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta http-equiv="pragma" content="no-cache">
-    <meta http-equiv="cache-control" content="no-cache">
-    <meta http-equiv="expires" content="0">
-    <title>cineverse</title>
-    <!-- Adicionar Toastify CSS -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cineverse - Registro de Retiradas</title>
+    
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
     <style>
-        /* CORES PRINCIPAIS: VERMELHO E BRANCO */
-        :root {
-            --primary-red: #e21b15;
-            --primary-white: #ffffff;
-            --light-red: #ff6b6b;
-            --dark-red: #c62828;
-            --bg-light: #f8f9fa;
-            --text-dark: #333333;
-            --text-light: #666666;
-            --border-color: #e0e0e0;
-        }
-
+        /* Estilos otimizados para mobile */
         * {
-            margin: 0;
-            padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Arial, sans-serif;
-        }
-
-        body {
-            background-color: var(--primary-white) !important;
             margin: 0;
             padding: 0;
-            min-height: 100vh;
-            overflow-y: auto;
-            color: var(--text-dark);
+            -webkit-tap-highlight-color: transparent;
         }
-
-        .withdrawal-container {
+        
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            padding-bottom: env(safe-area-inset-bottom);
+            -webkit-text-size-adjust: 100%;
+            -webkit-font-smoothing: antialiased;
+            touch-action: manipulation;
+        }
+        
+        .withdrawalspage {
             width: 100%;
-            max-width: 450px;
+            max-width: 100%;
             margin: 0 auto;
-            overflow: hidden;
-            background-color: var(--primary-white);
+            background: #fff;
             min-height: 100vh;
-            padding-bottom: 70px; /* Espaço para o footer */
-        }
-
-        /* Header Section - VERMELHO */
-        .header-banner {
-            background: linear-gradient(135deg, var(--primary-red), var(--light-red)) !important;
-            color: var(--primary-white);
-            text-align: center;
-            padding: 16px 0;
-            font-size: 18px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 16px 20px;
-            box-shadow: 0 2px 10px rgba(226, 27, 21, 0.1);
-        }
-
-        .back-button {
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-        }
-
-        .back-arrow {
-            color: var(--primary-white);
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        .header-title {
-            flex-grow: 1;
-            text-align: center;
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--primary-white);
-        }
-
-        .placeholder {
-            width: 30px;
-        }
-
-        /* Balance Section - Cartão de Saldo */
-        .balance-section {
-            padding: 20px;
-        }
-
-        .balance-card {
-            background: var(--primary-white);
-            border-radius: 15px;
-            padding: 24px;
-            box-shadow: 0 4px 15px rgba(226, 27, 21, 0.08);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            border: 2px solid var(--primary-red);
-            transition: all 0.3s ease;
-        }
-
-        .balance-card:hover {
-            box-shadow: 0 6px 20px rgba(226, 27, 21, 0.12);
-            transform: translateY(-2px);
-        }
-
-        .balance-info {
-            flex: 1;
-        }
-
-        .balance-label {
-            color: var(--text-light);
-            font-size: 14px;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-
-        .balance-amount {
-            font-size: 28px;
-            font-weight: bold;
-            color: var(--primary-red);
-        }
-
-        .history-button {
-            background: linear-gradient(135deg, var(--primary-red), var(--light-red));
-            border: none;
-            border-radius: 12px;
-            width: 56px;
-            height: 56px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(226, 27, 21, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .history-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(226, 27, 21, 0.3);
-        }
-
-        .history-icon {
-            width: 24px;
-            height: 24px;
-            filter: brightness(0) invert(1);
-        }
-
-        .record-link {
-            display: inline-block;
-            color: var(--primary-red);
-            text-decoration: none;
-            font-size: 14px;
-            background-color: var(--primary-white);
-            padding: 12px 24px;
-            border-radius: 25px;
-            box-shadow: 0 2px 8px rgba(226, 27, 21, 0.1);
-            width: 100%;
-            text-align: center;
-            border: 2px solid var(--primary-red);
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .record-link:hover {
-            background-color: var(--primary-red);
-            color: var(--primary-white);
-        }
-
-        /* Main Content */
-        .main-content {
-            background-color: var(--primary-white);
-            border-radius: 15px;
-            margin: 0 15px 15px;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            border: 1px solid var(--border-color);
-        }
-
-        .amount-input-container {
-            margin: 20px 0 25px;
+            padding-bottom: 80px;
             position: relative;
         }
-
-        .amount-input {
+        
+        /* Header */
+        .navboxi {
+            background: linear-gradient(135deg, #e21b15 0%, #b9150e 100%);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 12px 0;
+            height: 60px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .van-nav-bar__content {
             width: 100%;
-            height: 56px;
-            padding: 0 20px 0 55px;
+            padding: 0 16px;
+        }
+        
+        .van-nav-bar__title {
+            color: white;
+            font-weight: 600;
             font-size: 18px;
-            border: 2px solid var(--border-color);
-            border-radius: 12px;
-            background-color: var(--primary-white);
-            box-sizing: border-box;
-            outline: none;
-            transition: all 0.3s ease;
-            color: var(--text-dark);
-            font-weight: 500;
+            text-align: center;
         }
-
-        .amount-input:focus {
-            border: 2px solid var(--primary-red);
-            box-shadow: 0 0 0 4px rgba(226, 27, 21, 0.1);
-        }
-
-        .currency-symbol {
+        
+        .van-nav-bar__left {
             position: absolute;
-            left: 20px;
+            left: 16px;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--primary-red);
-            font-size: 22px;
-            font-weight: bold;
+            z-index: 2;
         }
-
-        /* Bank information styles */
-        .bank-info-container {
-            margin-bottom: 25px;
+        
+        .van-nav-bar__arrow {
+            color: white;
+            font-size: 20px;
         }
-
-        .bank-info-item {
-            padding: 18px;
-            margin-bottom: 15px;
-            background: var(--bg-light);
-            border-radius: 12px;
-            border-left: 4px solid var(--primary-red);
+        
+        /* Filtros */
+        .filter-container {
+            padding: 16px 16px 8px;
+            background: #fff;
+            position: sticky;
+            top: 60px;
+            z-index: 90;
+            border-bottom: 1px solid #eee;
         }
-
-        .bank-info-label {
-            color: var(--text-light);
+        
+        .filter-title {
             font-size: 14px;
-            margin-bottom: 6px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .filter-title i {
+            color: #e21b15;
+            font-size: 16px;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding-bottom: 8px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        
+        .filter-buttons::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .filter-button {
+            padding: 8px 16px;
+            border: none;
+            background: #f0f0f0;
+            border-radius: 20px;
+            font-size: 13px;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.2s;
             font-weight: 500;
+            min-width: fit-content;
+            flex-shrink: 0;
         }
-
-        .bank-info-value {
-            color: var(--text-dark);
-            font-size: 16px;
+        
+        .filter-button:hover,
+        .filter-button:active {
+            background: #e0e0e0;
+        }
+        
+        .filter-button.active {
+            background: linear-gradient(135deg, #e21b15, #b9150e);
+            color: white;
+            box-shadow: 0 2px 5px rgba(226, 27, 21, 0.3);
+        }
+        
+        /* Container das retiradas */
+        .withdrawals-container {
+            padding: 16px;
+            padding-top: 8px;
+        }
+        
+        .withdrawals-title {
+            font-size: 15px;
             font-weight: 600;
+            color: #333;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0 4px;
         }
-
-        select.amount-input {
-            padding-left: 20px;
+        
+        .withdrawals-title i {
+            color: #e21b15;
             font-size: 16px;
-            color: var(--text-dark);
         }
-
-        /* Submit button styles - VERMELHO */
-        .withdraw-button {
-            width: 100%;
-            background: linear-gradient(135deg, var(--primary-red), var(--light-red)) !important;
-            box-shadow: 0 4px 15px rgba(226, 27, 21, 0.2);
-            color: var(--primary-white);
-            border: none;
+        
+        /* Card de retirada */
+        .withdrawal-item {
+            background: white;
             border-radius: 12px;
-            padding: 18px 0;
-            font-size: 17px;
-            font-weight: 600;
-            cursor: pointer;
-            margin: 25px 0;
-            transition: all 0.3s ease;
-            letter-spacing: 0.5px;
-        }
-
-        .withdraw-button:hover {
-            box-shadow: 0 6px 20px rgba(226, 27, 21, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .withdraw-button:active {
-            transform: translateY(0);
-        }
-
-        .withdraw-button:disabled {
-            background: linear-gradient(135deg, #cccccc, #999999) !important;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        /* Instruções de Saque - Inicialmente escondidas */
-        .withdrawal-instructions-container {
-            margin-top: 25px;
-            border-top: 1px solid var(--border-color);
-            padding-top: 20px;
-        }
-
-        .instructions-toggle {
+            padding: 16px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-left: 4px solid #e21b15;
+            transition: all 0.2s;
+            animation: fadeIn 0.3s ease-out;
             width: 100%;
-            background: transparent;
-            border: none;
-            color: var(--primary-red);
-            font-size: 16px;
-            font-weight: 600;
-            padding: 15px;
-            cursor: pointer;
+        }
+        
+        .withdrawal-item:active {
+            transform: scale(0.98);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+        }
+        
+        .withdrawal-item.pending {
+            border-left-color: #FF9800;
+        }
+        
+        .withdrawal-item.completed {
+            border-left-color: #4CAF50;
+        }
+        
+        .withdrawal-item.failed {
+            border-left-color: #f44336;
+        }
+        
+        .withdrawal-item.cancelled {
+            border-left-color: #9E9E9E;
+        }
+        
+        .withdrawal-header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            border-radius: 8px;
-            transition: all 0.3s ease;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            gap: 12px;
         }
-
-        .instructions-toggle:hover {
-            background-color: rgba(226, 27, 21, 0.05);
-        }
-
-        .toggle-icon {
-            transition: transform 0.3s ease;
-        }
-
-        .instructions-toggle.active .toggle-icon {
-            transform: rotate(180deg);
-        }
-
-        .withdrawal-instructions {
-            background: var(--bg-light);
-            border-radius: 12px;
-            padding: 0;
-            margin-top: 10px;
-            border: 1px solid var(--border-color);
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            opacity: 0;
-        }
-
-        .withdrawal-instructions.active {
-            padding: 20px;
-            max-height: 1000px;
-            opacity: 1;
-        }
-
-        .withdrawal-instructions ul {
-            padding-left: 20px;
-            margin: 0;
-        }
-
-        .withdrawal-instructions li {
-            font-size: 14px;
-            line-height: 1.6;
-            color: var(--text-dark);
-            margin-bottom: 10px;
-            padding-left: 5px;
-        }
-
-        .withdrawal-instructions strong {
-            color: var(--primary-red);
-        }
-
-        .instructions-header {
-            color: var(--primary-red);
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid rgba(226, 27, 21, 0.1);
-        }
-
-        /* Toast styles - VERMELHO */
-        .toast-success {
-            background: linear-gradient(135deg, var(--primary-red), var(--light-red)) !important;
-        }
-
-        .toast-error {
-            background: linear-gradient(135deg, #d32f2f, #b71c1c) !important;
-        }
-
-        .toast-info {
-            background: linear-gradient(135deg, var(--primary-red), #ff5252) !important;
-        }
-
-        /* FOOTER - IGUAL À PÁGINA DA EQUIPE */
-        .bottom {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: var(--primary-white);
-            z-index: 1000;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-            max-width: 450px;
-            margin: 0 auto;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .flex {
-            display: flex;
-        }
-
-        .flex-bom {
-            justify-content: space-around;
-            padding: 8px 0 4px;
-        }
-
-        .item {
-            text-align: center;
+        
+        .withdrawal-info {
             flex: 1;
-            cursor: pointer;
-            padding: 8px 5px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            min-width: 0;
+        }
+        
+        .withdrawal-icon {
+            width: 36px;
+            height: 36px;
             border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .item:hover {
-            background-color: rgba(226, 27, 21, 0.05);
-        }
-
-        .img-box {
-            width: 30px;
-            height: 30px;
-            margin: 0 auto 4px;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
         }
-
-        .imgc {
-            width: 24px;
-            height: 24px;
-            object-fit: contain;
+        
+        .withdrawal-icon.pending {
+            background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
+            color: #FF9800;
         }
-
-        .item-pone {
-            font-size: 11px;
-            margin: 0;
-            color: var(--text-light);
-            font-weight: 500;
-            transition: color 0.3s ease;
+        
+        .withdrawal-icon.completed {
+            background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+            color: #4CAF50;
         }
-
-        .item.active .item-pone {
-            color: var(--primary-red);
+        
+        .withdrawal-icon.failed {
+            background: linear-gradient(135deg, #FFEBEE, #FFCDD2);
+            color: #f44336;
         }
-
-        /* Ajustes para a página de saque */
-        .item[onclick*="home.html"] .imgc {
-            content: url('img/home.png');
+        
+        .withdrawal-icon.cancelled {
+            background: linear-gradient(135deg, #F5F5F5, #E0E0E0);
+            color: #757575;
         }
-
-        .item[onclick*="ordered.html"] .imgc {
-            content: url('img/ordered.png');
+        
+        .withdrawal-details {
+            flex: 1;
+            min-width: 0;
+            overflow: hidden;
         }
-
-        .item[onclick*="equipe.html"] .imgc {
-            content: url('img/equipe.png');
-        }
-
-        .item[onclick*="profile.html"] .imgc {
-            content: url('img/profile.png');
-        }
-
-        /* Ajustar cor do ícone ativo */
-        .item.active .imgc {
-            filter: invert(23%) sepia(86%) saturate(3303%) hue-rotate(352deg) brightness(94%) contrast(93%);
-        }
-
-        /* Estilo para valor líquido */
-        #valorLiquido {
-            background: linear-gradient(135deg, rgba(226, 27, 21, 0.05), rgba(226, 27, 21, 0.1));
-            border-left: 4px solid var(--primary-red);
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        .loading-spinner {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: var(--primary-white);
-            animation: spin 1s ease-in-out infinite;
-            margin-right: 10px;
-            vertical-align: middle;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Responsividade */
-        @media (max-width: 400px) {
-            .balance-amount {
-                font-size: 24px;
-            }
-            
-            .header-title {
-                font-size: 16px;
-            }
-            
-            .amount-input {
-                height: 52px;
-                font-size: 16px;
-            }
-        }
-
-        /* Melhorias no visual */
-        .balance-amount::before {
-            content: "KZ ";
-            font-size: 20px;
-            color: var(--text-light);
-            font-weight: normal;
-        }
-
-        .withdraw-button::after {
-            content: " →";
+        
+        .withdrawal-type {
+            font-weight: 600;
             font-size: 14px;
-            margin-left: 5px;
+            color: #333;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .iban-info {
+            color: #666;
+            font-size: 12px;
+            line-height: 1.4;
+            font-family: monospace;
+            background: #f8f9fa;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-top: 4px;
+            word-break: break-all;
+        }
+        
+        .withdrawal-amount {
+            font-weight: 700;
+            font-size: 16px;
+            flex-shrink: 0;
+            text-align: right;
+            min-width: 80px;
+        }
+        
+        .withdrawal-amount .gross {
+            color: #e21b15;
+        }
+        
+        .withdrawal-amount .net {
+            color: #4CAF50;
+        }
+        
+        .withdrawal-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            border-top: 1px solid #f0f0f0;
+            margin-top: 12px;
+            font-size: 11px;
+        }
+        
+        .withdrawal-date {
+            color: #888;
+            white-space: nowrap;
+        }
+        
+        .withdrawal-status {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .status-pending {
+            background: #FFF3CD;
+            color: #856404;
+        }
+        
+        .status-completed {
+            background: #D4EDDA;
+            color: #155724;
+        }
+        
+        .status-failed {
+            background: #F8D7DA;
+            color: #721C24;
+        }
+        
+        .status-cancelled {
+            background: #E2E3E5;
+            color: #383D41;
+        }
+        
+        /* Estados vazios/loading */
+        .loading-spinner {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+        
+        .loading-spinner i {
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: #e21b15;
+            animation: spin 1s linear infinite;
+        }
+        
+        .loading-spinner p {
+            margin: 0;
+            font-size: 15px;
+        }
+        
+        .no-withdrawals {
+            text-align: center;
+            padding: 80px 20px;
+            color: #888;
+            display: none;
+        }
+        
+        .no-withdrawals i {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: #ddd;
+        }
+        
+        .no-withdrawals p {
+            margin: 0;
+            font-size: 16px;
+        }
+        
+        /* Botão de atualização flutuante */
+        .refresh-button {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #e21b15, #b9150e);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(226, 27, 21, 0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            touch-action: manipulation;
+        }
+        
+        .refresh-button:active {
+            transform: scale(0.95) rotate(180deg);
+            box-shadow: 0 6px 20px rgba(226, 27, 21, 0.6);
+        }
+        
+        /* Animações */
+        @keyframes slideIn {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Ajustes para telas muito pequenas */
+        @media (max-width: 360px) {
+            .filter-button {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+            
+            .withdrawal-item {
+                padding: 12px;
+            }
+            
+            .withdrawal-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 14px;
+            }
+            
+            .withdrawal-amount {
+                font-size: 14px;
+                min-width: 70px;
+            }
+            
+            .refresh-button {
+                width: 48px;
+                height: 48px;
+                font-size: 18px;
+                bottom: 80px;
+                right: 16px;
+            }
+        }
+        
+        /* Ajustes para iPhone (notch) */
+        @supports (padding-top: env(safe-area-inset-top)) {
+            .navboxi {
+                padding-top: calc(12px + env(safe-area-inset-top));
+                height: calc(60px + env(safe-area-inset-top));
+            }
+            
+            .van-nav-bar__content {
+                padding-top: env(safe-area-inset-top);
+            }
+            
+            .filter-container {
+                top: calc(60px + env(safe-area-inset-top));
+            }
+            
+            .refresh-button {
+                bottom: calc(90px + env(safe-area-inset-bottom));
+            }
+            
+            .withdrawalspage {
+                padding-bottom: calc(80px + env(safe-area-inset-bottom));
+            }
+        }
+        
+        /* Ajustes para tablets */
+        @media (min-width: 768px) {
+            .withdrawalspage {
+                max-width: 600px;
+                margin: 0 auto;
+                box-shadow: 0 0 20px rgba(0,0,0,0.1);
+                min-height: calc(100vh - 40px);
+                margin-top: 20px;
+                margin-bottom: 20px;
+                border-radius: 20px;
+                overflow: hidden;
+            }
+            
+            .filter-button {
+                padding: 8px 20px;
+                font-size: 14px;
+            }
+            
+            .withdrawal-item {
+                padding: 18px;
+                margin-bottom: 12px;
+            }
+            
+            .refresh-button {
+                right: 50%;
+                transform: translateX(300px);
+            }
+        }
+        
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #121212;
+            }
+            
+            .withdrawalspage {
+                background: #1e1e1e;
+            }
+            
+            .filter-container {
+                background: #1e1e1e;
+                border-bottom-color: #333;
+            }
+            
+            .filter-title {
+                color: #fff;
+            }
+            
+            .filter-button {
+                background: #333;
+                color: #ccc;
+            }
+            
+            .filter-button:hover,
+            .filter-button:active {
+                background: #444;
+            }
+            
+            .withdrawals-title {
+                color: #fff;
+            }
+            
+            .withdrawal-item {
+                background: #2d2d2d;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            }
+            
+            .withdrawal-type {
+                color: #fff;
+            }
+            
+            .iban-info {
+                background: #333;
+                color: #ccc;
+            }
+            
+            .withdrawal-footer {
+                border-top-color: #333;
+            }
+            
+            .withdrawal-date {
+                color: #888;
+            }
+            
+            .no-withdrawals {
+                color: #aaa;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="withdrawal-container">
-        <!-- Header Banner -->
-        <div class="header-banner">
-            <div class="back-button" onclick="javascript:history.back();">
-                <span class="back-arrow">❮</span>
-            </div>
-            <div class="header-title">Sacar</div>
-            <div class="placeholder"></div>
-        </div>
-
-        <!-- Balance Section - Cartão de Saldo -->
-        <div class="balance-section">
-            <div class="balance-card">
-                <div class="balance-info">
-                    <div class="balance-label">Saldo Disponível</div>
-                    <div class="balance-amount" id="userBalance">0</div>
+    <div class="withdrawalspage">
+        <!-- Header fixo -->
+        <div class="navboxi">
+            <div class="van-nav-bar__content">
+                <div class="van-nav-bar__left" onclick="window.history.back()">
+                    <i class="van-nav-bar__arrow">←</i>
                 </div>
-                <button class="history-button" onclick="window.location.href='historico-saques.html'" title="Histórico de Saques">
-                    <img src="img/money.jpg" alt="Histórico" class="history-icon">
-                </button>
-            </div>
-            <a href="historico-saques.html" class="record-link">Ver Registro Completo de Saques</a>
-        </div>
-
-        <div class="main-content">
-            <!-- Formulário de Saque -->
-            <form id="formSaque">
-                <!-- Valor do Saque -->
-                <div class="amount-input-container">
-                    <span class="currency-symbol">KZ</span>
-                    <input type="text" id="valorSaque" name="amount" class="amount-input" placeholder="0,00" oninput="formatarMoeda(this)" required>
-                </div>
-
-                <!-- Informações da Conta Bancária -->
-                <div class="bank-info-container" id="bankInfoContainer">
-                    <div class="bank-info-item">
-                        <div class="bank-info-label">Conta Bancária:</div>
-                        <select id="contaBancaria" name="bank_account" class="amount-input" style="width: 100%; height: 52px; margin-top: 10px;" required>
-                            <option value="" disabled selected>Selecione sua conta</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Valor Líquido -->
-                <div id="valorLiquido" class="bank-info-item hidden">
-                    <div class="bank-info-label">Valor Líquido após taxa de 18%:</div>
-                    <div class="bank-info-value" id="valorLiquidoDisplay">KZ 0,00</div>
-                </div>
-
-                <!-- Botão de Saque -->
-                <button type="submit" class="withdraw-button" id="btnSaque">Confirmar Saque</button>
-            </form>
-
-            <!-- Instruções de Saque (Toggle) -->
-            <div class="withdrawal-instructions-container">
-                <button class="instructions-toggle" type="button" id="toggleInstructions">
-                    Instruções para Saque
-                    <span class="toggle-icon">▼</span>
-                </button>
-                
-                <div class="withdrawal-instructions" id="instructionsContent">
-                    <div class="instructions-header">Regras e Informações:</div>
-                    <ul>
-                        <li><strong>Valor Mínimo:</strong> KZ 2.000,00</li>
-                        <li><strong>Valor Máximo:</strong> KZ 2.000.000,00</li>
-                        <li><strong>Taxa de Saque:</strong> 18% sobre o valor solicitado</li>
-                        <li><strong>Horário de Saque:</strong> Segunda a sábado, das 9h às 17h</li>
-                        <li><strong>Limite Diário:</strong> Apenas um saque por dia</li>
-                        <li><strong>Prazo de Recebimento:</strong> 20 minutos à 24h após a solicitação</li>
-                        <li><strong>Conta Bancária:</strong> Necessário cadastrar uma conta antes de sacar</li>
-                        <li><strong>Verificação:</strong> Todos os saques passam por verificação</li>
-                    </ul>
-                </div>
+                <div class="van-nav-bar__title">Registro de Retiradas</div>
             </div>
         </div>
+
+        <!-- Filtros fixos -->
+        <div class="filter-container">
+            <div class="filter-title">
+                <i class="fas fa-filter"></i>
+                Filtrar por status:
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-button active" onclick="filterWithdrawals('all')">Todas</button>
+                <button class="filter-button" onclick="filterWithdrawals('pending')">Pendentes</button>
+                <button class="filter-button" onclick="filterWithdrawals('completed')">Sucesso</button>
+                <button class="filter-button" onclick="filterWithdrawals('failed')">Canceladas</button>
+            </div>
+        </div>
+
+        <!-- Lista de retiradas -->
+        <div class="withdrawals-container">
+            <div class="withdrawals-title">
+                <i class="fas fa-money-check-dollar"></i>
+                Retiradas realizadas
+            </div>
+            
+            <div class="loading-spinner" id="loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Carregando retiradas...</p>
+            </div>
+            
+            <div id="withdrawals-list"></div>
+            
+            <div class="no-withdrawals" id="no-withdrawals">
+                <i class="fas fa-receipt"></i>
+                <p>Nenhuma retirada encontrada</p>
+            </div>
+        </div>
+        
+        <!-- Botão de atualização flutuante -->
+        <button class="refresh-button" onclick="refreshWithdrawals()">
+            <i class="fas fa-sync-alt"></i>
+        </button>
     </div>
 
-    
-    <!-- Toastify JS -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-
-   <script>
-    // Configuração da API
-    const API_BASE_URL = 'https://bd-p4q7.onrender.com';
-
-    // Configurações de saque
-    const CONFIG = {
-        TAXA_SAQUE: 0.18,       // 18%
-        SAQUE_MINIMO: 2000,     // KZ 2.000,00
-        SAQUE_MAXIMO: 2000000,  // KZ 2.000.000,00
-        HORA_INICIO: 0,         // 0h
-        HORA_FIM: 17            // 17h
-    };
-
-    // Função para obter o token do usuário
-    function getUserToken() {
-        const tokenData = localStorage.getItem('user_token');
-        if (!tokenData) return null;
+    <script>
+        // Configuração da API
+        const API_BASE_URL = 'https://bd-p4q7.onrender.com';
         
-        try {
-            const { token, expiry } = JSON.parse(tokenData);
-            if (Date.now() > expiry) {
-                localStorage.removeItem('user_token');
-                localStorage.removeItem('user_id');
+        // Estado da aplicação
+        let currentFilter = 'all';
+
+        // Função para mostrar toast
+        function showToast(message, type = 'info') {
+            const existingToast = document.querySelector('.custom-toast');
+            if (existingToast) {
+                existingToast.remove();
+            }
+            
+            const toast = document.createElement('div');
+            toast.className = `custom-toast toast-${type}`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    toast.remove();
+                }
+            }, 3000);
+            
+            // Adicionar estilo para o toast
+            const style = document.createElement('style');
+            style.textContent = `
+                .custom-toast {
+                    position: fixed;
+                    top: 100px;
+                    right: 16px;
+                    left: 16px;
+                    background: #333;
+                    color: white;
+                    padding: 14px 16px;
+                    border-radius: 10px;
+                    z-index: 10000;
+                    font-size: 14px;
+                    animation: slideIn 0.3s ease-out;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                    max-width: 100%;
+                    text-align: center;
+                }
+                
+                .custom-toast.toast-success {
+                    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+                }
+                
+                .custom-toast.toast-error {
+                    background: linear-gradient(135deg, #e21b15, #b9150e);
+                }
+                
+                .custom-toast.toast-info {
+                    background: linear-gradient(135deg, #2196F3, #1565C0);
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // Função para verificar se o token é válido
+        function isTokenValid() {
+            const tokenData = localStorage.getItem('user_token');
+            if (!tokenData) return false;
+            
+            try {
+                const { expiry } = JSON.parse(tokenData);
+                return Date.now() < expiry;
+            } catch (e) {
+                console.error('Erro ao verificar token:', e);
+                return false;
+            }
+        }
+
+        // Função para obter o token
+        function getToken() {
+            const tokenData = localStorage.getItem('user_token');
+            if (!tokenData) return null;
+            
+            try {
+                const parsed = JSON.parse(tokenData);
+                return parsed.token;
+            } catch (e) {
+                console.error('Erro ao obter token:', e);
                 return null;
             }
-            return token;
-        } catch (e) {
-            return null;
-        }
-    }
-
-    // Função para obter o ID do usuário
-    function getUserId() {
-        return localStorage.getItem('user_id');
-    }
-
-    // Toast personalizado
-    function showToast(message, type = 'info') {
-        Toastify({
-            text: message,
-            duration: 3000,
-            gravity: "top",
-            position: "center",
-            stopOnFocus: true,
-            className: type === 'error' ? 'toast-error' : 
-                      type === 'success' ? 'toast-success' : 'toast-info',
-            style: {
-                width: "100%",
-                left: "0",
-                right: "0",
-                borderRadius: "8px",
-                textAlign: "center",
-                padding: "16px",
-                fontSize: "14px",
-                fontWeight: "600",
-                maxWidth: "450px",
-                margin: "0 auto"
-            }
-        }).showToast();
-    }
-
-    // Toggle das instruções
-    document.getElementById('toggleInstructions').addEventListener('click', function() {
-        const instructions = document.getElementById('instructionsContent');
-        this.classList.toggle('active');
-        instructions.classList.toggle('active');
-        
-        const icon = this.querySelector('.toggle-icon');
-        icon.textContent = this.classList.contains('active') ? '▲' : '▼';
-    });
-
-    // Carregar dados do usuário
-    async function loadUserData() {
-        const token = getUserToken();
-        const userId = getUserId();
-        
-        if (!token || !userId) {
-            showToast('Faça login para continuar', 'error');
-            setTimeout(() => {
-                window.location.href = 'index.html';
-            }, 2000);
-            return;
         }
 
-        try {
-            const profileResponse = await fetch(`${API_BASE_URL}/api/user/profile`, {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-
-            if (!profileResponse.ok) {
-                throw new Error('Erro ao carregar dados do usuário');
-            }
-
-            const profileData = await profileResponse.json();
-            
-            if (profileData.success) {
-                const balance = profileData.data.wallet_balance || 0;
-                document.getElementById('userBalance').textContent = balance.toLocaleString('pt-BR', {
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2
-                });
-            }
-
-            await loadBankAccounts(token);
-
-        } catch (error) {
-            console.error('Erro ao carregar dados:', error);
-            showToast('Erro ao carregar dados', 'error');
-        }
-    }
-
-    // Carregar contas bancárias
-    async function loadBankAccounts(token) {
-        try {
-            const response = await fetch(`${API_BASE_URL}/api/user/bank-account`, {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                const select = document.getElementById('contaBancaria');
-                
-                if (data.success && data.data) {
-                    while (select.children.length > 1) {
-                        select.removeChild(select.lastChild);
-                    }
-                    
-                    const option = document.createElement('option');
-                    option.value = data.data.id;
-                    option.textContent = `${data.data.bank_name} - ${data.data.account_holder} (${data.data.account_number})`;
-                    select.appendChild(option);
-                } else {
-                    const option = document.createElement('option');
-                    option.value = '';
-                    option.textContent = 'Nenhuma conta cadastrada';
-                    option.disabled = true;
-                    select.appendChild(option);
-                    showToast('Cadastre uma conta bancária para sacar', 'info');
-                }
-            }
-        } catch (error) {
-            console.error('Erro ao carregar contas bancárias:', error);
-        }
-    }
-
-    // Verificar se usuário já sacou hoje
-    async function checkDailyWithdrawal(token) {
-        try {
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
-            
-            const response = await fetch(`${API_BASE_URL}/api/withdrawals`, {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                if (data.success) {
-                    const todayWithdrawals = data.data.withdrawals.filter(withdrawal => {
-                        const withdrawalDate = new Date(withdrawal.created_at);
-                        withdrawalDate.setHours(0, 0, 0, 0);
-                        return withdrawalDate.getTime() === today.getTime();
-                    });
-                    
-                    return todayWithdrawals.length > 0;
-                }
-            }
-            return false;
-        } catch (error) {
-            console.error('Erro ao verificar saques diários:', error);
-            return false;
-        }
-    }
-
-    // Formatar moeda
-    function formatarMoeda(input) {
-        let value = input.value.replace(/\D/g, '');
-        
-        if (value === '') {
-            input.value = '';
-            calcularValorLiquido();
-            return;
-        }
-        
-        while (value.length < 3) {
-            value = '0' + value;
-        }
-        
-        const reais = value.slice(0, -2);
-        const centavos = value.slice(-2);
-        let reaisFormatados = '';
-        if (reais.length > 0) {
-            reaisFormatados = parseInt(reais).toLocaleString('pt-BR');
-        }
-        input.value = reaisFormatados + ',' + centavos;
-        calcularValorLiquido();
-    }
-
-    // Calcular valor líquido após taxa
-    function calcularValorLiquido() {
-        const valorSaque = document.getElementById('valorSaque');
-        const valorLiquido = document.getElementById('valorLiquido');
-        const valorLiquidoDisplay = document.getElementById('valorLiquidoDisplay');
-        
-        let valorStr = valorSaque.value.replace(/\./g, '').replace(',', '.');
-        let valor = parseFloat(valorStr);
-        
-        if (!isNaN(valor) && valor > 0) {
-            const taxa = valor * CONFIG.TAXA_SAQUE;
-            const liquido = valor - taxa;
-            
-            valorLiquidoDisplay.textContent = `KZ ${liquido.toLocaleString('pt-BR', { 
-                minimumFractionDigits: 2, 
-                maximumFractionDigits: 2 
-            })}`;
-            valorLiquido.classList.remove('hidden');
-        } else {
-            valorLiquido.classList.add('hidden');
-        }
-    }
-
-    // Validar horário de saque (segunda a sábado, 0h às 17h)
-    function validarHorarioSaque() {
-        const agora = new Date();
-        const diaSemana = agora.getDay();
-        const hora = agora.getHours();
-        const minutos = agora.getMinutes();
-        
-        if (diaSemana === 0) return false; // Domingo
-        
-        const horaAtual = hora + (minutos / 60);
-        if (horaAtual < CONFIG.HORA_INICIO || horaAtual >= CONFIG.HORA_FIM) {
-            return false;
-        }
-        
-        return true;
-    }
-
-    // Processar saque
-    async function processarSaque(event) {
-        event.preventDefault();
-        
-        const token = getUserToken();
-        if (!token) {
-            showToast('Faça login para continuar', 'error');
-            return;
-        }
-
-        if (!validarHorarioSaque()) {
-            showToast('Saques disponíveis apenas de segunda a sábado, das 0h às 17h', 'error');
-            return;
-        }
-
-        const jaSacouHoje = await checkDailyWithdrawal(token);
-        if (jaSacouHoje) {
-            showToast('Você já realizou um saque hoje. Volte amanhã!', 'error');
-            return;
-        }
-
-        const valorSaque = document.getElementById('valorSaque');
-        const contaBancaria = document.getElementById('contaBancaria');
-        
-        let valorStr = valorSaque.value.replace(/\./g, '').replace(',', '.');
-        let valor = parseFloat(valorStr);
-        
-        if (valor < CONFIG.SAQUE_MINIMO) {
-            showToast(`Valor mínimo para saque é KZ ${CONFIG.SAQUE_MINIMO.toLocaleString('pt-BR')}`, 'error');
-            return;
-        }
-        
-        if (valor > CONFIG.SAQUE_MAXIMO) {
-            showToast(`Valor máximo para saque é KZ ${CONFIG.SAQUE_MAXIMO.toLocaleString('pt-BR')}`, 'error');
-            return;
-        }
-
-        const saldoAtual = parseFloat(document.getElementById('userBalance').textContent.replace(/\./g, '').replace(',', '.'));
-        if (valor > saldoAtual) {
-            showToast('Saldo insuficiente para realizar o saque', 'error');
-            return;
-        }
-
-        if (!contaBancaria.value || contaBancaria.value === '') {
-            showToast('Selecione uma conta bancária', 'error');
-            return;
-        }
-
-        const taxa = valor * CONFIG.TAXA_SAQUE;
-        const valorLiquido = valor - taxa;
-
-        const btnSaque = document.getElementById('btnSaque');
-        btnSaque.disabled = true;
-        btnSaque.innerHTML = '<div class="loading-spinner"></div> Processando...';
-
-        try {
-            const bankResponse = await fetch(`${API_BASE_URL}/api/user/bank-account`, {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-
-            if (!bankResponse.ok) {
-                throw new Error('Erro ao buscar informações da conta bancária');
-            }
-
-            const bankData = await bankResponse.json();
-            
-            if (!bankData.success || !bankData.data) {
-                showToast('Cadastre uma conta bancária antes de sacar', 'error');
+        // Função para redirecionar para login se não autenticado
+        function checkAuth() {
+            if (!isTokenValid()) {
+                showToast('Sessão expirada. Por favor, faça login novamente.', 'error');
                 setTimeout(() => {
-                    window.location.href = 'iban.html';
-                }, 2000);
+                    window.location.href = '/index.html';
+                }, 1500);
+                return false;
+            }
+            return true;
+        }
+
+        // Função para formatar data
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffTime = Math.abs(now - date);
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            
+            if (diffDays === 0) {
+                return 'Hoje ' + date.toLocaleTimeString('pt-AO', { hour: '2-digit', minute: '2-digit' });
+            } else if (diffDays === 1) {
+                return 'Ontem ' + date.toLocaleTimeString('pt-AO', { hour: '2-digit', minute: '2-digit' });
+            } else if (diffDays < 7) {
+                const days = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+                return days[date.getDay()] + ' ' + date.toLocaleTimeString('pt-AO', { hour: '2-digit', minute: '2-digit' });
+            } else {
+                return date.toLocaleDateString('pt-AO', { day: '2-digit', month: '2-digit' }) + ' ' + 
+                       date.toLocaleTimeString('pt-AO', { hour: '2-digit', minute: '2-digit' });
+            }
+        }
+
+        // Função para formatar valor monetário
+        function formatCurrency(value) {
+            const num = Number(value);
+            if (isNaN(num)) return 'KZ 0';
+            
+            return `KZ ${num.toLocaleString('pt-AO', {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 2
+            })}`;
+        }
+
+        // Função para formatar IBAN
+        function formatIBAN(iban) {
+            if (!iban) return 'N/A';
+            if (iban.length <= 4) return iban;
+            return `•••• ${iban.slice(-4)}`;
+        }
+
+        // Função para obter texto do status
+        function getStatusText(status) {
+            const statusMap = {
+                'pending': 'Pendente',
+                'completed': 'Sucesso',
+                'failed': 'Cancelada',
+                'cancelled': 'Cancelada',
+                'rejected': 'Cancelada'
+            };
+            return statusMap[status] || status;
+        }
+
+        // Função para obter classe do status
+        function getStatusClass(status) {
+            const classMap = {
+                'pending': 'pending',
+                'completed': 'completed',
+                'failed': 'failed',
+                'cancelled': 'cancelled'
+            };
+            return classMap[status] || 'pending';
+        }
+
+        // Função para obter ícone do status
+        function getStatusIcon(status) {
+            const iconMap = {
+                'pending': 'fa-solid fa-clock',
+                'completed': 'fa-solid fa-check-circle',
+                'failed': 'fa-solid fa-times-circle',
+                'cancelled': 'fa-solid fa-ban'
+            };
+            return iconMap[status] || 'fa-solid fa-question-circle';
+        }
+
+        // Função para criar card de retirada
+        function createWithdrawalCard(withdrawal) {
+            const statusClass = getStatusClass(withdrawal.status);
+            const statusText = getStatusText(withdrawal.status);
+            const statusIcon = getStatusIcon(withdrawal.status);
+            const formattedIBAN = formatIBAN(withdrawal.iban);
+            const formattedDate = formatDate(withdrawal.created_at);
+            
+            return `
+                <div class="withdrawal-item ${statusClass}">
+                    <div class="withdrawal-header">
+                        <div class="withdrawal-info">
+                            <div class="withdrawal-icon ${statusClass}">
+                                <i class="${statusIcon}"></i>
+                            </div>
+                            <div class="withdrawal-details">
+                                <div class="withdrawal-type">Retirada Bancária</div>
+                                <div class="iban-info">${formattedIBAN}</div>
+                            </div>
+                        </div>
+                        <div class="withdrawal-amount">
+                            <div class="gross">${formatCurrency(withdrawal.amount)}</div>
+                            <div class="net" style="font-size: 13px; margin-top: 4px;">
+                                ${formatCurrency(withdrawal.net_amount || withdrawal.amount)}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="withdrawal-footer">
+                        <div class="withdrawal-date">${formattedDate}</div>
+                        <div class="withdrawal-status status-${statusClass}">
+                            ${statusText}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Função para carregar retiradas
+        async function loadWithdrawals() {
+            if (!checkAuth()) return;
+
+            const token = getToken();
+            const loadingElement = document.getElementById('loading');
+            const listElement = document.getElementById('withdrawals-list');
+            const noWithdrawalsElement = document.getElementById('no-withdrawals');
+
+            try {
+                loadingElement.style.display = 'block';
+                listElement.innerHTML = '';
+                noWithdrawalsElement.style.display = 'none';
+                
+                // Construir URL com filtros
+                let url = `${API_BASE_URL}/api/withdrawals?page=1&limit=50`;
+                if (currentFilter !== 'all') {
+                    url += `&status=${currentFilter}`;
+                }
+
+                const response = await fetch(url, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.status === 401) {
+                    localStorage.removeItem('user_token');
+                    localStorage.removeItem('user_id');
+                    window.location.href = '/index.html';
+                    return;
+                }
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const result = await response.json();
+                
+                if (result.success && result.data && result.data.withdrawals) {
+                    const withdrawals = result.data.withdrawals;
+                    
+                    if (withdrawals.length === 0) {
+                        loadingElement.style.display = 'none';
+                        noWithdrawalsElement.style.display = 'block';
+                    } else {
+                        // Ordenar por data (mais recente primeiro)
+                        withdrawals.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+                        
+                        // Adicionar retiradas à lista
+                        withdrawals.forEach(withdrawal => {
+                            listElement.innerHTML += createWithdrawalCard(withdrawal);
+                        });
+                        
+                        loadingElement.style.display = 'none';
+                        
+                        // Mostrar mensagem de sucesso
+                        showToast(`${withdrawals.length} retiradas carregadas`, 'success');
+                    }
+                } else {
+                    loadingElement.style.display = 'none';
+                    noWithdrawalsElement.style.display = 'block';
+                }
+
+            } catch (error) {
+                console.error('Erro ao carregar retiradas:', error);
+                loadingElement.style.display = 'none';
+                noWithdrawalsElement.style.display = 'block';
+                noWithdrawalsElement.innerHTML = `
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p>Erro ao carregar retiradas</p>
+                    <p style="font-size: 12px; margin-top: 10px;">Tente novamente em alguns instantes</p>
+                `;
+                showToast('Erro ao carregar retiradas', 'error');
+            }
+        }
+
+        // Função para filtrar retiradas
+        function filterWithdrawals(filter) {
+            const buttons = document.querySelectorAll('.filter-button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            const activeButton = document.querySelector(`.filter-button[onclick*="${filter}"]`);
+            if (activeButton) {
+                activeButton.classList.add('active');
+            }
+
+            currentFilter = filter;
+            loadWithdrawals();
+        }
+
+        // Função para recarregar retiradas
+        window.refreshWithdrawals = function() {
+            if (!checkAuth()) return;
+            showToast('Atualizando retiradas...', 'info');
+            loadWithdrawals();
+        };
+
+        // Inicialização quando a página carrega
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Inicializando página de retiradas...');
+            
+            if (!checkAuth()) {
                 return;
             }
 
-            const bankAccount = bankData.data;
+            // Carregar retiradas iniciais
+            loadWithdrawals();
 
-            const response = await fetch(`${API_BASE_URL}/api/withdraw`, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    amount: valor,
-                    tax: taxa,
-                    net_amount: valorLiquido,
-                    account_name: bankAccount.account_holder,
-                    iban: bankAccount.account_number,
-                    bank_name: bankAccount.bank_name,
-                    bank_code: bankAccount.branch_code
-                })
+            // Configurar pull-to-refresh
+            let pullStartY = 0;
+            let isPulling = false;
+
+            document.addEventListener('touchstart', (e) => {
+                if (window.scrollY === 0) {
+                    pullStartY = e.touches[0].clientY;
+                    isPulling = true;
+                }
             });
 
-            const data = await response.json();
+            document.addEventListener('touchmove', (e) => {
+                if (!isPulling) return;
+                
+                const pullMoveY = e.touches[0].clientY;
+                const pullDistance = pullMoveY - pullStartY;
+                
+                if (pullDistance > 100) {
+                    refreshWithdrawals();
+                    isPulling = false;
+                }
+            });
 
-            if (data.success) {
-                showToast('Saque solicitado com sucesso!', 'success');
-                await loadUserData();
-                document.getElementById('formSaque').reset();
-                document.getElementById('valorLiquido').classList.add('hidden');
-                setTimeout(() => {
-                    window.location.href = 'historico-saques.html';
-                }, 2000);
-            } else {
-                showToast(data.message || 'Erro ao processar saque', 'error');
-            }
+            document.addEventListener('touchend', () => {
+                isPulling = false;
+            });
 
-        } catch (error) {
-            console.error('Erro no saque:', error);
-            showToast('Erro de conexão: ' + error.message, 'error');
-        } finally {
-            btnSaque.disabled = false;
-            btnSaque.textContent = 'Confirmar Saque';
-        }
-    }
+            console.log('Página de retiradas inicializada com sucesso!');
+        });
 
-    // Event Listeners
-    document.addEventListener('DOMContentLoaded', function() {
-        if (!getUserToken()) {
-            window.location.href = 'index.html';
-            return;
-        }
-        
-        loadUserData();
-        
-        const formSaque = document.getElementById('formSaque');
-        if (formSaque) {
-            formSaque.addEventListener('submit', processarSaque);
-        }
-        
-        const valorSaque = document.getElementById('valorSaque');
-        if (valorSaque) {
-            valorSaque.addEventListener('input', calcularValorLiquido);
-        }
-        
-        const currentPage = 'profile.html';
-        const footerItems = document.querySelectorAll('.bottom .item');
-        footerItems.forEach(item => {
-            item.classList.remove('active');
-            if (item.getAttribute('onclick') && item.getAttribute('onclick').includes(currentPage)) {
-                item.classList.add('active');
+        // Adicionar atalho de teclado (R para recarregar)
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'r' || e.key === 'R') {
+                e.preventDefault();
+                refreshWithdrawals();
             }
         });
-    });
-</script>
+    </script>
+</body>
+</html>
