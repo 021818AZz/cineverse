@@ -1,0 +1,985 @@
+<html lang="pt-AO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cineverse - Registro de Retiradas</title>
+    
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        /* Estilos otimizados para mobile */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            padding-bottom: env(safe-area-inset-bottom);
+            -webkit-text-size-adjust: 100%;
+            -webkit-font-smoothing: antialiased;
+            touch-action: manipulation;
+        }
+        
+        .withdrawalspage {
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto;
+            background: #fff;
+            min-height: 100vh;
+            padding-bottom: 80px;
+            position: relative;
+        }
+        
+        /* Header */
+        .navboxi {
+            background: linear-gradient(135deg, #e21b15 0%, #b9150e 100%);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 12px 0;
+            height: 60px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .van-nav-bar__content {
+            width: 100%;
+            padding: 0 16px;
+        }
+        
+        .van-nav-bar__title {
+            color: white;
+            font-weight: 600;
+            font-size: 18px;
+            text-align: center;
+        }
+        
+        .van-nav-bar__left {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2;
+        }
+        
+        .van-nav-bar__arrow {
+            color: white;
+            font-size: 20px;
+        }
+        
+        /* Filtros */
+        .filter-container {
+            padding: 16px 16px 8px;
+            background: #fff;
+            position: sticky;
+            top: 60px;
+            z-index: 90;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .filter-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .filter-title i {
+            color: #e21b15;
+            font-size: 16px;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding-bottom: 8px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        
+        .filter-buttons::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .filter-button {
+            padding: 8px 16px;
+            border: none;
+            background: #f0f0f0;
+            border-radius: 20px;
+            font-size: 13px;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+            min-width: fit-content;
+            flex-shrink: 0;
+        }
+        
+        .filter-button:hover,
+        .filter-button:active {
+            background: #e0e0e0;
+        }
+        
+        .filter-button.active {
+            background: linear-gradient(135deg, #e21b15, #b9150e);
+            color: white;
+            box-shadow: 0 2px 5px rgba(226, 27, 21, 0.3);
+        }
+        
+        /* Container das retiradas */
+        .withdrawals-container {
+            padding: 16px;
+            padding-top: 8px;
+        }
+        
+        .withdrawals-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0 4px;
+        }
+        
+        .withdrawals-title i {
+            color: #e21b15;
+            font-size: 16px;
+        }
+        
+        /* Card de retirada */
+        .withdrawal-item {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-left: 4px solid #e21b15;
+            transition: all 0.2s;
+            animation: fadeIn 0.3s ease-out;
+            width: 100%;
+        }
+        
+        .withdrawal-item:active {
+            transform: scale(0.98);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+        }
+        
+        .withdrawal-item.pending {
+            border-left-color: #FF9800;
+        }
+        
+        .withdrawal-item.completed {
+            border-left-color: #4CAF50;
+        }
+        
+        .withdrawal-item.failed {
+            border-left-color: #f44336;
+        }
+        
+        .withdrawal-item.cancelled {
+            border-left-color: #9E9E9E;
+        }
+        
+        .withdrawal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            gap: 12px;
+        }
+        
+        .withdrawal-info {
+            flex: 1;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            min-width: 0;
+        }
+        
+        .withdrawal-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+        
+        .withdrawal-icon.pending {
+            background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
+            color: #FF9800;
+        }
+        
+        .withdrawal-icon.completed {
+            background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+            color: #4CAF50;
+        }
+        
+        .withdrawal-icon.failed {
+            background: linear-gradient(135deg, #FFEBEE, #FFCDD2);
+            color: #f44336;
+        }
+        
+        .withdrawal-icon.cancelled {
+            background: linear-gradient(135deg, #F5F5F5, #E0E0E0);
+            color: #757575;
+        }
+        
+        .withdrawal-details {
+            flex: 1;
+            min-width: 0;
+            overflow: hidden;
+        }
+        
+        .withdrawal-type {
+            font-weight: 600;
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .iban-info {
+            color: #666;
+            font-size: 12px;
+            line-height: 1.4;
+            font-family: monospace;
+            background: #f8f9fa;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-top: 4px;
+            word-break: break-all;
+        }
+        
+        .withdrawal-amount {
+            font-weight: 700;
+            font-size: 16px;
+            flex-shrink: 0;
+            text-align: right;
+            min-width: 80px;
+        }
+        
+        .withdrawal-amount .gross {
+            color: #e21b15;
+        }
+        
+        .withdrawal-amount .net {
+            color: #4CAF50;
+        }
+        
+        .withdrawal-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            border-top: 1px solid #f0f0f0;
+            margin-top: 12px;
+            font-size: 11px;
+        }
+        
+        .withdrawal-date {
+            color: #888;
+            white-space: nowrap;
+        }
+        
+        .withdrawal-status {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .status-pending {
+            background: #FFF3CD;
+            color: #856404;
+        }
+        
+        .status-completed {
+            background: #D4EDDA;
+            color: #155724;
+        }
+        
+        .status-failed {
+            background: #F8D7DA;
+            color: #721C24;
+        }
+        
+        .status-cancelled {
+            background: #E2E3E5;
+            color: #383D41;
+        }
+        
+        /* Estados vazios/loading */
+        .loading-spinner {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+        
+        .loading-spinner i {
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: #e21b15;
+            animation: spin 1s linear infinite;
+        }
+        
+        .loading-spinner p {
+            margin: 0;
+            font-size: 15px;
+        }
+        
+        .no-withdrawals {
+            text-align: center;
+            padding: 80px 20px;
+            color: #888;
+            display: none;
+        }
+        
+        .no-withdrawals i {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: #ddd;
+        }
+        
+        .no-withdrawals p {
+            margin: 0;
+            font-size: 16px;
+        }
+        
+        /* Botão de atualização flutuante */
+        .refresh-button {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #e21b15, #b9150e);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(226, 27, 21, 0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            touch-action: manipulation;
+        }
+        
+        .refresh-button:active {
+            transform: scale(0.95) rotate(180deg);
+            box-shadow: 0 6px 20px rgba(226, 27, 21, 0.6);
+        }
+        
+        /* Animações */
+        @keyframes slideIn {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Ajustes para telas muito pequenas */
+        @media (max-width: 360px) {
+            .filter-button {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+            
+            .withdrawal-item {
+                padding: 12px;
+            }
+            
+            .withdrawal-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 14px;
+            }
+            
+            .withdrawal-amount {
+                font-size: 14px;
+                min-width: 70px;
+            }
+            
+            .refresh-button {
+                width: 48px;
+                height: 48px;
+                font-size: 18px;
+                bottom: 80px;
+                right: 16px;
+            }
+        }
+        
+        /* Ajustes para iPhone (notch) */
+        @supports (padding-top: env(safe-area-inset-top)) {
+            .navboxi {
+                padding-top: calc(12px + env(safe-area-inset-top));
+                height: calc(60px + env(safe-area-inset-top));
+            }
+            
+            .van-nav-bar__content {
+                padding-top: env(safe-area-inset-top);
+            }
+            
+            .filter-container {
+                top: calc(60px + env(safe-area-inset-top));
+            }
+            
+            .refresh-button {
+                bottom: calc(90px + env(safe-area-inset-bottom));
+            }
+            
+            .withdrawalspage {
+                padding-bottom: calc(80px + env(safe-area-inset-bottom));
+            }
+        }
+        
+        /* Ajustes para tablets */
+        @media (min-width: 768px) {
+            .withdrawalspage {
+                max-width: 600px;
+                margin: 0 auto;
+                box-shadow: 0 0 20px rgba(0,0,0,0.1);
+                min-height: calc(100vh - 40px);
+                margin-top: 20px;
+                margin-bottom: 20px;
+                border-radius: 20px;
+                overflow: hidden;
+            }
+            
+            .filter-button {
+                padding: 8px 20px;
+                font-size: 14px;
+            }
+            
+            .withdrawal-item {
+                padding: 18px;
+                margin-bottom: 12px;
+            }
+            
+            .refresh-button {
+                right: 50%;
+                transform: translateX(300px);
+            }
+        }
+        
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #121212;
+            }
+            
+            .withdrawalspage {
+                background: #1e1e1e;
+            }
+            
+            .filter-container {
+                background: #1e1e1e;
+                border-bottom-color: #333;
+            }
+            
+            .filter-title {
+                color: #fff;
+            }
+            
+            .filter-button {
+                background: #333;
+                color: #ccc;
+            }
+            
+            .filter-button:hover,
+            .filter-button:active {
+                background: #444;
+            }
+            
+            .withdrawals-title {
+                color: #fff;
+            }
+            
+            .withdrawal-item {
+                background: #2d2d2d;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            }
+            
+            .withdrawal-type {
+                color: #fff;
+            }
+            
+            .iban-info {
+                background: #333;
+                color: #ccc;
+            }
+            
+            .withdrawal-footer {
+                border-top-color: #333;
+            }
+            
+            .withdrawal-date {
+                color: #888;
+            }
+            
+            .no-withdrawals {
+                color: #aaa;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="withdrawalspage">
+        <!-- Header fixo -->
+        <div class="navboxi">
+            <div class="van-nav-bar__content">
+                <div class="van-nav-bar__left" onclick="window.history.back()">
+                    <i class="van-nav-bar__arrow">←</i>
+                </div>
+                <div class="van-nav-bar__title">Registro de Retiradas</div>
+            </div>
+        </div>
+
+        <!-- Filtros fixos -->
+        <div class="filter-container">
+            <div class="filter-title">
+                <i class="fas fa-filter"></i>
+                Filtrar por status:
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-button active" onclick="filterWithdrawals('all')">Todas</button>
+                <button class="filter-button" onclick="filterWithdrawals('pending')">Pendentes</button>
+                <button class="filter-button" onclick="filterWithdrawals('completed')">Sucesso</button>
+                <button class="filter-button" onclick="filterWithdrawals('failed')">Canceladas</button>
+            </div>
+        </div>
+
+        <!-- Lista de retiradas -->
+        <div class="withdrawals-container">
+            <div class="withdrawals-title">
+                <i class="fas fa-money-check-dollar"></i>
+                Retiradas realizadas
+            </div>
+            
+            <div class="loading-spinner" id="loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Carregando retiradas...</p>
+            </div>
+            
+            <div id="withdrawals-list"></div>
+            
+            <div class="no-withdrawals" id="no-withdrawals">
+                <i class="fas fa-receipt"></i>
+                <p>Nenhuma retirada encontrada</p>
+            </div>
+        </div>
+        
+        <!-- Botão de atualização flutuante -->
+        <button class="refresh-button" onclick="refreshWithdrawals()">
+            <i class="fas fa-sync-alt"></i>
+        </button>
+    </div>
+
+    <script>
+        // Configuração da API
+        const API_BASE_URL = 'https://bd-p4q7.onrender.com';
+        
+        // Estado da aplicação
+        let currentFilter = 'all';
+
+        // Função para mostrar toast
+        function showToast(message, type = 'info') {
+            const existingToast = document.querySelector('.custom-toast');
+            if (existingToast) {
+                existingToast.remove();
+            }
+            
+            const toast = document.createElement('div');
+            toast.className = `custom-toast toast-${type}`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    toast.remove();
+                }
+            }, 3000);
+            
+            // Adicionar estilo para o toast
+            const style = document.createElement('style');
+            style.textContent = `
+                .custom-toast {
+                    position: fixed;
+                    top: 100px;
+                    right: 16px;
+                    left: 16px;
+                    background: #333;
+                    color: white;
+                    padding: 14px 16px;
+                    border-radius: 10px;
+                    z-index: 10000;
+                    font-size: 14px;
+                    animation: slideIn 0.3s ease-out;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                    max-width: 100%;
+                    text-align: center;
+                }
+                
+                .custom-toast.toast-success {
+                    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+                }
+                
+                .custom-toast.toast-error {
+                    background: linear-gradient(135deg, #e21b15, #b9150e);
+                }
+                
+                .custom-toast.toast-info {
+                    background: linear-gradient(135deg, #2196F3, #1565C0);
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // Função para verificar se o token é válido
+        function isTokenValid() {
+            const tokenData = localStorage.getItem('user_token');
+            if (!tokenData) return false;
+            
+            try {
+                const { expiry } = JSON.parse(tokenData);
+                return Date.now() < expiry;
+            } catch (e) {
+                console.error('Erro ao verificar token:', e);
+                return false;
+            }
+        }
+
+        // Função para obter o token
+        function getToken() {
+            const tokenData = localStorage.getItem('user_token');
+            if (!tokenData) return null;
+            
+            try {
+                const parsed = JSON.parse(tokenData);
+                return parsed.token;
+            } catch (e) {
+                console.error('Erro ao obter token:', e);
+                return null;
+            }
+        }
+
+        // Função para redirecionar para login se não autenticado
+        function checkAuth() {
+            if (!isTokenValid()) {
+                showToast('Sessão expirada. Por favor, faça login novamente.', 'error');
+                setTimeout(() => {
+                    window.location.href = '/index.html';
+                }, 1500);
+                return false;
+            }
+            return true;
+        }
+
+        // Função para formatar data
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffTime = Math.abs(now - date);
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            
+            if (diffDays === 0) {
+                return 'Hoje ' + date.toLocaleTimeString('pt-AO', { hour: '2-digit', minute: '2-digit' });
+            } else if (diffDays === 1) {
+                return 'Ontem ' + date.toLocaleTimeString('pt-AO', { hour: '2-digit', minute: '2-digit' });
+            } else if (diffDays < 7) {
+                const days = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+                return days[date.getDay()] + ' ' + date.toLocaleTimeString('pt-AO', { hour: '2-digit', minute: '2-digit' });
+            } else {
+                return date.toLocaleDateString('pt-AO', { day: '2-digit', month: '2-digit' }) + ' ' + 
+                       date.toLocaleTimeString('pt-AO', { hour: '2-digit', minute: '2-digit' });
+            }
+        }
+
+        // Função para formatar valor monetário
+        function formatCurrency(value) {
+            const num = Number(value);
+            if (isNaN(num)) return 'KZ 0';
+            
+            return `KZ ${num.toLocaleString('pt-AO', {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 2
+            })}`;
+        }
+
+        // Função para formatar IBAN
+        function formatIBAN(iban) {
+            if (!iban) return 'N/A';
+            if (iban.length <= 4) return iban;
+            return `•••• ${iban.slice(-4)}`;
+        }
+
+        // Função para obter texto do status
+        function getStatusText(status) {
+            const statusMap = {
+                'pending': 'Pendente',
+                'completed': 'Sucesso',
+                'failed': 'Cancelada',
+                'cancelled': 'Cancelada',
+                'rejected': 'Cancelada'
+            };
+            return statusMap[status] || status;
+        }
+
+        // Função para obter classe do status
+        function getStatusClass(status) {
+            const classMap = {
+                'pending': 'pending',
+                'completed': 'completed',
+                'failed': 'failed',
+                'cancelled': 'cancelled'
+            };
+            return classMap[status] || 'pending';
+        }
+
+        // Função para obter ícone do status
+        function getStatusIcon(status) {
+            const iconMap = {
+                'pending': 'fa-solid fa-clock',
+                'completed': 'fa-solid fa-check-circle',
+                'failed': 'fa-solid fa-times-circle',
+                'cancelled': 'fa-solid fa-ban'
+            };
+            return iconMap[status] || 'fa-solid fa-question-circle';
+        }
+
+        // Função para criar card de retirada
+        function createWithdrawalCard(withdrawal) {
+            const statusClass = getStatusClass(withdrawal.status);
+            const statusText = getStatusText(withdrawal.status);
+            const statusIcon = getStatusIcon(withdrawal.status);
+            const formattedIBAN = formatIBAN(withdrawal.iban);
+            const formattedDate = formatDate(withdrawal.created_at);
+            
+            return `
+                <div class="withdrawal-item ${statusClass}">
+                    <div class="withdrawal-header">
+                        <div class="withdrawal-info">
+                            <div class="withdrawal-icon ${statusClass}">
+                                <i class="${statusIcon}"></i>
+                            </div>
+                            <div class="withdrawal-details">
+                                <div class="withdrawal-type">Retirada Bancária</div>
+                                <div class="iban-info">${formattedIBAN}</div>
+                            </div>
+                        </div>
+                        <div class="withdrawal-amount">
+                            <div class="gross">${formatCurrency(withdrawal.amount)}</div>
+                            <div class="net" style="font-size: 13px; margin-top: 4px;">
+                                ${formatCurrency(withdrawal.net_amount || withdrawal.amount)}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="withdrawal-footer">
+                        <div class="withdrawal-date">${formattedDate}</div>
+                        <div class="withdrawal-status status-${statusClass}">
+                            ${statusText}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Função para carregar retiradas
+        async function loadWithdrawals() {
+            if (!checkAuth()) return;
+
+            const token = getToken();
+            const loadingElement = document.getElementById('loading');
+            const listElement = document.getElementById('withdrawals-list');
+            const noWithdrawalsElement = document.getElementById('no-withdrawals');
+
+            try {
+                loadingElement.style.display = 'block';
+                listElement.innerHTML = '';
+                noWithdrawalsElement.style.display = 'none';
+                
+                // Construir URL com filtros
+                let url = `${API_BASE_URL}/api/withdrawals?page=1&limit=50`;
+                if (currentFilter !== 'all') {
+                    url += `&status=${currentFilter}`;
+                }
+
+                const response = await fetch(url, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.status === 401) {
+                    localStorage.removeItem('user_token');
+                    localStorage.removeItem('user_id');
+                    window.location.href = '/index.html';
+                    return;
+                }
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const result = await response.json();
+                
+                if (result.success && result.data && result.data.withdrawals) {
+                    const withdrawals = result.data.withdrawals;
+                    
+                    if (withdrawals.length === 0) {
+                        loadingElement.style.display = 'none';
+                        noWithdrawalsElement.style.display = 'block';
+                    } else {
+                        // Ordenar por data (mais recente primeiro)
+                        withdrawals.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+                        
+                        // Adicionar retiradas à lista
+                        withdrawals.forEach(withdrawal => {
+                            listElement.innerHTML += createWithdrawalCard(withdrawal);
+                        });
+                        
+                        loadingElement.style.display = 'none';
+                        
+                        // Mostrar mensagem de sucesso
+                        showToast(`${withdrawals.length} retiradas carregadas`, 'success');
+                    }
+                } else {
+                    loadingElement.style.display = 'none';
+                    noWithdrawalsElement.style.display = 'block';
+                }
+
+            } catch (error) {
+                console.error('Erro ao carregar retiradas:', error);
+                loadingElement.style.display = 'none';
+                noWithdrawalsElement.style.display = 'block';
+                noWithdrawalsElement.innerHTML = `
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p>Erro ao carregar retiradas</p>
+                    <p style="font-size: 12px; margin-top: 10px;">Tente novamente em alguns instantes</p>
+                `;
+                showToast('Erro ao carregar retiradas', 'error');
+            }
+        }
+
+        // Função para filtrar retiradas
+        function filterWithdrawals(filter) {
+            const buttons = document.querySelectorAll('.filter-button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            const activeButton = document.querySelector(`.filter-button[onclick*="${filter}"]`);
+            if (activeButton) {
+                activeButton.classList.add('active');
+            }
+
+            currentFilter = filter;
+            loadWithdrawals();
+        }
+
+        // Função para recarregar retiradas
+        window.refreshWithdrawals = function() {
+            if (!checkAuth()) return;
+            showToast('Atualizando retiradas...', 'info');
+            loadWithdrawals();
+        };
+
+        // Inicialização quando a página carrega
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Inicializando página de retiradas...');
+            
+            if (!checkAuth()) {
+                return;
+            }
+
+            // Carregar retiradas iniciais
+            loadWithdrawals();
+
+            // Configurar pull-to-refresh
+            let pullStartY = 0;
+            let isPulling = false;
+
+            document.addEventListener('touchstart', (e) => {
+                if (window.scrollY === 0) {
+                    pullStartY = e.touches[0].clientY;
+                    isPulling = true;
+                }
+            });
+
+            document.addEventListener('touchmove', (e) => {
+                if (!isPulling) return;
+                
+                const pullMoveY = e.touches[0].clientY;
+                const pullDistance = pullMoveY - pullStartY;
+                
+                if (pullDistance > 100) {
+                    refreshWithdrawals();
+                    isPulling = false;
+                }
+            });
+
+            document.addEventListener('touchend', () => {
+                isPulling = false;
+            });
+
+            console.log('Página de retiradas inicializada com sucesso!');
+        });
+
+        // Adicionar atalho de teclado (R para recarregar)
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'r' || e.key === 'R') {
+                e.preventDefault();
+                refreshWithdrawals();
+            }
+        });
+    </script>
+</body>
+</html>
