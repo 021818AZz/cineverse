@@ -682,7 +682,7 @@
 
     <!-- Aviso de valor mínimo -->
     <div class="amount-warning">
-        💰 <strong>Valor mínimo:</strong> KZ 1.000
+        💰 <strong>Valor mínimo:</strong> KZ 3.000
     </div>
 
     <!-- Formulário de Recarga -->
@@ -700,18 +700,23 @@
             <div class="common_item_title">Valores Rápidos</div>
             <div class="layui-row">
                 <div class="layui-col-xs3">
-                    <div class="quick quick_active" data-value="5000">
-                        <p>5.000</p>
+                    <div class="quick quick_active" data-value="3000">
+                        <p>3.000</p>
                     </div>
                 </div>
                 <div class="layui-col-xs3">
-                    <div class="quick" data-value="10000">
-                        <p>10.000</p>
+                    <div class="quick" data-value="6000">
+                        <p>6.000</p>
                     </div>
                 </div>
                 <div class="layui-col-xs3">
-                    <div class="quick" data-value="20000">
-                        <p>20.000</p>
+                    <div class="quick" data-value="12000">
+                        <p>12.000</p>
+                    </div>
+                </div>
+                <div class="layui-col-xs3">
+                    <div class="quick" data-value="30000">
+                        <p>30.000</p>
                     </div>
                 </div>
                 <div class="layui-col-xs3">
@@ -720,13 +725,8 @@
                     </div>
                 </div>
                 <div class="layui-col-xs3">
-                    <div class="quick" data-value="100000">
-                        <p>100.000</p>
-                    </div>
-                </div>
-                <div class="layui-col-xs3">
-                    <div class="quick" data-value="200000">
-                        <p>200.000</p>
+                    <div class="quick" data-value="80000">
+                        <p>80.000</p>
                     </div>
                 </div>
             </div>
@@ -736,7 +736,7 @@
     <!-- Canais de Pagamento -->
     <div class="common_card">
         <div class="common_card_content">
-            <div class="common_item_title">Canais de Pagamento</div>
+            <div class="common_item_title">ESCOLHA SEUS BANCOS</div>
             <div class="payment-option" data-bank="BAI">
                 <div>
                     <span>BAI</span>
@@ -951,28 +951,28 @@
                 accountHolder: 'SACHITULA TOMAS',
                 accountNumber: 'XXXXXXXXXXXXXXXX',
                 iban: '004000008670876210154',
-                instructions: 'Faça a transferência via aplicativo ou caixa eletrônico'
+                instructions: 'TEMPO 15 MINUTOS'
             },
             'BFA': {
                 name: 'BFA',
                 accountHolder: 'ALEXANDRE SACO',
                 accountNumber: 'xxxxxxxxxxxxxx',
                 iban: '000600009844984130105',
-                instructions: 'Utilize o IBAN para transferência internacional'
+                instructions: 'TEMPO 15 MINUTOS'
             },
             'ATL': {
                 name: 'Atlântico',
                 accountHolder: 'Mauricio',
                 accountNumber: 'XXXXXXXXXXX',
                 iban: '005500006041284810139',
-                instructions: 'Transferência via homebanking ou balcão'
+                instructions: 'TEMPO 15 MINUTOS'
             },
             'BIC': {
                 name: 'BIC',
                 accountHolder: 'GOMES',
                 accountNumber: 'XXxXXXXXXXXXX',
                 iban: '005100007348498810127',
-                instructions: 'Use o código IBAN fornecido'
+                instructions: 'TEMPO 15 MINUTOS'
             }
         };
 
@@ -1069,7 +1069,7 @@
                 localStorage.removeItem('user_id');
                 showToast('Sessão expirada. Faça login novamente.', 'error');
                 setTimeout(() => {
-                    window.location.href = '/login.html';
+                    window.location.href = '/index.html';
                 }, 2000);
                 throw new Error('Token inválido ou expirado');
             }
@@ -1146,9 +1146,9 @@
             if (value < 0) {
                 this.value = Math.abs(value);
             }
-            if (value < 1000) {
-                this.value = 1000;
-                showToast('Valor mínimo: KZ 1.000', 'warning');
+            if (value < 3000) {
+                this.value = 3000;
+                showToast('Valor mínimo: KZ 3.000', 'warning');
             }
             selectedAmount = parseFloat(this.value);
         });
@@ -1163,7 +1163,7 @@
             
             // Validações
             if (!amount || amount < 1000) {
-                showError('Por favor, insira um valor válido (mínimo: KZ 1.000)');
+                showError('Por favor, insira um valor válido (mínimo: KZ 3.000)');
                 return;
             }
             
@@ -1483,7 +1483,7 @@
             if (!token) {
                 showToast('Por favor, faça login primeiro.', 'error');
                 setTimeout(() => {
-                    window.location.href = '/login.html';
+                    window.location.href = '/index.html';
                 }, 2000);
                 return;
             }
