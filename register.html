@@ -231,7 +231,7 @@
         // Configuração da API
         const API_BASE_URL = 'https://bd-p4q7.onrender.com';
         
-        // Função para extrair parâmetros da URL
+        // Função para extrair parâmetros da URL (query string)
         function getUrlParameter(name) {
             name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
             const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
@@ -239,26 +239,99 @@
             return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
         }
         
+        // Função para extrair código de convite do pathname
+        function extractCodeFromPathname() {
+            const pathname = window.location.pathname;
+            
+            // Verificar se o pathname contém um código (ex: /register/ABC123)
+            const pathParts = pathname.split('/').filter(part => part.trim() !== '');
+            
+            // Se o último segmento do path for um código (não é "register" e tem pelo menos 3 caracteres)
+            if (pathParts.length > 0) {
+                const lastPart = pathParts[pathParts.length - 1];
+                // Verificar se parece ser um código (não é uma extensão de arquivo, tem 3+ caracteres)
+                if (lastPart.length >= 3 && !lastPart.includes('.') && 
+                    lastPart !== 'register' && lastPart !== 'index.html' && 
+                    lastPart !== 'cadastro.html' && lastPart !== 'login.html') {
+                    return lastPart;
+                }
+            }
+            
+            return '';
+        }
+        
+        // Função para extrair código de convite do hash (#)
+        function extractCodeFromHash() {
+            const hash = window.location.hash;
+            if (hash && hash.startsWith('#')) {
+                const code = hash.substring(1);
+                // Verificar se o hash parece ser um código (mínimo 3 caracteres)
+                if (code.length >= 3 && !code.includes('/') && !code.includes('?')) {
+                    return code;
+                }
+            }
+            return '';
+        }
+        
+        // Função para extrair código de convite da URL completa
+        function extractInviteCodeFromUrl() {
+            // 1. Tentar obter do parâmetro de query 'ref'
+            const queryCode = getUrlParameter('ref');
+            if (queryCode && queryCode.trim() !== '') {
+                return queryCode.trim();
+            }
+            
+            // 2. Tentar obter do parâmetro de query 'code'
+            const queryCodeAlt = getUrlParameter('code');
+            if (queryCodeAlt && queryCodeAlt.trim() !== '') {
+                return queryCodeAlt.trim();
+            }
+            
+            // 3. Tentar obter do parâmetro de query 'invite'
+            const queryInvite = getUrlParameter('invite');
+            if (queryInvite && queryInvite.trim() !== '') {
+                return queryInvite.trim();
+            }
+            
+            // 4. Tentar extrair do pathname (ex: /register/CODE123)
+            const pathCode = extractCodeFromPathname();
+            if (pathCode && pathCode.trim() !== '') {
+                return pathCode.trim();
+            }
+            
+            // 5. Tentar extrair do hash (ex: #CODE123)
+            const hashCode = extractCodeFromHash();
+            if (hashCode && hashCode.trim() !== '') {
+                return hashCode.trim();
+            }
+            
+            return '';
+        }
+        
         // Função para preencher automaticamente o código de convite
         function autoFillInviteCode() {
-            const inviteCodeParam = getUrlParameter('ref');
+            const inviteCode = extractInviteCodeFromUrl();
             
-            if (inviteCodeParam && inviteCodeParam.trim() !== '') {
+            if (inviteCode && inviteCode.trim() !== '') {
                 const inviteCodeInput = document.getElementById('inviteCode');
                 const inviteCodeInfo = document.getElementById('inviteCodeInfo');
                 
-                // Preencher o campo com o código da URL
-                inviteCodeInput.value = inviteCodeParam;
+                // Preencher o campo com o código extraído
+                inviteCodeInput.value = inviteCode;
                 
                 // Adicionar classe de estilo para indicar preenchimento automático
                 inviteCodeInput.classList.add('invite-code-auto');
                 
                 // Mostrar informação sobre o código preenchido automaticamente
-                inviteCodeInfo.textContent = `✓ Código de convite preenchido automaticamente: ${inviteCodeParam}`;
+                inviteCodeInfo.textContent = `✓ Código de convite preenchido automaticamente: ${inviteCode}`;
                 inviteCodeInfo.style.display = 'block';
                 inviteCodeInfo.style.color = '#28a745';
                 
-                console.log('Código de convite preenchido automaticamente:', inviteCodeParam);
+                console.log('Código de convite preenchido automaticamente:', inviteCode);
+                console.log('URL completa:', window.location.href);
+                
+                // Mostrar um toast informando o código preenchido
+                showToast(`Código de convite "${inviteCode}" preenchido automaticamente!`, 'info');
             }
         }
         
@@ -394,7 +467,7 @@
                 console.log('Enviando dados para registro:', {
                     mobile: fullPhoneForDB,
                     password_length: password.length,
-                    has_invite_code: !!inviteCode
+                    invite_code: inviteCode || 'Não informado'
                 });
                 
                 // Preparar dados para envio
@@ -453,7 +526,7 @@
             console.log('Validando cadastro:', {
                 mobile: mobile.substring(0, 3) + '...',
                 password_length: password.length,
-                has_invite_code: !!inviteCode
+                invite_code: inviteCode || 'Não informado'
             });
             
             // Validações
@@ -549,6 +622,7 @@
         // Inicializar quando o DOM estiver carregado
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Inicializando sistema de cadastro...');
+            console.log('URL atual:', window.location.href);
             
             // 1. Preencher automaticamente código de convite se estiver na URL
             autoFillInviteCode();
@@ -588,7 +662,8 @@
         window.registerApp = {
             handleRegister,
             validatePhone: validateAngolanPhone,
-            formatPhone: formatPhoneForDatabase
+            formatPhone: formatPhoneForDatabase,
+            extractInviteCode: extractInviteCodeFromUrl
         };
     </script>
 </body>
