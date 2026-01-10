@@ -552,7 +552,7 @@
             
             if (!token) {
                 showError('Usuário não autenticado. Faça login novamente.');
-                setTimeout(() => window.location.href = '/login.html', 2000);
+                setTimeout(() => window.location.href = '/index.html', 2000);
                 return;
             }
             
@@ -599,7 +599,7 @@
                 } else if (response.status === 401) {
                     showError('Sessão expirada. Faça login novamente.');
                     localStorage.clear();
-                    setTimeout(() => window.location.href = '/login.html', 2000);
+                    setTimeout(() => window.location.href = '/index.html', 2000);
                 } else {
                     showError('Erro ao carregar membros. Tente novamente.');
                 }
@@ -845,7 +845,7 @@
             const token = getAuthToken();
             if (!token) {
                 showError('Usuário não autenticado. Redirecionando para login...');
-                setTimeout(() => window.location.href = '/login.html', 2000);
+                setTimeout(() => window.location.href = '/index.html', 2000);
                 return;
             }
             
