@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Recarga - Valorização</title>
+    <style>
+        /* Reset e estilos base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(180deg, #486BEA 0%, #2A4BC9 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        /* Cabeçalho */
+        .common_header {
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            color: white;
+            background: transparent;
+        }
+        
+        .back {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+        }
+        
+        .back p {
+            margin-right: 10px;
+            padding: 5px;
+        }
+        
+        /* Cartão de saldo */
+        #balance_card {
+            padding: 20px 15px;
+        }
+        
+        .label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .commission_amount {
+            font-size: 28px;
+            margin-top: 5px;
+            font-weight: 700;
+        }
+        
+        /* Cartões principais */
+        .common_card {
+            background: white;
+            border-radius: 12px;
+            margin: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .common_padding_10 {
+            padding: 15px;
+        }
+        
+        .common_margin_top_10 {
+            margin-top: 10px;
+        }
+        
+        /* Formulário */
+        .demo-login-container {
+            padding: 20px;
+        }
+        
+        .common_item_title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .layui-form-item {
+            margin-bottom: 20px;
+        }
+        
+        .layui-input-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            border: 1px solid #DEDEDE;
+            border-radius: 8px;
+            padding: 0 15px;
+            background: white;
+            height: 50px;
+        }
+        
+        .layui-input-prefix {
+            color: #333;
+            font-weight: 500;
+            margin-right: 10px;
+        }
+        
+        .layui-input {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 16px;
+            background: transparent;
+        }
+        
+        /* Botões rápidos */
+        .layui-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -5px;
+        }
+        
+        .layui-col-xs3 {
+            width: 25%;
+            padding: 5px;
+        }
+        
+        .quick {
+            background: white;
+            border-radius: 25px;
+            padding: 10px;
+            color: #8F8F8F;
+            text-align: center;
+            border: 1px solid #DEDEDE;
+            height: 50px;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .quick p {
+            font-size: 16px;
+            font-weight: 400;
+        }
+        
+        .quick_active {
+            background: white;
+            color: #486BEA;
+            border: 1px solid #486BEA;
+        }
+        
+        .quick_active p {
+            color: #486BEA;
+        }
+        
+        /* Botão principal */
+        .fixed_bottom {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 15px;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .common_btn {
+            background: linear-gradient(90deg, #486BEA 0%, #2A4BC9 100%);
+            border: none;
+            color: white;
+            height: 50px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .common_btn:hover {
+            opacity: 0.9;
+        }
+        
+        /* Canais de pagamento */
+        .common_card_content {
+            padding: 20px;
+        }
+        
+        .payment-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #F0F0F0;
+            margin-top: 15px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .payment-option:hover {
+            border-color: #486BEA;
+            background: #f8f9ff;
+        }
+        
+        /* Seção de explicação */
+        .common_explain {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .common_content {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #666;
+        }
+        
+        .common_content p {
+            margin-bottom: 10px;
+        }
+        
+        /* Espaçamento */
+        .common_margin_15 {
+            margin: 15px;
+        }
+        
+        /* Checkbox customizado */
+        .custom-radio {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #486BEA;
+            border-radius: 50%;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .custom-radio::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background: #486BEA;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        
+        input[type="radio"] {
+            display: none;
+        }
+        
+        input[type="radio"]:checked + .custom-radio::after {
+            opacity: 1;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            animation: slideUp 0.3s ease;
+        }
+        
+        .modal-icon {
+            width: 60px;
+            height: 60px;
+            background: #4CAF50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+        
+        .modal-icon.success {
+            background: #4CAF50;
+        }
+        
+        .modal-icon.error {
+            background: #f44336;
+        }
+        
+        .modal-icon.info {
+            background: #2196F3;
+        }
+        
+        .modal-icon i {
+            color: white;
+            font-size: 30px;
+        }
+        
+        .modal h3 {
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 20px;
+        }
+        
+        .modal p {
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        
+        .modal-btn {
+            background: #486BEA;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .modal-btn:hover {
+            opacity: 0.9;
+        }
+        
+        /* Toast */
+        .custom-toast {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            z-index: 10000;
+            animation: slideDown 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            max-width: 90%;
+            text-align: center;
+        }
+        
+        .toast-success {
+            background: #4CAF50;
+        }
+        
+        .toast-error {
+            background: #f44336;
+        }
+        
+        .toast-info {
+            background: #2196F3;
+        }
+        
+        .toast-warning {
+            background: #ff9800;
+        }
+        
+        /* Loading overlay */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: white;
+            backdrop-filter: blur(2px);
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        
+        /* Banco info styles */
+        .bank-info {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .bank-info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+            align-items: center;
+        }
+        
+        .bank-info-item:last-child {
+            border-bottom: none;
+        }
+        
+        .bank-info-label {
+            color: #666;
+            font-size: 14px;
+            flex: 1;
+        }
+        
+        .bank-info-value {
+            font-weight: 600;
+            color: #333;
+            text-align: right;
+            flex: 1;
+        }
+        
+        .bank-logo {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            margin-bottom: 20px;
+        }
+        
+        /* Upload de comprovante */
+        .upload-section {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .upload-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #486BEA;
+            border-radius: 12px;
+            padding: 30px;
+            background: #f8f9ff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .upload-btn:hover {
+            background: #eef1ff;
+            border-color: #2A4BC9;
+        }
+        
+        .upload-icon {
+            font-size: 40px;
+            color: #486BEA;
+            margin-bottom: 10px;
+        }
+        
+        .upload-text {
+            color: #486BEA;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .upload-subtext {
+            color: #666;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        .preview-image {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 8px;
+            margin-top: 15px;
+            display: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .remove-image {
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .remove-image:hover {
+            background: #d32f2f;
+        }
+        
+        /* Aviso de valor */
+        .amount-warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 15px;
+            text-align: center;
+            color: #856404;
+            font-size: 14px;
+        }
+        
+        /* Animações */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes slideDown {
+            from { transform: translate(-50%, -20px); opacity: 0; }
+            to { transform: translate(-50%, 0); opacity: 1; }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .layui-col-xs3 {
+                width: 33.333%;
+            }
+            
+            .modal-content {
+                padding: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .layui-col-xs3 {
+                width: 50%;
+            }
+            
+            .common_card {
+                margin: 10px;
+            }
+            
+            .demo-login-container {
+                padding: 15px;
+            }
+            
+            .payment-option {
+                padding: 15px;
+            }
+            
+            .bank-info-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .bank-info-value {
+                text-align: left;
+                margin-top: 5px;
+            }
+            
+            .modal h3 {
+                font-size: 18px;
+            }
+            
+            .modal p {
+                font-size: 14px;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .layui-col-xs3 {
+                width: 100%;
+            }
+            
+            .quick {
+                height: 45px;
+            }
+        }
+        
+        /* Botões de ação */
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .action-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .action-btn.camera {
+            background: #28a745;
+            color: white;
+        }
+        
+        .action-btn.camera:hover {
+            background: #218838;
+        }
+        
+        .action-btn.gallery {
+            background: #17a2b8;
+            color: white;
+        }
+        
+        .action-btn.gallery:hover {
+            background: #138496;
+        }
+        
+        /* Informações importantes */
+        .important-note {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 12px 15px;
+            margin: 15px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #0c5460;
+        }
+        
+        .important-note strong {
+            color: #155724;
+        }
+    </style>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <div class="common_header">
+        <a href="javascript:goBack()" class="back">
+            <p class="btn">←</p>
+            Recarregar
+        </a>
+    </div>
+
+    <!-- Cartão de Saldo -->
+    <div class="common_margin_15" id="balance_card">
+        <div class="common_padding_10">
+            <div class="label" style="color: #DEEFFF">Saldo Disponível</div>
+            <div class="commission_amount common_margin_top_10" style="color: #FFFFFF;" id="current_balance">
+                KZ 0.00
+            </div>
+        </div>
+    </div>
+
+    <!-- Aviso de valor mínimo -->
+    <div class="amount-warning">
+        💰 <strong>Valor mínimo:</strong> KZ 1.000
+    </div>
+
+    <!-- Formulário de Recarga -->
+    <div class="common_card">
+        <form id="rechargeForm" class="demo-login-container">
+            <div class="common_item_title">Valor da Recarga</div>
+            <div class="layui-form-item">
+                <div class="layui-input-wrap">
+                    <div class="layui-input-prefix">KZ</div>
+                    <input type="number" name="amount" id="recharge_amount" required 
+                           placeholder="Digite o valor" autocomplete="off" class="layui-input" min="1000" step="100">
+                </div>
+            </div>
+            
+            <div class="common_item_title">Valores Rápidos</div>
+            <div class="layui-row">
+                <div class="layui-col-xs3">
+                    <div class="quick quick_active" data-value="5000">
+                        <p>5.000</p>
+                    </div>
+                </div>
+                <div class="layui-col-xs3">
+                    <div class="quick" data-value="10000">
+                        <p>10.000</p>
+                    </div>
+                </div>
+                <div class="layui-col-xs3">
+                    <div class="quick" data-value="20000">
+                        <p>20.000</p>
+                    </div>
+                </div>
+                <div class="layui-col-xs3">
+                    <div class="quick" data-value="50000">
+                        <p>50.000</p>
+                    </div>
+                </div>
+                <div class="layui-col-xs3">
+                    <div class="quick" data-value="100000">
+                        <p>100.000</p>
+                    </div>
+                </div>
+                <div class="layui-col-xs3">
+                    <div class="quick" data-value="200000">
+                        <p>200.000</p>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Canais de Pagamento -->
+    <div class="common_card">
+        <div class="common_card_content">
+            <div class="common_item_title">Canais de Pagamento</div>
+            <div class="payment-option" data-bank="BAI">
+                <div>
+                    <span>BAI</span>
+                </div>
+                <label>
+                    <input type="radio" name="pay_way_id" value="BAI" checked>
+                    <div class="custom-radio"></div>
+                </label>
+            </div>
+            <div class="payment-option" data-bank="BFA">
+                <div>
+                    <span>BFA</span>
+                </div>
+                <label>
+                    <input type="radio" name="pay_way_id" value="BFA">
+                    <div class="custom-radio"></div>
+                </label>
+            </div>
+            <div class="payment-option" data-bank="ATL">
+                <div>
+                    <span>Atlântico</span>
+                </div>
+                <label>
+                    <input type="radio" name="pay_way_id" value="ATL">
+                    <div class="custom-radio"></div>
+                </label>
+            </div>
+            <div class="payment-option" data-bank="BIC">
+                <div>
+                    <span>BIC</span>
+                </div>
+                <label>
+                    <input type="radio" name="pay_way_id" value="BIC">
+                    <div class="custom-radio"></div>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Seção de Explicação -->
+    <div class="common_card">
+        <div class="common_card_content">
+            <p class="common_explain">📋 Instruções Importantes</p>
+            <div class="common_content">
+                <strong>1. Valor exato:</strong> Transfira exatamente o valor solicitado.</p>
+                <strong>2. Nome do titular:</strong> Use o nome exato fornecido na transferência.</p>
+                <strong>3. Comprovante claro:</strong> Envie uma foto nítida do comprovante.</p>
+                 <strong>4. Processamento:</strong> Aprovação em até 24 horas úteis.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botão Fixo -->
+    <div class="fixed_bottom">
+        <button type="submit" form="rechargeForm" class="common_btn" id="submitBtn">
+            Carregar Agora
+        </button>
+    </div>
+
+    <!-- Modal de Sucesso -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-icon success">
+                <i>✓</i>
+            </div>
+            <h3>Recarga Solicitada!</h3>
+            <p>Sua solicitação foi registrada com sucesso. Continue para enviar o comprovante.</p>
+            <button class="modal-btn" onclick="continueToReceipt()">Continuar</button>
+        </div>
+    </div>
+
+    <!-- Modal de Erro -->
+    <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-icon error">
+                <i>✗</i>
+            </div>
+            <h3>Erro na Recarga</h3>
+            <p id="errorMessage">Ocorreu um erro ao processar sua solicitação. Tente novamente.</p>
+            <button class="modal-btn" onclick="closeModal()">Tentar Novamente</button>
+        </div>
+    </div>
+
+    <!-- Modal de Informação -->
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-icon info">
+                <i>ℹ</i>
+            </div>
+            <h3 id="infoTitle">Informação</h3>
+            <p id="infoMessage">Mensagem de informação.</p>
+            <button class="modal-btn" onclick="closeModal()">OK</button>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmação -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-icon info">
+                <i>⚠</i>
+            </div>
+            <h3>Confirmar Depósito</h3>
+            <p id="confirmMessage">Tem certeza que deseja solicitar este depósito?</p>
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button class="modal-btn" onclick="closeModal()" style="background: #6c757d;">Cancelar</button>
+                <button class="modal-btn" onclick="processDeposit()" style="background: #28a745;">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Carregamento -->
+    <div id="loadingModal" class="modal">
+        <div class="modal-content">
+            <div style="text-align: center; padding: 30px;">
+                <div class="spinner"></div>
+                <h3>Processando...</h3>
+                <p id="loadingMessage">Aguarde enquanto processamos sua solicitação</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+        <p id="loadingText">Carregando...</p>
+    </div>
+
+    <!-- Tela de Informações Bancárias (inicialmente oculta) -->
+    <div id="bankInfoScreen" style="display: none;">
+        <div class="common_header">
+            <a href="javascript:goBackToForm()" class="back">
+                <p class="btn">←</p>
+                Informações Bancárias
+            </a>
+        </div>
+
+        <!-- Informação importante -->
+        <div class="important-note">
+            <strong>⚠ ATENÇÃO:</strong> Use estas informações exatas para fazer a transferência em sua aplicação bancária.
+        </div>
+
+        <div class="bank-info" id="bankInfoContent">
+            <!-- O conteúdo será preenchido dinamicamente via JavaScript -->
+        </div>
+
+        <div class="upload-section">
+            <div class="common_item_title">Enviar Comprovante</div>
+            <p style="color: #666; margin-bottom: 15px; font-size: 14px;">
+                Após fazer a transferência, envie o comprovante abaixo para aprovação
+            </p>
+            
+            <div class="upload-btn" onclick="openFilePicker()" id="uploadArea">
+                <div class="upload-icon">📷</div>
+                <div class="upload-text">Clique para enviar foto</div>
+                <div class="upload-subtext">Ou arraste e solte aqui</div>
+                <input type="file" id="receiptUpload" accept="image/*" style="display: none;">
+            </div>
+            
+            <div id="imagePreview" style="display: none;">
+                <img id="previewImage" class="preview-image" alt="Pré-visualização">
+                <button class="remove-image" onclick="removeImage()">Remover imagem</button>
+            </div>
+            
+            <div class="action-buttons">
+                <button onclick="openCamera()" class="action-btn camera">
+                    Tirar Foto
+                </button>
+                <button onclick="openGallery()" class="action-btn gallery">
+                    Galeria
+                </button>
+            </div>
+        </div>
+
+        <div class="fixed_bottom">
+            <button class="common_btn" onclick="submitReceipt()" id="submitReceiptBtn" disabled style="opacity: 0.6;">
+                Enviar Comprovante
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal de Upload Sucesso -->
+    <div id="uploadSuccessModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-icon success">
+                <i>✓</i>
+            </div>
+            <h3>✅ Comprovante Enviado!</h3>
+            <p>Seu comprovante foi enviado com sucesso. O depósito será processado em breve.</p>
+            <p style="font-size: 13px; color: #666; margin-top: 10px;">
+                <strong>Status:</strong> Aguardando aprovação
+            </p>
+            <button class="modal-btn" onclick="closeUploadSuccessModal()">Concluir</button>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer"></div>
+
+    <script>
+        // Configurações globais
+        const API_BASE_URL = 'https://bd-p4q7.onrender.com';
+        let depositData = null;
+        let receiptImage = null;
+        let currentDepositId = null;
+        let selectedAmount = null;
+        let selectedBank = null;
+
+        // Dados dos bancos (em produção, isso viria de uma API)
+        const banksInfo = {
+            'BAI': {
+                name: 'BAI',
+                accountHolder: 'SACHITULA TOMAS',
+                accountNumber: 'XXXXXXXXXXXXXXXX',
+                iban: '004000008670876210154',
+                instructions: 'Faça a transferência via aplicativo ou caixa eletrônico'
+            },
+            'BFA': {
+                name: 'BFA',
+                accountHolder: 'ALEXANDRE SACO',
+                accountNumber: 'xxxxxxxxxxxxxx',
+                iban: '000600009844984130105',
+                instructions: 'Utilize o IBAN para transferência internacional'
+            },
+            'ATL': {
+                name: 'Atlântico',
+                accountHolder: 'Mauricio',
+                accountNumber: 'XXXXXXXXXXX',
+                iban: '005500006041284810139',
+                instructions: 'Transferência via homebanking ou balcão'
+            },
+            'BIC': {
+                name: 'BIC',
+                accountHolder: 'GOMES',
+                accountNumber: 'XXXXXXXXXXXX',
+                iban: '005100007348498810127',
+                instructions: 'Use o código IBAN fornecido'
+            }
+        };
+
+        // Função para mostrar toast
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `custom-toast toast-${type}`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            // Remover toast anterior
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    toast.remove();
+                }
+            }, 3000);
+        }
+
+        // Função para mostrar/ocultar loading
+        function showLoading(text = 'Carregando...') {
+            document.getElementById('loadingText').textContent = text;
+            document.getElementById('loadingOverlay').style.display = 'flex';
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingOverlay').style.display = 'none';
+        }
+
+        // Função para mostrar modal de loading
+        function showLoadingModal(message = 'Processando...') {
+            document.getElementById('loadingMessage').textContent = message;
+            document.getElementById('loadingModal').style.display = 'flex';
+        }
+
+        function hideLoadingModal() {
+            document.getElementById('loadingModal').style.display = 'none';
+        }
+
+        // Função para obter token do localStorage
+        function getToken() {
+            try {
+                const tokenData = localStorage.getItem('user_token');
+                if (!tokenData) return null;
+                
+                const parsedData = JSON.parse(tokenData);
+                
+                // Verificar se o token existe e não expirou
+                if (!parsedData.token || (parsedData.expiry && Date.now() > parsedData.expiry)) {
+                    localStorage.removeItem('user_token');
+                    localStorage.removeItem('user_id');
+                    return null;
+                }
+                
+                return parsedData.token;
+            } catch (error) {
+                console.error('Erro ao obter token:', error);
+                return null;
+            }
+        }
+
+        // Função para fazer requisições autenticadas
+        async function makeAuthenticatedRequest(url, options = {}) {
+            const token = getToken();
+            
+            if (!token) {
+                showToast('Sessão expirada. Faça login novamente.', 'error');
+                setTimeout(() => {
+                    window.location.href = '/login.html';
+                }, 2000);
+                throw new Error('Token não encontrado');
+            }
+
+            // Configurar headers
+            const headers = {
+                'Authorization': `Bearer ${token}`,
+                ...(options.headers || {})
+            };
+
+            // Se não tiver Content-Type e não for FormData, usar JSON
+            if (!headers['Content-Type'] && !(options.body instanceof FormData)) {
+                headers['Content-Type'] = 'application/json';
+            }
+
+            const requestOptions = {
+                ...options,
+                headers: headers
+            };
+
+            const response = await fetch(url, requestOptions);
+            
+            if (response.status === 401) {
+                // Token inválido
+                localStorage.removeItem('user_token');
+                localStorage.removeItem('user_id');
+                showToast('Sessão expirada. Faça login novamente.', 'error');
+                setTimeout(() => {
+                    window.location.href = '/login.html';
+                }, 2000);
+                throw new Error('Token inválido ou expirado');
+            }
+            
+            return response;
+        }
+
+        // Função para obter saldo do usuário
+        async function getBalance() {
+            try {
+                showLoading('Carregando saldo...');
+                const response = await makeAuthenticatedRequest(`${API_BASE_URL}/api/user/profile`);
+                const data = await response.json();
+                
+                if (data.success && data.data && data.data.wallet_balance !== undefined) {
+                    const balanceElement = document.getElementById('current_balance');
+                    const balance = parseFloat(data.data.wallet_balance);
+                    balanceElement.textContent = `KZ ${balance.toLocaleString('pt-BR', { 
+                        minimumFractionDigits: 2, 
+                        maximumFractionDigits: 2 
+                    })}`;
+                    hideLoading();
+                    return balance;
+                } else {
+                    showToast('Erro ao carregar saldo', 'error');
+                    hideLoading();
+                    return 0;
+                }
+            } catch (error) {
+                console.error('Erro ao buscar saldo:', error);
+                showToast('Erro ao carregar saldo', 'error');
+                hideLoading();
+                return 0;
+            }
+        }
+
+        // Função para ir para página anterior
+        function goBack() {
+            if (document.getElementById('bankInfoScreen').style.display === 'block') {
+                goBackToForm();
+            } else {
+                window.history.back();
+            }
+        }
+
+        // Seleção de valores rápidos
+        document.querySelectorAll('.quick').forEach(quickBtn => {
+            quickBtn.addEventListener('click', function() {
+                document.querySelectorAll('.quick').forEach(btn => {
+                    btn.classList.remove('quick_active');
+                });
+                this.classList.add('quick_active');
+                
+                const value = this.getAttribute('data-value');
+                document.getElementById('recharge_amount').value = value;
+                selectedAmount = parseFloat(value);
+            });
+        });
+
+        // Formatação do input de valor
+        const amountInput = document.getElementById('recharge_amount');
+        amountInput.addEventListener('input', function() {
+            if (this.value) {
+                document.querySelectorAll('.quick').forEach(btn => {
+                    btn.classList.remove('quick_active');
+                });
+                selectedAmount = parseFloat(this.value);
+            }
+        });
+
+        // Prevenir valores negativos
+        amountInput.addEventListener('change', function() {
+            const value = parseFloat(this.value);
+            if (value < 0) {
+                this.value = Math.abs(value);
+            }
+            if (value < 1000) {
+                this.value = 1000;
+                showToast('Valor mínimo: KZ 1.000', 'warning');
+            }
+            selectedAmount = parseFloat(this.value);
+        });
+
+        // Validação do formulário
+        document.getElementById('rechargeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const amountInput = document.getElementById('recharge_amount');
+            const amount = parseFloat(amountInput.value);
+            const selectedBankElement = document.querySelector('input[name="pay_way_id"]:checked');
+            
+            // Validações
+            if (!amount || amount < 1000) {
+                showError('Por favor, insira um valor válido (mínimo: KZ 1.000)');
+                return;
+            }
+            
+            if (!selectedBankElement) {
+                showError('Por favor, selecione um banco');
+                return;
+            }
+
+            selectedAmount = amount;
+            selectedBank = selectedBankElement.value;
+            
+            // Mostrar modal de confirmação
+            document.getElementById('confirmMessage').textContent = 
+                `Você está solicitando um depósito de KZ ${amount.toLocaleString('pt-BR')} via ${banksInfo[selectedBank].name}.`;
+            document.getElementById('confirmModal').style.display = 'flex';
+        });
+
+        // Processar depósito após confirmação
+        async function processDeposit() {
+            closeModal();
+            
+            // Criar objeto de dados do depósito
+            depositData = {
+                amount: selectedAmount,
+                bank_code: selectedBank,
+                bank_name: banksInfo[selectedBank].name,
+                account_name: banksInfo[selectedBank].accountHolder,
+                iban: banksInfo[selectedBank].iban
+            };
+
+            // Mostrar informações bancárias
+            showBankInfo(selectedBank, selectedAmount);
+        }
+
+        // Função para mostrar informações bancárias
+        function showBankInfo(bankCode, amount) {
+            const bank = banksInfo[bankCode];
+            
+            // Preencher informações
+            const content = `
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <div style="background: #f8f9ff; padding: 15px; border-radius: 10px; margin-bottom: 20px;">
+                        <div style="color: #486BEA; font-size: 18px; font-weight: bold; margin-bottom: 10px;">
+                            ${bank.name}
+                        </div>
+                        <div style="color: #666; font-size: 14px;">
+                            Faça a transferência para esta conta
+                        </div>
+                    </div>
+                    
+                    <div class="bank-info-item">
+                        <span class="bank-info-label">Nome do Titular:</span>
+                        <span class="bank-info-value">${bank.accountHolder}</span>
+                    </div>
+                    <div class="bank-info-item">
+                        <span class="bank-info-label">Número da Conta:</span>
+                        <span class="bank-info-value" style="font-family: monospace;">${bank.accountNumber}</span>
+                    </div>
+                    <div class="bank-info-item">
+                        <span class="bank-info-label">IBAN:</span>
+                        <span class="bank-info-value" style="font-size: 13px; font-family: monospace; word-break: break-all;">${bank.iban}</span>
+                    </div>
+                    <div class="bank-info-item">
+                        <span class="bank-info-label">Valor a Transferir:</span>
+                        <span class="bank-info-value" style="color: #4CAF50; font-size: 20px; font-weight: bold;">
+                            KZ ${amount.toLocaleString('pt-BR')}
+                        </span>
+                    </div>
+                    <div class="bank-info-item">
+                        <span class="bank-info-label">Instruções:</span>
+                        <span class="bank-info-value" style="font-size: 13px; color: #666; text-align: left;">
+                            ${bank.instructions}
+                        </span>
+                    </div>
+                </div>
+                
+                <div style="background: #e7f3ff; padding: 15px; border-radius: 8px; margin-top: 20px; border-left: 4px solid #2196F3;">
+                    <div style="color: #0c5460; font-size: 14px;">
+                        <strong>💡 Dica:</strong> Após fazer a transferência, tire uma foto do comprovante e envie abaixo.
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('bankInfoContent').innerHTML = content;
+            
+            // Alternar entre telas
+            document.querySelector('.common_header').style.display = 'none';
+            document.querySelector('#balance_card').style.display = 'none';
+            document.querySelector('.amount-warning').style.display = 'none';
+            document.querySelectorAll('.common_card').forEach(card => card.style.display = 'none');
+            document.querySelector('.fixed_bottom').style.display = 'none';
+            
+            document.getElementById('bankInfoScreen').style.display = 'block';
+            
+            // Resetar upload
+            resetUpload();
+        }
+
+        // Função para voltar ao formulário
+        function goBackToForm() {
+            document.getElementById('bankInfoScreen').style.display = 'none';
+            
+            document.querySelector('.common_header').style.display = 'flex';
+            document.querySelector('#balance_card').style.display = 'block';
+            document.querySelector('.amount-warning').style.display = 'block';
+            document.querySelectorAll('.common_card').forEach(card => card.style.display = 'block');
+            document.querySelector('.fixed_bottom').style.display = 'block';
+        }
+
+        // Funções do modal
+        function showError(message) {
+            document.getElementById('errorMessage').textContent = message;
+            document.getElementById('errorModal').style.display = 'flex';
+        }
+
+        function showInfo(title, message) {
+            document.getElementById('infoTitle').textContent = title;
+            document.getElementById('infoMessage').textContent = message;
+            document.getElementById('infoModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.style.display = 'none';
+            });
+        }
+
+        function continueToReceipt() {
+            closeModal();
+            showBankInfo(depositData.bank_code, depositData.amount);
+        }
+
+        // Funções de upload
+        function openFilePicker() {
+            document.getElementById('receiptUpload').click();
+        }
+
+        function openCamera() {
+            const input = document.getElementById('receiptUpload');
+            input.setAttribute('capture', 'environment');
+            input.click();
+        }
+
+        function openGallery() {
+            const input = document.getElementById('receiptUpload');
+            input.removeAttribute('capture');
+            input.click();
+        }
+
+        function removeImage() {
+            receiptImage = null;
+            document.getElementById('imagePreview').style.display = 'none';
+            document.getElementById('uploadArea').style.display = 'flex';
+            document.getElementById('submitReceiptBtn').disabled = true;
+            document.getElementById('submitReceiptBtn').style.opacity = '0.6';
+            document.getElementById('receiptUpload').value = '';
+        }
+
+        function resetUpload() {
+            removeImage();
+        }
+
+        // Manipulador de upload de imagem
+        document.getElementById('receiptUpload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                // Verificar tamanho do arquivo (máximo 5MB)
+                if (file.size > 5 * 1024 * 1024) {
+                    showToast('Arquivo muito grande. Máximo 5MB.', 'error');
+                    return;
+                }
+
+                // Verificar tipo do arquivo
+                if (!file.type.startsWith('image/')) {
+                    showToast('Apenas imagens são permitidas.', 'error');
+                    return;
+                }
+
+                // Criar preview
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    receiptImage = event.target.result;
+                    const preview = document.getElementById('previewImage');
+                    preview.src = receiptImage;
+                    
+                    document.getElementById('imagePreview').style.display = 'block';
+                    document.getElementById('uploadArea').style.display = 'none';
+                    
+                    // Habilitar botão de envio
+                    document.getElementById('submitReceiptBtn').disabled = false;
+                    document.getElementById('submitReceiptBtn').style.opacity = '1';
+                    
+                    showToast('Imagem carregada com sucesso!', 'success');
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Arrastar e soltar para upload
+        const uploadArea = document.getElementById('uploadArea');
+        uploadArea.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            this.style.background = '#eef1ff';
+            this.style.borderColor = '#2A4BC9';
+            this.style.borderStyle = 'solid';
+        });
+
+        uploadArea.addEventListener('dragleave', function(e) {
+            e.preventDefault();
+            this.style.background = '#f8f9ff';
+            this.style.borderColor = '#486BEA';
+            this.style.borderStyle = 'dashed';
+        });
+
+        uploadArea.addEventListener('drop', function(e) {
+            e.preventDefault();
+            this.style.background = '#f8f9ff';
+            this.style.borderColor = '#486BEA';
+            this.style.borderStyle = 'dashed';
+            
+            const file = e.dataTransfer.files[0];
+            if (file) {
+                // Simular seleção de arquivo
+                const dataTransfer = new DataTransfer();
+                dataTransfer.items.add(file);
+                document.getElementById('receiptUpload').files = dataTransfer.files;
+                
+                // Disparar evento change
+                const event = new Event('change');
+                document.getElementById('receiptUpload').dispatchEvent(event);
+            }
+        });
+
+        // Função para enviar comprovante
+        async function submitReceipt() {
+            if (!receiptImage) {
+                showToast('Por favor, selecione uma imagem do comprovante.', 'error');
+                return;
+            }
+
+            try {
+                showLoadingModal('Criando solicitação de depósito...');
+                
+                // 1. Criar solicitação de depósito
+                const depositResponse = await makeAuthenticatedRequest(`${API_BASE_URL}/api/deposit`, {
+                    method: 'POST',
+                    body: JSON.stringify(depositData)
+                });
+
+                const depositResult = await depositResponse.json();
+                
+                if (!depositResult.success) {
+                    throw new Error(depositResult.message || 'Erro ao criar depósito');
+                }
+
+                currentDepositId = depositResult.data.deposit_id;
+                
+                hideLoadingModal();
+                showLoadingModal('Enviando comprovante...');
+                
+                // 2. Enviar comprovante
+                const receiptResponse = await makeAuthenticatedRequest(
+                    `${API_BASE_URL}/api/deposit/${currentDepositId}/receipt`, 
+                    {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            receipt_image: receiptImage
+                        })
+                    }
+                );
+
+                const receiptResult = await receiptResponse.json();
+                
+                if (!receiptResult.success) {
+                    throw new Error(receiptResult.message || 'Erro ao enviar comprovante');
+                }
+
+                // Mostrar sucesso
+                hideLoadingModal();
+                document.getElementById('uploadSuccessModal').style.display = 'flex';
+                
+            } catch (error) {
+                hideLoadingModal();
+                console.error('Erro ao processar depósito:', error);
+                showError(`Erro: ${error.message || 'Erro desconhecido'}`);
+            }
+        }
+
+        function closeUploadSuccessModal() {
+            document.getElementById('uploadSuccessModal').style.display = 'none';
+            // Redirecionar para home
+            window.location.href = '/home.html';
+        }
+
+        // Fechar modal ao clicar fora
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal();
+                }
+            });
+        });
+
+        // Fechar modal com ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', async function() {
+            console.log('🚀 Sistema de recarga inicializando...');
+            
+            // Verificar se usuário está autenticado
+            const token = getToken();
+            if (!token) {
+                showToast('Por favor, faça login primeiro.', 'error');
+                setTimeout(() => {
+                    window.location.href = '/login.html';
+                }, 2000);
+                return;
+            }
+
+            // Testar o token
+            try {
+                showLoading('Verificando autenticação...');
+                const testResponse = await makeAuthenticatedRequest(`${API_BASE_URL}/api/user/profile`);
+                const testData = await testResponse.json();
+                
+                if (!testData.success) {
+                    throw new Error('Token inválido');
+                }
+                
+                // Carregar saldo
+                await getBalance();
+                
+                // Definir valor inicial
+                selectedAmount = 5000;
+                document.getElementById('recharge_amount').value = selectedAmount;
+                
+                console.log('✅ Sistema de recarga inicializado com sucesso!');
+                
+                // Mostrar mensagem de boas-vindas
+                setTimeout(() => {
+                    showToast('Sistema de recarga carregado com sucesso!', 'success');
+                }, 500);
+                
+            } catch (error) {
+                console.error('❌ Erro na inicialização:', error);
+                showToast('Sessão inválida. Faça login novamente.', 'error');
+                setTimeout(() => {
+                    window.location.href = '/login.html';
+                }, 2000);
+            }
+        });
+
+        // Configurar click nos bancos
+        document.querySelectorAll('.payment-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const radio = this.querySelector('input[type="radio"]');
+                if (radio) {
+                    radio.checked = true;
+                    
+                    // Atualizar estilo visual
+                    document.querySelectorAll('.payment-option').forEach(opt => {
+                        opt.style.borderColor = '#F0F0F0';
+                        opt.style.background = 'white';
+                    });
+                    
+                    this.style.borderColor = '#486BEA';
+                    this.style.background = '#f8f9ff';
+                }
+            });
+        });
+
+        // Inicializar estilo do banco selecionado
+        setTimeout(() => {
+            const selectedOption = document.querySelector('.payment-option input[type="radio"]:checked');
+            if (selectedOption) {
+                const parent = selectedOption.closest('.payment-option');
+                if (parent) {
+                    parent.style.borderColor = '#486BEA';
+                    parent.style.background = '#f8f9ff';
+                }
+            }
+        }, 100);
+    </script>
+</body>
+</html>
