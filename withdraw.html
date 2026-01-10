@@ -613,11 +613,11 @@
 
     // Configurações de saque
     const CONFIG = {
-        TAXA_SAQUE: 0.18,       // 18%
-        SAQUE_MINIMO: 2000,     // KZ 2.000,00
-        SAQUE_MAXIMO: 2000000,  // KZ 2.000.000,00
-        HORA_INICIO: 0,         // 0h
-        HORA_FIM: 17            // 17h
+        TAXA_SAQUE: 0.18, // 18%
+        SAQUE_MINIMO: 2000, // KZ 2.000,00
+        SAQUE_MAXIMO: 2000000, // KZ 2.000.000,00
+        HORA_INICIO: 9, // 9h
+        HORA_FIM: 17 // 17h
     };
 
     // Função para obter o token do usuário
@@ -834,7 +834,7 @@
         }
     }
 
-    // Validar horário de saque (segunda a sábado, 0h às 17h)
+    // Validar horário de saque (segunda a sábado, 9h às 17h)
     function validarHorarioSaque() {
         const agora = new Date();
         const diaSemana = agora.getDay();
@@ -862,7 +862,7 @@
         }
 
         if (!validarHorarioSaque()) {
-            showToast('Saques disponíveis apenas de segunda a sábado, das 0h às 17h', 'error');
+            showToast('Saques disponíveis apenas de segunda a sábado, das 9h às 17h', 'error');
             return;
         }
 
