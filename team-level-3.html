@@ -39,8 +39,8 @@
         .spinner {
             width: 50px;
             height: 50px;
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #0B3D91;
+            border: 5px solid #1A1A1A;
+            border-top: 5px solid #1565C0;
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -57,7 +57,7 @@
         
         .money-value {
             font-weight: bold;
-            color: #0B3D91;
+            color: #1565C0;
         }
         
         /* Estilos específicos para a página de membros */
@@ -75,7 +75,7 @@
         .members-title {
             font-size: 4.5vw;
             font-weight: bold;
-            color: #333;
+            color: #E0E0E0;
         }
         
         .search-box {
@@ -94,12 +94,12 @@
             border: none;
             outline: none;
             font-size: 3.8vw;
-            color: #333;
+            color: #E0E0E0;
             background: transparent;
         }
         
         .search-box input::placeholder {
-            color: #999;
+            color: #999999888;
         }
         
         .stats-bar {
@@ -121,13 +121,13 @@
         .stat-value {
             font-size: 4.5vw;
             font-weight: bold;
-            color: #0B3D91;
+            color: #1565C0;
             margin-bottom: 1vw;
         }
         
         .stat-label {
             font-size: 3.2vw;
-            color: #666;
+            color: #BBBBBB;
         }
         
         .members-list {
@@ -143,13 +143,13 @@
         .member-header {
             display: grid;
             grid-template-columns: 1.5fr 1fr 1fr;
-            background: #f8f9fa;
+            background: #1A1A1A;
             padding: 3vw 4vw;
             font-weight: 600;
-            color: #666;
+            color: #BBBBBB;
             font-size: 3.2vw;
             text-transform: uppercase;
-            border-bottom: 0.3vw solid #eee;
+            border-bottom: 0.3vw solid #2A2A2A;
             position: sticky;
             top: 0;
             z-index: 10;
@@ -159,7 +159,7 @@
             display: grid;
             grid-template-columns: 1.5fr 1fr 1fr;
             padding: 3vw 4vw;
-            border-bottom: 0.3vw solid #f0f0f0;
+            border-bottom: 0.3vw solid #222222;
             align-items: center;
         }
         
@@ -175,7 +175,7 @@
         
         .member-phone {
             font-weight: 600;
-            color: #333;
+            color: #E0E0E0;
             font-size: 3.8vw;
         }
         
@@ -187,13 +187,13 @@
         
         .member-date {
             font-size: 3vw;
-            color: #999;
+            color: #999999888;
         }
         
         .member-level {
             font-size: 2.8vw;
-            color: #666;
-            background: #f0f0f0;
+            color: #BBBBBB;
+            background: #222222;
             padding: 0.5vw 1.5vw;
             border-radius: 1vw;
             display: inline-block;
@@ -206,7 +206,7 @@
         }
         
         .level-2 {
-            background: #fff3e0;
+            background: #1111113e0;
             color: #e65100;
         }
         
@@ -217,14 +217,14 @@
         
         .member-amount {
             font-weight: 600;
-            color: #0B3D91;
+            color: #1565C0;
             text-align: center;
             font-size: 3.8vw;
         }
         
         .member-bonus {
             font-weight: 600;
-            color: #FC3D21;
+            color: #1E88E5;
             text-align: center;
             font-size: 3.8vw;
         }
@@ -232,19 +232,19 @@
         .empty-state {
             text-align: center;
             padding: 8vw 4vw;
-            color: #999;
+            color: #999999888;
             font-size: 3.8vw;
         }
         
         .loading-state {
             text-align: center;
             padding: 8vw 4vw;
-            color: #666;
+            color: #BBBBBB;
             font-size: 3.8vw;
         }
         
         .error-message {
-            background: #E8EDF5;
+            background: #1A1A2E;
             border: 0.3vw solid #ffcccc;
             color: #e74c3c;
             padding: 4vw;
@@ -257,28 +257,28 @@
         .load-more {
             text-align: center;
             padding: 3vw;
-            background: #f8f9fa;
-            color: #666;
+            background: #1A1A1A;
+            color: #BBBBBB;
             font-size: 3.5vw;
             cursor: pointer;
-            border-top: 0.3vw solid #eee;
+            border-top: 0.3vw solid #2A2A2A;
         }
         
         .load-more:hover {
-            background: #e9ecef;
+            background: #222222;
         }
         
         .load-more.loading {
-            color: #999;
+            color: #999999888;
             cursor: default;
         }
         
         .no-more {
             text-align: center;
             padding: 3vw;
-            color: #999;
+            color: #999999888;
             font-size: 3.5vw;
-            border-top: 0.3vw solid #eee;
+            border-top: 0.3vw solid #2A2A2A;
         }
         
         /* Tooltip para valores */
@@ -295,7 +295,7 @@
             bottom: 100%;
             left: 50%;
             transform: translateX(-50%);
-            background: #0B3D91;
+            background: #1565C0;
             color: white;
             padding: 1.5vw 3vw;
             border-radius: 1vw;
@@ -313,7 +313,7 @@
             left: 50%;
             transform: translateX(-50%);
             border: 1vw solid transparent;
-            border-top-color: #333;
+            border-top-color: #E0E0E0;
             margin-bottom: 0;
         }
         
@@ -322,7 +322,7 @@
             position: fixed;
             bottom: 100px;
             right: 20px;
-            background: #0B3D91;
+            background: #1565C0;
             color: white;
             width: 40px;
             height: 40px;
@@ -340,11 +340,11 @@
         .referral-info {
             font-size: 2.8vw;
             color: #7f8c8d;
-            background: #f8f9fa;
+            background: #1A1A1A;
             padding: 1vw 2vw;
             border-radius: 1vw;
             margin-top: 1vw;
-            border-left: 0.5vw solid #0B3D91;
+            border-left: 0.5vw solid #1565C0;
         }
     </style>
 </head>

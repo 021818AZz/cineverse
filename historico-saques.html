@@ -23,7 +23,7 @@
         }
         
         body {
-            background-color: #f8f9fa;
+            background-color: #1A1A1A;
             font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
             padding-bottom: env(safe-area-inset-bottom);
@@ -36,7 +36,7 @@
             width: 100%;
             max-width: 100%;
             margin: 0 auto;
-            background: #fff;
+            background: #111111;
             min-height: 100vh;
             padding-bottom: 80px;
             position: relative;
@@ -44,7 +44,7 @@
         
         /* Header */
         .navboxi {
-            background: linear-gradient(135deg, #0B3D91 0%, #092D6B 100%);
+            background: linear-gradient(135deg, #1565C0 0%, #111111 100%);
             color: white;
             position: sticky;
             top: 0;
@@ -83,17 +83,17 @@
         /* Filtros */
         .filter-container {
             padding: 16px 16px 8px;
-            background: #fff;
+            background: #111111;
             position: sticky;
             top: 60px;
             z-index: 90;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #2A2A2A;
         }
         
         .filter-title {
             font-size: 14px;
             font-weight: 600;
-            color: #333;
+            color: #E0E0E0;
             margin-bottom: 12px;
             display: flex;
             align-items: center;
@@ -101,7 +101,7 @@
         }
         
         .filter-title i {
-            color: #0B3D91;
+            color: #1565C0;
             font-size: 16px;
         }
         
@@ -122,10 +122,10 @@
         .filter-button {
             padding: 8px 16px;
             border: none;
-            background: #f0f0f0;
+            background: #222222;
             border-radius: 20px;
             font-size: 13px;
-            color: #666;
+            color: #BBBBBB;
             cursor: pointer;
             transition: all 0.2s;
             font-weight: 500;
@@ -139,7 +139,7 @@
         }
         
         .filter-button.active {
-            background: linear-gradient(135deg, #0B3D91, #092D6B);
+            background: linear-gradient(135deg, #1565C0, #111111);
             color: white;
             box-shadow: 0 2px 5px rgba(226, 27, 21, 0.3);
         }
@@ -153,7 +153,7 @@
         .withdrawals-title {
             font-size: 15px;
             font-weight: 600;
-            color: #333;
+            color: #E0E0E0;
             margin-bottom: 16px;
             display: flex;
             align-items: center;
@@ -162,7 +162,7 @@
         }
         
         .withdrawals-title i {
-            color: #0B3D91;
+            color: #1565C0;
             font-size: 16px;
         }
         
@@ -173,7 +173,7 @@
             padding: 16px;
             margin-bottom: 10px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            border-left: 4px solid #0B3D91;
+            border-left: 4px solid #1565C0;
             transition: all 0.2s;
             animation: fadeIn 0.3s ease-out;
             width: 100%;
@@ -189,11 +189,11 @@
         }
         
         .withdrawal-item.completed {
-            border-left-color: #FC3D21;
+            border-left-color: #1E88E5;
         }
         
         .withdrawal-item.failed {
-            border-left-color: #FC3D21;
+            border-left-color: #1E88E5;
         }
         
         .withdrawal-item.cancelled {
@@ -234,12 +234,12 @@
         
         .withdrawal-icon.completed {
             background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
-            color: #FC3D21;
+            color: #1E88E5;
         }
         
         .withdrawal-icon.failed {
             background: linear-gradient(135deg, #FFEBEE, #FFCDD2);
-            color: #FC3D21;
+            color: #1E88E5;
         }
         
         .withdrawal-icon.cancelled {
@@ -256,7 +256,7 @@
         .withdrawal-type {
             font-weight: 600;
             font-size: 14px;
-            color: #333;
+            color: #E0E0E0;
             margin-bottom: 4px;
             white-space: nowrap;
             overflow: hidden;
@@ -264,11 +264,11 @@
         }
         
         .iban-info {
-            color: #666;
+            color: #BBBBBB;
             font-size: 12px;
             line-height: 1.4;
             font-family: monospace;
-            background: #f8f9fa;
+            background: #1A1A1A;
             padding: 4px 8px;
             border-radius: 4px;
             margin-top: 4px;
@@ -284,11 +284,11 @@
         }
         
         .withdrawal-amount .gross {
-            color: #0B3D91;
+            color: #1565C0;
         }
         
         .withdrawal-amount .net {
-            color: #FC3D21;
+            color: #1E88E5;
         }
         
         .withdrawal-footer {
@@ -296,13 +296,13 @@
             justify-content: space-between;
             align-items: center;
             padding-top: 12px;
-            border-top: 1px solid #f0f0f0;
+            border-top: 1px solid #222222;
             margin-top: 12px;
             font-size: 11px;
         }
         
         .withdrawal-date {
-            color: #888;
+            color: #999999;
             white-space: nowrap;
         }
         
@@ -339,13 +339,13 @@
         .loading-spinner {
             text-align: center;
             padding: 60px 20px;
-            color: #666;
+            color: #BBBBBB;
         }
         
         .loading-spinner i {
             font-size: 32px;
             margin-bottom: 15px;
-            color: #0B3D91;
+            color: #1565C0;
             animation: spin 1s linear infinite;
         }
         
@@ -357,7 +357,7 @@
         .no-withdrawals {
             text-align: center;
             padding: 80px 20px;
-            color: #888;
+            color: #999999;
             display: none;
         }
         
@@ -379,7 +379,7 @@
             right: 20px;
             width: 56px;
             height: 56px;
-            background: linear-gradient(135deg, #0B3D91, #092D6B);
+            background: linear-gradient(135deg, #1565C0, #111111);
             color: white;
             border: none;
             border-radius: 50%;
@@ -518,12 +518,12 @@
             }
             
             .withdrawalspage {
-                background: #061A40;
+                background: #000000;
             }
             
             .filter-container {
-                background: #061A40;
-                border-bottom-color: #333;
+                background: #000000;
+                border-bottom-color: #E0E0E0;
             }
             
             .filter-title {
@@ -531,13 +531,13 @@
             }
             
             .filter-button {
-                background: #0B3D91;
+                background: #1565C0;
                 color: #ccc;
             }
             
             .filter-button:hover,
             .filter-button:active {
-                background: #0D47A1;
+                background: #1A1A1A;
             }
             
             .withdrawals-title {
@@ -545,7 +545,7 @@
             }
             
             .withdrawal-item {
-                background: #092D6B;
+                background: #111111;
                 box-shadow: 0 2px 8px rgba(0,0,0,0.2);
             }
             
@@ -554,20 +554,20 @@
             }
             
             .iban-info {
-                background: #0B3D91;
+                background: #1565C0;
                 color: #ccc;
             }
             
             .withdrawal-footer {
-                border-top-color: #333;
+                border-top-color: #E0E0E0;
             }
             
             .withdrawal-date {
-                color: #888;
+                color: #999999;
             }
             
             .no-withdrawals {
-                color: #aaa;
+                color: #777777;
             }
         }
     </style>
@@ -657,7 +657,7 @@
                     top: 100px;
                     right: 16px;
                     left: 16px;
-                    background: #0B3D91;
+                    background: #1565C0;
                     color: white;
                     padding: 14px 16px;
                     border-radius: 10px;
@@ -670,15 +670,15 @@
                 }
                 
                 .custom-toast.toast-success {
-                    background: linear-gradient(135deg, #FC3D21, #2E7D32);
+                    background: linear-gradient(135deg, #1E88E5, #2E7D32);
                 }
                 
                 .custom-toast.toast-error {
-                    background: linear-gradient(135deg, #0B3D91, #092D6B);
+                    background: linear-gradient(135deg, #1565C0, #111111);
                 }
                 
                 .custom-toast.toast-info {
-                    background: linear-gradient(135deg, #0B3D91, #1565C0);
+                    background: linear-gradient(135deg, #1565C0, #1565C0);
                 }
             `;
             document.head.appendChild(style);
