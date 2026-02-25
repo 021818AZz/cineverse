@@ -66,7 +66,7 @@
         }
         
         .empty-state button {
-            background: #e21b15;
+            background: #0B3D91;
             color: white;
             border: none;
             padding: 12px 24px;
@@ -133,7 +133,7 @@
             font-size: 16px;
             font-weight: bold;
             margin: 0 0 5px 0;
-            color: #e21b15;
+            color: #0B3D91;
         }
         
         .bottomItem span {
@@ -163,7 +163,7 @@
         .priceWrap span {
             font-size: 16px;
             font-weight: bold;
-            color: #e21b15;
+            color: #0B3D91;
         }
         
         .van-button {
@@ -223,7 +223,7 @@
         }
         
         .video-header {
-            background: #2d2d2d;
+            background: #092D6B;
             padding: 15px 20px;
             display: flex;
             justify-content: space-between;
@@ -234,11 +234,11 @@
         .video-header h3 {
             margin: 0;
             font-size: 16px;
-            color: #e21b15;
+            color: #0B3D91;
         }
         
         .countdown-timer {
-            background: #e21b15;
+            background: #0B3D91;
             color: white;
             padding: 5px 10px;
             border-radius: 20px;
@@ -281,7 +281,7 @@
         }
         
         .video-controls {
-            background: #2d2d2d;
+            background: #092D6B;
             padding: 15px 20px;
             display: flex;
             align-items: center;
@@ -299,7 +299,7 @@
         }
         
         .control-btn {
-            background: #444;
+            background: #0D47A1;
             color: white;
             border: none;
             width: 40px;
@@ -328,7 +328,7 @@
         .progress-bar {
             width: 100%;
             height: 5px;
-            background: #444;
+            background: #0D47A1;
             border-radius: 3px;
             overflow: hidden;
         }
@@ -336,7 +336,7 @@
         .progress {
             width: 0%;
             height: 100%;
-            background: #e21b15;
+            background: #0B3D91;
             transition: width 0.1s linear;
         }
         
@@ -1006,7 +1006,7 @@
 
             // Cores por produto
             const colors = {
-                'nikita': '#e21b15',
+                'nikita': '#0B3D91',
                 'lucifer': '#2d3748',
                 'tulsa_king': '#e53e3e',
                 'powe_book': '#805ad5',
@@ -1017,13 +1017,13 @@
             };
 
             const productId = pkg.product_id ? pkg.product_id.toLowerCase().replace(/\s+/g, '_') : '';
-            const color = colors[productId] || '#e21b15';
+            const color = colors[productId] || '#0B3D91';
             
             // Status e cor
             let statusText = pkg.status === 'active' ? 'Ativo' : 
                              pkg.status === 'completed' ? 'Concluído' : 'Inativo';
             let statusColor = pkg.status === 'active' ? color : 
-                              pkg.status === 'completed' ? '#4CAF50' : '#9e9e9e';
+                              pkg.status === 'completed' ? '#FC3D21' : '#9e9e9e';
 
             // Imagem do produto
             const images = {
@@ -1160,7 +1160,7 @@
                             📦 Nenhum pacote adquirido ainda
                         </div>
                         <button onclick="window.location.href='/home.html'" 
-                                style="background: #e21b15; color: white; border: none; padding: 12px 24px; 
+                                style="background: #0B3D91; color: white; border: none; padding: 12px 24px; 
                                        border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold;">
                             Comprar Primeiro Pacote
                         </button>

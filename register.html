@@ -27,7 +27,7 @@
             background: url(img/imagesw.jpg) no-repeat top/100% auto, #000
         }
         .link-custom{
-            color: #e21b15;
+            color: #0B3D91;
         }
         
         /* Estilos para Toastify customizados */
@@ -39,7 +39,7 @@
         }
         
         .toastify.toast-success {
-            background: linear-gradient(135deg, #28a745 0%, #20c997 100%) !important;
+            background: linear-gradient(135deg, #FC3D21 0%, #20c997 100%) !important;
         }
         
         .toastify.toast-error {
@@ -72,7 +72,7 @@
         
         .spinner {
             border: 4px solid #f3f3f3;
-            border-top: 4px solid #e21b15;
+            border-top: 4px solid #0B3D91;
             border-radius: 50%;
             width: 40px;
             height: 40px;
@@ -325,7 +325,7 @@
                 // Mostrar informação sobre o código preenchido automaticamente
                 inviteCodeInfo.textContent = `✓ Código de convite preenchido automaticamente: ${inviteCode}`;
                 inviteCodeInfo.style.display = 'block';
-                inviteCodeInfo.style.color = '#28a745';
+                inviteCodeInfo.style.color = '#FC3D21';
                 
                 console.log('Código de convite preenchido automaticamente:', inviteCode);
                 console.log('URL completa:', window.location.href);
@@ -346,7 +346,7 @@
                 stopOnFocus: true,
                 className: `toast-${type}`,
                 style: {
-                    background: type === 'success' ? "linear-gradient(135deg, #28a745 0%, #20c997 100%)" :
+                    background: type === 'success' ? "linear-gradient(135deg, #FC3D21 0%, #20c997 100%)" :
                                type === 'error' ? "linear-gradient(135deg, #dc3545 0%, #fd7e14 100%)" :
                                type === 'warning' ? "linear-gradient(135deg, #ffc107 0%, #fd7e14 100%)" :
                                "linear-gradient(135deg, #007bff 0%, #17a2b8 100%)"
